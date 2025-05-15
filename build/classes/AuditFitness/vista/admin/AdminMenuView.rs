@@ -1,0 +1,4 @@
+AuditFitness.AdminMenuView$1
+AuditFitness.AdminMenuView
+AuditFitness.AdminMenuView$2
+AuditFitness.AdminMenuView$3

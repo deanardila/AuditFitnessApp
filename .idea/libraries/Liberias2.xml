@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Liberias2">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/src/Liberias/Grafico_circular_JWC.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/Liberias/grafico_barrav1_JWC.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/Liberias/liberia02.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/Liberias/btn_efecto01_JWC.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/Liberias/img_redondo_degradado_JWC.jar!/" />
+      <root url="jar://$PROJECT_DIR$/src/Liberias/Panel_degradado_JWC.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,1 @@
+auditfitness.modelo.entidades.Rutina
