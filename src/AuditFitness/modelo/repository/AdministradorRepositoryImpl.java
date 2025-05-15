@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package auditfitness.modelo.repository;
-import auditfitness.modelo.entidades.Administrador;
-import auditfitness.modelo.entidades.UsuarioRole;
+package AuditFitness.modelo.repository;
+import Auditfitness.modelo.entidades.Administrador;
+import Auditfitness.modelo.entidades.UsuarioRole;
 
 import java.io.*;
 import java.io.FileWriter;

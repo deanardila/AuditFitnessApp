@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package AuditFitness;
+package AuditFitness.vista.admin;
 
 import java.awt.Color;
 
@@ -173,7 +173,7 @@ public class AdminMenuView extends javax.swing.JFrame {
             panel_Round_JWC1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_Round_JWC1Layout.createSequentialGroup()
                 .addComponent(AdminMenuView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 719, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 606, Short.MAX_VALUE)
                 .addComponent(btn_Round_JWC2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
@@ -186,7 +186,7 @@ public class AdminMenuView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(panel_Round_JWC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 960, 620));
+        getContentPane().add(panel_Round_JWC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 620));
 
         pack();
         setLocationRelativeTo(null);

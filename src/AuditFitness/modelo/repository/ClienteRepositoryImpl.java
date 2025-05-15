@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package auditfitness.modelo.repository;
+package AuditFitness.modelo.repository;
 
-import auditfitness.modelo.entidades.Administrador;
-import auditfitness.modelo.entidades.Cliente;
+import AuditFitness.modelo.entidades.Administrador;
+import AuditFitness.modelo.entidades.Cliente;
 
 import java.io.*;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package auditfitness.modelo.entidades;
+package AuditFitness.modelo.entidades;
 
 public enum UsuarioRole {
     ADMINISTRADOR,

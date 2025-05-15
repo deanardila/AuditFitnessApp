@@ -6,15 +6,12 @@ package AuditFitness;
 
 /**
  *
- * @author obito
+ * @author deana
  */
 public class AuditFitness {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
+
     }
     
 }

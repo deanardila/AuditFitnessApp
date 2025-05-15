@@ -4,7 +4,16 @@
  */
 package AuditFitness.vista.entrenador;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.data.time.Day;
+import org.jfree.data.time.TimeSeries;
+import org.jfree.data.time.TimeSeriesCollection;
 
 /**
  *
@@ -48,9 +57,10 @@ public class MostrarProgresoView extends javax.swing.JFrame {
         Identificacion = new javax.swing.JFormattedTextField();
         BtnEnviar = new swing.Btn_Round_JWC();
         jLabel2 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        panelChart = new javax.swing.JPanel();
         Identificacion1 = new javax.swing.JFormattedTextField();
         BtnEnviar1 = new swing.Btn_Round_JWC();
+        BtnEnviar2 = new swing.Btn_Round_JWC();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -228,16 +238,16 @@ public class MostrarProgresoView extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Progreso del cliente: ");
 
-        jPanel2.setBackground(new java.awt.Color(242, 240, 240));
+        panelChart.setBackground(new java.awt.Color(242, 240, 240));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelChartLayout = new javax.swing.GroupLayout(panelChart);
+        panelChart.setLayout(panelChartLayout);
+        panelChartLayout.setHorizontalGroup(
+            panelChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 416, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelChartLayout.setVerticalGroup(
+            panelChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 320, Short.MAX_VALUE)
         );
 
@@ -262,6 +272,19 @@ public class MostrarProgresoView extends javax.swing.JFrame {
             }
         });
 
+        BtnEnviar2.setBackground(new java.awt.Color(204, 102, 0));
+        BtnEnviar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/parte-superior-del-avion-de-papel.png"))); // NOI18N
+        BtnEnviar2.setText("");
+        BtnEnviar2.setArco_esquina(20);
+        BtnEnviar2.setColor_H_text(new java.awt.Color(204, 102, 0));
+        BtnEnviar2.setColor_Hover(new java.awt.Color(255, 153, 51));
+        BtnEnviar2.setColor_Normal(new java.awt.Color(204, 102, 0));
+        BtnEnviar2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEnviar2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout EntrenadorMenuViewLayout = new javax.swing.GroupLayout(EntrenadorMenuView);
         EntrenadorMenuView.setLayout(EntrenadorMenuViewLayout);
         EntrenadorMenuViewLayout.setHorizontalGroup(
@@ -278,27 +301,29 @@ public class MostrarProgresoView extends javax.swing.JFrame {
                             .addGroup(EntrenadorMenuViewLayout.createSequentialGroup()
                                 .addGap(79, 79, 79)
                                 .addGroup(EntrenadorMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(EntrenadorMenuViewLayout.createSequentialGroup()
                                         .addComponent(Identificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(BtnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)))
+                                        .addComponent(BtnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(EntrenadorMenuViewLayout.createSequentialGroup()
                                 .addGap(18, 18, 18)
                                 .addGroup(EntrenadorMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(EntrenadorMenuViewLayout.createSequentialGroup()
                                         .addComponent(Identificacion1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(BtnEnviar1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(BtnEnviar1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(BtnEnviar2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel2)))
                             .addGroup(EntrenadorMenuViewLayout.createSequentialGroup()
                                 .addGap(43, 43, 43)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(panelChart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(51, Short.MAX_VALUE))))
         );
         EntrenadorMenuViewLayout.setVerticalGroup(
             EntrenadorMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel_Round_JWC2, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
+            .addComponent(panel_Round_JWC2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(EntrenadorMenuViewLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(BtnSalirRedondo, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -313,9 +338,10 @@ public class MostrarProgresoView extends javax.swing.JFrame {
                 .addGap(1, 1, 1)
                 .addGroup(EntrenadorMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(BtnEnviar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Identificacion1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Identificacion1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnEnviar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(33, 33, 33)
+                .addComponent(panelChart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -353,161 +379,44 @@ public class MostrarProgresoView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnEnviar1ActionPerformed
 
+    private void BtnEnviar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEnviar2ActionPerformed
+        // TODO add your handling code here:
+        
+        TimeSeries series = new TimeSeries("Ventas");
+        series.add(new Day(1,1,2024),150);
+        series.add(new Day(2,1,2024),200);
+        series.add(new Day(3,1,2024),180);
+        
+        
+        TimeSeriesCollection dataSet = new TimeSeriesCollection();
+        dataSet.addSeries(series);
+        
+        JFreeChart chart = ChartFactory.createTimeSeriesChart(
+                "Ventas diarias",
+                "Fecha", //Eje X
+                "Valor",  // Eje Y
+                dataSet, // Datos
+                true, // Si se usa leyenda
+                true, // tooltips
+                false);//url
+        
+        ChartPanel chartPanel = new ChartPanel(chart);
+        chartPanel.setPreferredSize(new Dimension(600,400));
+        
+        panelChart.removeAll();
+        panelChart.setLayout(new BorderLayout());
+        panelChart.add(chartPanel,BorderLayout.CENTER);
+        panelChart.validate();
+        panelChart.repaint();
+        
+        System.out.println("Dibujar");
+        
+    }//GEN-LAST:event_BtnEnviar2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MostrarProgresoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MostrarProgresoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MostrarProgresoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MostrarProgresoView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new MostrarProgresoView().setVisible(true);
@@ -519,6 +428,7 @@ public class MostrarProgresoView extends javax.swing.JFrame {
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnAgregarRutina;
     private swing.Btn_Round_JWC BtnEnviar;
     private swing.Btn_Round_JWC BtnEnviar1;
+    private swing.Btn_Round_JWC BtnEnviar2;
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnMostrarAsistencia;
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnMostrarProgreso;
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnMostrarRutina;
@@ -532,8 +442,8 @@ public class MostrarProgresoView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lbUsername;
+    private javax.swing.JPanel panelChart;
     private swing.Panel_Round_JWC panel_Round_JWC2;
     private org.jfree.chart.urls.TimeSeriesURLGenerator timeSeriesURLGenerator1;
     // End of variables declaration//GEN-END:variables
