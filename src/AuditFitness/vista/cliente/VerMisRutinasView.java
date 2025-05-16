@@ -4,9 +4,7 @@
  */
 package AuditFitness.vista.cliente;
 
-import AuditFitness.modelo.entidades.Rutina;
 import java.awt.Color;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -257,15 +255,7 @@ public class VerMisRutinasView extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnAtrasActionPerformed
 
     private void BtnVerMisRutinasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerMisRutinasActionPerformed
-       VerMisRutinasView verRutinasView = new VerMisRutinasView();
 
-    // Preparar las rutinas para mostrar en la vista
-    List<String[]> rutinasParaMostrar = new ArrayList<>();
-    for (Rutina rutina : todasLasRutinas) {
-        rutinasParaMostrar.add(new String[]{rutina.getNombre(), String.valueOf(rutina.getRepeticiones()), String.valueOf(rutina.getSeries())});
-    }
-    // Mostrar las rutinas en la vista
-    verRutinasView.mostrarRutinas(rutinasParaMostrar);
     }//GEN-LAST:event_BtnVerMisRutinasActionPerformed
 
     private void BtnVerMiProgresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerMiProgresoActionPerformed

@@ -6,6 +6,7 @@ package AuditFitness.vista.entrenador;
 
 import AuditFitness.vista.auth.LoginEntrenadorView;
 import java.awt.Color;
+import javax.swing.JLabel;
 
 /**
  *
@@ -183,8 +184,9 @@ public class EntrenadorMenuView extends javax.swing.JFrame {
 
         lbUsername.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         lbUsername.setForeground(new java.awt.Color(255, 255, 255));
+        lbUsername.setText("Username: Entrenador");
         lbUsername.setToolTipText("");
-        panel_Round_JWC2.add(lbUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 140, 20));
+        panel_Round_JWC2.add(lbUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, 20));
 
         BtnSalir.setBackground(new java.awt.Color(204, 102, 0));
         BtnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/salida.png"))); // NOI18N
@@ -267,6 +269,7 @@ public class EntrenadorMenuView extends javax.swing.JFrame {
         abrirMostrarAsistenciaView();
     }//GEN-LAST:event_BtnMostrarAsistenciaActionPerformed
 
+    
     /**
      * @param args the command line arguments
      */

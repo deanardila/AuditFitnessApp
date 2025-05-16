@@ -314,9 +314,10 @@ public class AgregarRutinaView extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnSalirActionPerformed
 
     private void IdentificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdentificacionActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_IdentificacionActionPerformed
 
+    
     private void BtnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEnviarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnEnviarActionPerformed
