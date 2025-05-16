@@ -1,1 +1,0 @@
-auditfitness.modelo.entidades.UsuarioRole

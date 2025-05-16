@@ -1,1 +1,0 @@
-auditfitness.controlador.entrenador.AsignarRutinaController

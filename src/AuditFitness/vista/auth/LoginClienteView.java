@@ -4,7 +4,12 @@
  */
 package AuditFitness.vista.auth;
 
+import AuditFitness.vista.admin.AdminMenuView;
 import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -16,6 +21,9 @@ public class LoginClienteView extends javax.swing.JFrame {
     /**
      * Creates new form Inicio
      */
+    private String username;
+    private String password;
+    
     public LoginClienteView() {
         initComponents(); setBackground(new Color(0,0,0,0));
     }
@@ -144,7 +152,8 @@ public class LoginClienteView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
-        // TODO add your handling code here:
+         // Este método se puede usar para manejar el evento de presionar Enter en el campo de usuario
+        txtPassword.requestFocus(); // Mover el foco al campo de contraseña
     }//GEN-LAST:event_txtUsuarioActionPerformed
 
     private void BtnSalirRedondoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirRedondoActionPerformed
@@ -152,13 +161,49 @@ public class LoginClienteView extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnSalirRedondoActionPerformed
 
     private void BtnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnIniciarSesionActionPerformed
-   
+        // Aquí puedes manejar la lógica de inicio de sesión
+        String username = txtUsuario.getText().trim();
+        String password = new String(txtPassword.getPassword()).trim();
+        // Lógica para autenticar al administrador
+        if (username.isEmpty() || password.isEmpty()) {
+            mostrarMensaje("Por favor, complete todos los campos.");
+            return;
+        }
     }//GEN-LAST:event_BtnIniciarSesionActionPerformed
 
+    // Validar credenciales desde el archivo CSV
+        if (validarCredenciales(username, password)) {
+            // Abrir el menú del administrador si las credenciales son correctas
+            new AdminMenuView().setVisible(true);
+            this.dispose(); // Cierra la vista de inicio de sesión
+        } else {
+            mostrarMensaje("Credenciales inválidas.");
+        }
+    }
+    
+        private boolean validarCredenciales(String username, String password) {
+            String csvFile = "src/data/clientes.csv";
+            String line;
+            String[] credenciales;
+            try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+            while ((line = br.readLine()) != null) {
+                credenciales = line.split(","); // Asegúrate de que el separador sea correcto
+                if (credenciales[0].equals(username) && credenciales[1].equals(password)) {
+                    return true; // Credenciales válidas
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false; // Credenciales no válidas
+    }
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
+        BtnIniciarSesionActionPerformed(evt);
     }//GEN-LAST:event_txtPasswordActionPerformed
 
+
+   
     /**
      * @param args the command line arguments
      */
@@ -183,4 +228,11 @@ public class LoginClienteView extends javax.swing.JFrame {
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
+
+
+    public void mostrarMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje); // Mostrar un cuadro de diálogo con el mensaje
+    }
 }
+
+ 

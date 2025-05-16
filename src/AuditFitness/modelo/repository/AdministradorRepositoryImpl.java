@@ -3,63 +3,57 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package AuditFitness.modelo.repository;
-import Auditfitness.modelo.entidades.Administrador;
-import Auditfitness.modelo.entidades.UsuarioRole;
+import AuditFitness.modelo.entidades.Administrador;
+import AuditFitness.modelo.entidades.UsuarioRole;
 
 import java.io.*;
 import java.io.FileWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author deana
  */
 public class AdministradorRepositoryImpl implements AdministradorRepository {
-    private final String CSV_FILE = "src/data/administradores.csv";
+    private static final String ARCHIVO_ADMINISTRADORES = "administradores.csv";
 
     @Override
-    public void guardar(Administrador admin) {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(CSV_FILE, true))) {
-            File file = new File(CSV_FILE);
-
-            // Escribir cabecera si el archivo está vacío o no existe
-            if (!file.exists() || file.length() == 0) {
-                writer.write("username,password,nombre,identificacion,Rol");
-            } else file.length();
-            {
-                writer.newLine();
+    public List<Administrador> readAdministradores() throws IOException {
+        List<Administrador> administradores = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(ARCHIVO_ADMINISTRADORES))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",");
+                if (data.length == 5) {
+                    Administrador admin = new Administrador(data[0], data[1], data[3], data[4]);
+                    administradores.add(admin);
+                }
             }
-
-            String linea = String.join(",",
-                    admin.getUsername(),
-                    admin.getPassword(),
-                    admin.getNombre(),
-                    admin.getIdentificacion(),
-                    admin.getRole().toString()
-            );
-            writer.write(linea);
-        } catch (IOException e) {
-            throw new RuntimeException("Error al guardar administrador: " + e.getMessage());
         }
+        return administradores;
     }
 
     @Override
-    public Administrador buscarPorUsername(String username){
-        try (BufferedReader br = new BufferedReader(new FileReader(CSV_FILE))) {
-            String linea;
-            while ((linea = br.readLine()) != null){
-                String[] datos = linea.split(",");
-                if (datos[0].equals(username.trim())){
-                    return new Administrador(
-                            datos[0], //Username
-                            datos[1], //Password
-                            datos[2], //Nombre
-                            datos[3] //Identificación
-                    );
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
+    public void addAdministrador(Administrador administrador) throws IOException {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(ARCHIVO_ADMINISTRADORES, true))) {
+            bw.write(administrador.toCSVString());
+            bw.newLine();
         }
-        return null; //No encontrado
+    }
+    @Override
+    public boolean administradorExiste(String username) throws IOException {
+        List<Administrador> administradores = readAdministradores();
+        return administradores.stream()
+                .anyMatch(admin -> admin.getUsername().equals(username.trim()));
+    }
+
+    @Override
+    public Administrador buscarPorUsername(String username) throws IOException {
+        List<Administrador> administradores = readAdministradores();
+        return administradores.stream()
+                .filter(admin -> admin.getUsername().equals(username.trim()))
+                .findFirst()
+                .orElse(null); // Retorna null si no se encuentra
     }
 }

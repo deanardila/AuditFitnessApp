@@ -1,2 +1,3 @@
-username,password,nombre,identificacion,Rol
-admin2,clave123,Carlos Ruiz,1003,ADMINISTRADOR
+username,password,nombre,identificacion
+admin1,1234,Ana López,1001
+admin2,5678,Pedro Gómez,1002

@@ -17,10 +17,10 @@ public abstract class Usuario {
 
     //Constructor
     public Usuario(String username, String password, String nombre, String identificacion, UsuarioRole role) {
-        this.username = username;
-        this.password = password;
-        this.nombre = nombre;
-        this.identificacion = identificacion;
+        this.username = username.trim(); // Trim para limpiar espacios
+        this.password = password.trim();
+        this.nombre = nombre.trim();
+        this.identificacion = identificacion.trim();
         this.role = role;
     }
 
@@ -61,5 +61,15 @@ public abstract class Usuario {
         return role;
     }
 
-    public abstract String toSring();
+    public String toCSVString(){
+        return String.join(",",
+                this.username,
+                this.username,
+                this.password,
+                this.nombre,
+                this.identificacion,
+                this.role.name());
+    }
+
+    public abstract String toString();
 }

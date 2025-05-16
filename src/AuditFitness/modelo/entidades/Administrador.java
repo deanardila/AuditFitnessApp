@@ -13,7 +13,7 @@ public class Administrador extends Usuario {
         super(username, password, nombre, identificacion, UsuarioRole.ADMINISTRADOR);
     }
     @Override
-    public String toSring(){
+    public String toString(){
         return "Administrador: " +
                 "Username: " + getUsername() +
                 ", Nombre: " + getNombre() +

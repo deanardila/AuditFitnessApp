@@ -4,10 +4,28 @@
  */
 package AuditFitness.controlador.auth;
 
+import AuditFitness.modelo.entidades.Usuario;
+import AuditFitness.modelo.repository.UsuarioRepository;
+
+import java.util.List;
+
 /**
  *
  * @author deana
  */
-public class LoginController {
+public abstract class LoginController {
+    private final UsuarioRepository userRepository;
     
+    public LoginController(UsuarioRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+    protected boolean validarCredenciales(String username, String password, String role) {
+        List<Usuario> users = userRepository.readUsersFromCSV();
+        return users.stream()
+                .anyMatch(user ->
+                        user.getUsername().equals(username.trim()) &&
+                                user.getPassword().equals(password.trim()) &&
+                                user.getRole().equals(role)
+                );
+    }
 }

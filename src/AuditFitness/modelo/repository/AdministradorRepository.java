@@ -4,13 +4,18 @@
  */
 package AuditFitness.modelo.repository;
 
-import Auditfitness.modelo.entidades.Administrador;
+import AuditFitness.modelo.entidades.Administrador;
+
+import java.io.IOException;
+import java.util.List;
 
 /**
  *
  * @author deana
  */
 public interface AdministradorRepository {
-    void guardar(Administrador admin);
-    Administrador buscarPorUsername(String username);
+    List<Administrador> readAdministradores() throws IOException; // Lee todos los administradores
+    void addAdministrador(Administrador administrador) throws IOException; // Agrega un nuevo administrador
+    boolean administradorExiste(String username) throws IOException; // Verifica si un administrador existe
+    Administrador buscarPorUsername(String username) throws IOException; // Busca administrador por username
 }
