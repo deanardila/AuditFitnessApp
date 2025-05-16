@@ -4,7 +4,10 @@
  */
 package AuditFitness.vista.cliente;
 
+import AuditFitness.modelo.entidades.Rutina;
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -36,10 +39,10 @@ public class VerMisRutinasView extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         imagen_redondo_degradado_JWC1 = new img_redondo_degradado_jwc.imagen_redondo_degradado_JWC();
         jLabel1 = new javax.swing.JLabel();
-        btn_Round_JWC1 = new swing.Btn_Round_JWC();
-        btn_Round_JWC2 = new swing.Btn_Round_JWC();
+        BtnAtras = new swing.Btn_Round_JWC();
+        BtnSalirRedondo = new swing.Btn_Round_JWC();
         jLabel2 = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        TablaRutina = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -72,6 +75,11 @@ public class VerMisRutinasView extends javax.swing.JFrame {
         BtnVerMiProgreso.setColor_NoHover_text(new java.awt.Color(153, 153, 153));
         BtnVerMiProgreso.setEsquina_inferior_izquierdo(40);
         BtnVerMiProgreso.setEsquina_superior_izquierdo(40);
+        BtnVerMiProgreso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnVerMiProgresoActionPerformed(evt);
+            }
+        });
         panel_Round_JWC2.add(BtnVerMiProgreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, 50));
 
         BtnRegistrarAsistencia.setForeground(new java.awt.Color(153, 153, 153));
@@ -86,6 +94,11 @@ public class VerMisRutinasView extends javax.swing.JFrame {
         BtnRegistrarAsistencia.setColor_NoHover_text(new java.awt.Color(153, 153, 153));
         BtnRegistrarAsistencia.setEsquina_inferior_izquierdo(40);
         BtnRegistrarAsistencia.setEsquina_superior_izquierdo(40);
+        BtnRegistrarAsistencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRegistrarAsistenciaActionPerformed(evt);
+            }
+        });
         panel_Round_JWC2.add(BtnRegistrarAsistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, -1, 50));
 
         BtnVerMisRutinas.setForeground(new java.awt.Color(153, 153, 153));
@@ -134,29 +147,29 @@ public class VerMisRutinasView extends javax.swing.JFrame {
         jLabel1.setToolTipText("");
         panel_Round_JWC2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 120, -1));
 
-        btn_Round_JWC1.setBackground(new java.awt.Color(204, 102, 0));
-        btn_Round_JWC1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/salida.png"))); // NOI18N
-        btn_Round_JWC1.setText("");
-        btn_Round_JWC1.setArco_esquina(20);
-        btn_Round_JWC1.setColor_H_text(new java.awt.Color(204, 102, 0));
-        btn_Round_JWC1.setColor_Hover(new java.awt.Color(255, 255, 255));
-        btn_Round_JWC1.setColor_Normal(new java.awt.Color(204, 102, 0));
-        btn_Round_JWC1.addActionListener(new java.awt.event.ActionListener() {
+        BtnAtras.setBackground(new java.awt.Color(204, 102, 0));
+        BtnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/salida.png"))); // NOI18N
+        BtnAtras.setText("");
+        BtnAtras.setArco_esquina(20);
+        BtnAtras.setColor_H_text(new java.awt.Color(204, 102, 0));
+        BtnAtras.setColor_Hover(new java.awt.Color(255, 255, 255));
+        BtnAtras.setColor_Normal(new java.awt.Color(204, 102, 0));
+        BtnAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_Round_JWC1ActionPerformed(evt);
+                BtnAtrasActionPerformed(evt);
             }
         });
-        panel_Round_JWC2.add(btn_Round_JWC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 190, 40));
+        panel_Round_JWC2.add(BtnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 190, 40));
 
-        btn_Round_JWC2.setBackground(new java.awt.Color(204, 102, 0));
-        btn_Round_JWC2.setText("");
-        btn_Round_JWC2.setArco_esquina(15);
-        btn_Round_JWC2.setColor_H_text(new java.awt.Color(204, 102, 0));
-        btn_Round_JWC2.setColor_Hover(new java.awt.Color(204, 102, 0));
-        btn_Round_JWC2.setColor_Normal(new java.awt.Color(204, 102, 0));
-        btn_Round_JWC2.addActionListener(new java.awt.event.ActionListener() {
+        BtnSalirRedondo.setBackground(new java.awt.Color(204, 102, 0));
+        BtnSalirRedondo.setText("");
+        BtnSalirRedondo.setArco_esquina(15);
+        BtnSalirRedondo.setColor_H_text(new java.awt.Color(204, 102, 0));
+        BtnSalirRedondo.setColor_Hover(new java.awt.Color(204, 102, 0));
+        BtnSalirRedondo.setColor_Normal(new java.awt.Color(204, 102, 0));
+        BtnSalirRedondo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_Round_JWC2ActionPerformed(evt);
+                BtnSalirRedondoActionPerformed(evt);
             }
         });
 
@@ -194,7 +207,7 @@ public class VerMisRutinasView extends javax.swing.JFrame {
         ));
         jTable1.setGridColor(new java.awt.Color(255, 102, 0));
         jTable1.setSelectionForeground(new java.awt.Color(0, 0, 0));
-        jScrollPane2.setViewportView(jTable1);
+        TablaRutina.setViewportView(jTable1);
 
         javax.swing.GroupLayout ClienteMenuViewLayout = new javax.swing.GroupLayout(ClienteMenuView);
         ClienteMenuView.setLayout(ClienteMenuViewLayout);
@@ -205,13 +218,13 @@ public class VerMisRutinasView extends javax.swing.JFrame {
                 .addGroup(ClienteMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ClienteMenuViewLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 526, Short.MAX_VALUE)
-                        .addComponent(btn_Round_JWC2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BtnSalirRedondo, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(19, 19, 19))
                     .addGroup(ClienteMenuViewLayout.createSequentialGroup()
                         .addGap(53, 53, 53)
                         .addGroup(ClienteMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(TablaRutina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         ClienteMenuViewLayout.setVerticalGroup(
@@ -219,11 +232,11 @@ public class VerMisRutinasView extends javax.swing.JFrame {
             .addComponent(panel_Round_JWC2, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
             .addGroup(ClienteMenuViewLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(btn_Round_JWC2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BtnSalirRedondo, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TablaRutina, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -233,18 +246,51 @@ public class VerMisRutinasView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_Round_JWC2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Round_JWC2ActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_btn_Round_JWC2ActionPerformed
+    private void BtnSalirRedondoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirRedondoActionPerformed
+        System.exit(0); // Cierra la aplicación
+    }//GEN-LAST:event_BtnSalirRedondoActionPerformed
 
-    private void btn_Round_JWC1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Round_JWC1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_Round_JWC1ActionPerformed
+    private void BtnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAtrasActionPerformed
+       ClienteMenuView clienteMenu  = new ClienteMenuView();
+        clienteMenu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BtnAtrasActionPerformed
 
     private void BtnVerMisRutinasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerMisRutinasActionPerformed
-        // TODO add your handling code here:
+       VerMisRutinasView verRutinasView = new VerMisRutinasView();
+
+    // Preparar las rutinas para mostrar en la vista
+    List<String[]> rutinasParaMostrar = new ArrayList<>();
+    for (Rutina rutina : todasLasRutinas) {
+        rutinasParaMostrar.add(new String[]{rutina.getNombre(), String.valueOf(rutina.getRepeticiones()), String.valueOf(rutina.getSeries())});
+    }
+    // Mostrar las rutinas en la vista
+    verRutinasView.mostrarRutinas(rutinasParaMostrar);
     }//GEN-LAST:event_BtnVerMisRutinasActionPerformed
 
+    private void BtnVerMiProgresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerMiProgresoActionPerformed
+       abrirVerMiProgresoView();
+    }//GEN-LAST:event_BtnVerMiProgresoActionPerformed
+
+    private void BtnRegistrarAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegistrarAsistenciaActionPerformed
+        abrirRegistrarAsistenciaView();
+    }//GEN-LAST:event_BtnRegistrarAsistenciaActionPerformed
+    
+    private void abrirRegistrarAsistenciaView() {
+        RegistrarAsistenciaView registrarAsistencia  = new RegistrarAsistenciaView();
+        registrarAsistencia.setVisible(true);
+        this.dispose();
+    }
+    
+    private void abrirVerMiProgresoView() {
+        VerMiProgresoView verMiProgreso  = new VerMiProgresoView();
+        verMiProgreso.setVisible(true);
+        this.dispose();
+    }
+    
+     public void mostrarRutinas(List<String[]> rutinasParaMostrar) {
+        
+    }
     /**
      * @param args the command line arguments
      */
@@ -259,18 +305,20 @@ public class VerMisRutinasView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private swing.Btn_Round_JWC BtnAtras;
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnRegistrarAsistencia;
+    private swing.Btn_Round_JWC BtnSalirRedondo;
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnVerMiProgreso;
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnVerMisRutinas;
     private swing.Panel_Round_JWC ClienteMenuView;
-    private swing.Btn_Round_JWC btn_Round_JWC1;
-    private swing.Btn_Round_JWC btn_Round_JWC2;
+    private javax.swing.JScrollPane TablaRutina;
     private img_redondo_degradado_jwc.imagen_redondo_degradado_JWC imagen_redondo_degradado_JWC1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private swing.Panel_Round_JWC panel_Round_JWC2;
     // End of variables declaration//GEN-END:variables
+
+   
 }

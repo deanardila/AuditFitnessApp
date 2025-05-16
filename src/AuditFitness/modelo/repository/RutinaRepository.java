@@ -4,10 +4,15 @@
  */
 package AuditFitness.modelo.repository;
 
+import AuditFitness.modelo.entidades.Rutina;
+import java.util.List;
+
 /**
  *
  * @author deana
  */
 public interface RutinaRepository {
-    
+   List<Rutina> cargaRutinasDesdeCSV(String nombreArchivo);
+
+    public List<Rutina> cargarRutinasDesdeCSV(String nombreArchivo);
 }

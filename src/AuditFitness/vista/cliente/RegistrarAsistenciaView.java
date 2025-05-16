@@ -5,6 +5,7 @@
 package AuditFitness.vista.cliente;
 
 import AuditFitness.util.FechaHelper;
+import AuditFitness.vista.auth.LoginClienteView;
 import java.awt.Color;
 import java.util.Calendar;
 import java.util.Date;
@@ -42,8 +43,8 @@ public class RegistrarAsistenciaView extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         imagen_redondo_degradado_JWC1 = new img_redondo_degradado_jwc.imagen_redondo_degradado_JWC();
         jLabel1 = new javax.swing.JLabel();
-        btn_Round_JWC1 = new swing.Btn_Round_JWC();
-        btn_Round_JWC2 = new swing.Btn_Round_JWC();
+        BtnAtras = new swing.Btn_Round_JWC();
+        BtnSalirRedondo = new swing.Btn_Round_JWC();
         jLabel2 = new javax.swing.JLabel();
         dateChooserAsistencia = new com.toedter.calendar.JDateChooser();
         BtnEnviar1 = new swing.Btn_Round_JWC();
@@ -78,6 +79,11 @@ public class RegistrarAsistenciaView extends javax.swing.JFrame {
         BtnVerMiProgreso.setColor_NoHover_text(new java.awt.Color(153, 153, 153));
         BtnVerMiProgreso.setEsquina_inferior_izquierdo(40);
         BtnVerMiProgreso.setEsquina_superior_izquierdo(40);
+        BtnVerMiProgreso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnVerMiProgresoActionPerformed(evt);
+            }
+        });
         panel_Round_JWC2.add(BtnVerMiProgreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, 50));
 
         BtnRegistrarAsistencia.setForeground(new java.awt.Color(153, 153, 153));
@@ -140,29 +146,29 @@ public class RegistrarAsistenciaView extends javax.swing.JFrame {
         jLabel1.setToolTipText("");
         panel_Round_JWC2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 120, -1));
 
-        btn_Round_JWC1.setBackground(new java.awt.Color(204, 102, 0));
-        btn_Round_JWC1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/salida.png"))); // NOI18N
-        btn_Round_JWC1.setText("");
-        btn_Round_JWC1.setArco_esquina(20);
-        btn_Round_JWC1.setColor_H_text(new java.awt.Color(204, 102, 0));
-        btn_Round_JWC1.setColor_Hover(new java.awt.Color(255, 255, 255));
-        btn_Round_JWC1.setColor_Normal(new java.awt.Color(204, 102, 0));
-        btn_Round_JWC1.addActionListener(new java.awt.event.ActionListener() {
+        BtnAtras.setBackground(new java.awt.Color(204, 102, 0));
+        BtnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/salida.png"))); // NOI18N
+        BtnAtras.setText("");
+        BtnAtras.setArco_esquina(20);
+        BtnAtras.setColor_H_text(new java.awt.Color(204, 102, 0));
+        BtnAtras.setColor_Hover(new java.awt.Color(255, 255, 255));
+        BtnAtras.setColor_Normal(new java.awt.Color(204, 102, 0));
+        BtnAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_Round_JWC1ActionPerformed(evt);
+                BtnAtrasActionPerformed(evt);
             }
         });
-        panel_Round_JWC2.add(btn_Round_JWC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 190, 40));
+        panel_Round_JWC2.add(BtnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 190, 40));
 
-        btn_Round_JWC2.setBackground(new java.awt.Color(204, 102, 0));
-        btn_Round_JWC2.setText("");
-        btn_Round_JWC2.setArco_esquina(15);
-        btn_Round_JWC2.setColor_H_text(new java.awt.Color(204, 102, 0));
-        btn_Round_JWC2.setColor_Hover(new java.awt.Color(204, 102, 0));
-        btn_Round_JWC2.setColor_Normal(new java.awt.Color(204, 102, 0));
-        btn_Round_JWC2.addActionListener(new java.awt.event.ActionListener() {
+        BtnSalirRedondo.setBackground(new java.awt.Color(204, 102, 0));
+        BtnSalirRedondo.setText("");
+        BtnSalirRedondo.setArco_esquina(15);
+        BtnSalirRedondo.setColor_H_text(new java.awt.Color(204, 102, 0));
+        BtnSalirRedondo.setColor_Hover(new java.awt.Color(204, 102, 0));
+        BtnSalirRedondo.setColor_Normal(new java.awt.Color(204, 102, 0));
+        BtnSalirRedondo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_Round_JWC2ActionPerformed(evt);
+                BtnSalirRedondoActionPerformed(evt);
             }
         });
 
@@ -199,7 +205,7 @@ public class RegistrarAsistenciaView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(ClienteMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ClienteMenuViewLayout.createSequentialGroup()
-                                .addComponent(btn_Round_JWC2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(BtnSalirRedondo, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(19, 19, 19))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ClienteMenuViewLayout.createSequentialGroup()
                                 .addComponent(dateChooserAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -219,7 +225,7 @@ public class RegistrarAsistenciaView extends javax.swing.JFrame {
                 .addGroup(ClienteMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(BtnEnviar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(ClienteMenuViewLayout.createSequentialGroup()
-                        .addComponent(btn_Round_JWC2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BtnSalirRedondo, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(45, 45, 45)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(10, 10, 10)
@@ -233,18 +239,24 @@ public class RegistrarAsistenciaView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_Round_JWC2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Round_JWC2ActionPerformed
+    private void BtnSalirRedondoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirRedondoActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_btn_Round_JWC2ActionPerformed
+    }//GEN-LAST:event_BtnSalirRedondoActionPerformed
 
-    private void btn_Round_JWC1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Round_JWC1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btn_Round_JWC1ActionPerformed
+    private void BtnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAtrasActionPerformed
+        LoginClienteView loginCliente = new LoginClienteView();
+        loginCliente.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BtnAtrasActionPerformed
 
     private void BtnVerMisRutinasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerMisRutinasActionPerformed
-        // TODO add your handling code here:
+       abrirVerMisRutinasView();
     }//GEN-LAST:event_BtnVerMisRutinasActionPerformed
 
+    private void abrirVerMisRutinasView() {
+        VerMisRutinasView verMisRutinas  = new VerMisRutinasView();
+        verMisRutinas.setVisible(true);
+    }
     private Date getFechaRegistro(){
         Calendar selectedDate = dateChooserAsistencia.getCalendar();
         if(selectedDate!=null){
@@ -268,6 +280,15 @@ public class RegistrarAsistenciaView extends javax.swing.JFrame {
         
     }//GEN-LAST:event_BtnEnviar1ActionPerformed
 
+    private void BtnVerMiProgresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerMiProgresoActionPerformed
+        abrirVerMiProgresoView();
+    }//GEN-LAST:event_BtnVerMiProgresoActionPerformed
+
+    private void abrirVerMiProgresoView() {
+        VerMiProgresoView verMiProgreso  = new VerMiProgresoView();
+        verMiProgreso.setVisible(true);
+        this.dispose();
+    }
     /**
      * @param args the command line arguments
      */
@@ -283,13 +304,13 @@ public class RegistrarAsistenciaView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private swing.Btn_Round_JWC BtnAtras;
     private swing.Btn_Round_JWC BtnEnviar1;
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnRegistrarAsistencia;
+    private swing.Btn_Round_JWC BtnSalirRedondo;
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnVerMiProgreso;
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnVerMisRutinas;
     private swing.Panel_Round_JWC ClienteMenuView;
-    private swing.Btn_Round_JWC btn_Round_JWC1;
-    private swing.Btn_Round_JWC btn_Round_JWC2;
     private com.toedter.calendar.JDateChooser dateChooserAsistencia;
     private img_redondo_degradado_jwc.imagen_redondo_degradado_JWC imagen_redondo_degradado_JWC1;
     private javax.swing.JLabel jLabel1;

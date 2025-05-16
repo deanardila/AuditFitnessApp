@@ -4,6 +4,7 @@
  */
 package AuditFitness.vista.admin;
 
+import AuditFitness.vista.auth.LoginAdminView;
 import java.awt.Color;
 
 /**
@@ -38,7 +39,7 @@ public class AdminMenuView extends javax.swing.JFrame {
         imagen_redondo_degradado_JWC1 = new img_redondo_degradado_jwc.imagen_redondo_degradado_JWC();
         jLabel1 = new javax.swing.JLabel();
         BtnSalir = new swing.Btn_Round_JWC();
-        btn_Round_JWC2 = new swing.Btn_Round_JWC();
+        BtnSalirRedondo = new swing.Btn_Round_JWC();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -68,6 +69,11 @@ public class AdminMenuView extends javax.swing.JFrame {
         BtnEliminarClientes.setColor_NoHover_text(new java.awt.Color(153, 153, 153));
         BtnEliminarClientes.setEsquina_inferior_izquierdo(40);
         BtnEliminarClientes.setEsquina_superior_izquierdo(40);
+        BtnEliminarClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEliminarClientesActionPerformed(evt);
+            }
+        });
         AdminMenuView.add(BtnEliminarClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, 50));
 
         BtnAgregarEntrenador.setForeground(new java.awt.Color(153, 153, 153));
@@ -83,6 +89,11 @@ public class AdminMenuView extends javax.swing.JFrame {
         BtnAgregarEntrenador.setColor_NoHover_text(new java.awt.Color(153, 153, 153));
         BtnAgregarEntrenador.setEsquina_inferior_izquierdo(40);
         BtnAgregarEntrenador.setEsquina_superior_izquierdo(40);
+        BtnAgregarEntrenador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAgregarEntrenadorActionPerformed(evt);
+            }
+        });
         AdminMenuView.add(BtnAgregarEntrenador, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, 50));
 
         BtnDesactEntrenador.setForeground(new java.awt.Color(153, 153, 153));
@@ -97,6 +108,11 @@ public class AdminMenuView extends javax.swing.JFrame {
         BtnDesactEntrenador.setColor_NoHover_text(new java.awt.Color(153, 153, 153));
         BtnDesactEntrenador.setEsquina_inferior_izquierdo(40);
         BtnDesactEntrenador.setEsquina_superior_izquierdo(40);
+        BtnDesactEntrenador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnDesactEntrenadorActionPerformed(evt);
+            }
+        });
         AdminMenuView.add(BtnDesactEntrenador, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, 50));
 
         BtnAgregarClientes.setForeground(new java.awt.Color(153, 153, 153));
@@ -153,17 +169,22 @@ public class AdminMenuView extends javax.swing.JFrame {
         BtnSalir.setColor_H_text(new java.awt.Color(204, 102, 0));
         BtnSalir.setColor_Hover(new java.awt.Color(255, 255, 255));
         BtnSalir.setColor_Normal(new java.awt.Color(204, 102, 0));
+        BtnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSalirActionPerformed(evt);
+            }
+        });
         AdminMenuView.add(BtnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 190, 40));
 
-        btn_Round_JWC2.setBackground(new java.awt.Color(204, 102, 0));
-        btn_Round_JWC2.setText("");
-        btn_Round_JWC2.setArco_esquina(15);
-        btn_Round_JWC2.setColor_H_text(new java.awt.Color(204, 102, 0));
-        btn_Round_JWC2.setColor_Hover(new java.awt.Color(204, 102, 0));
-        btn_Round_JWC2.setColor_Normal(new java.awt.Color(204, 102, 0));
-        btn_Round_JWC2.addActionListener(new java.awt.event.ActionListener() {
+        BtnSalirRedondo.setBackground(new java.awt.Color(204, 102, 0));
+        BtnSalirRedondo.setText("");
+        BtnSalirRedondo.setArco_esquina(15);
+        BtnSalirRedondo.setColor_H_text(new java.awt.Color(204, 102, 0));
+        BtnSalirRedondo.setColor_Hover(new java.awt.Color(204, 102, 0));
+        BtnSalirRedondo.setColor_Normal(new java.awt.Color(204, 102, 0));
+        BtnSalirRedondo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_Round_JWC2ActionPerformed(evt);
+                BtnSalirRedondoActionPerformed(evt);
             }
         });
 
@@ -174,7 +195,7 @@ public class AdminMenuView extends javax.swing.JFrame {
             .addGroup(panel_Round_JWC1Layout.createSequentialGroup()
                 .addComponent(AdminMenuView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 606, Short.MAX_VALUE)
-                .addComponent(btn_Round_JWC2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BtnSalirRedondo, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
         panel_Round_JWC1Layout.setVerticalGroup(
@@ -182,7 +203,7 @@ public class AdminMenuView extends javax.swing.JFrame {
             .addComponent(AdminMenuView, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
             .addGroup(panel_Round_JWC1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(btn_Round_JWC2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BtnSalirRedondo, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -193,12 +214,30 @@ public class AdminMenuView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnAgregarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarClientesActionPerformed
-        // TODO add your handling code here:
+        abrirAgregarClientesView();
     }//GEN-LAST:event_BtnAgregarClientesActionPerformed
 
-    private void btn_Round_JWC2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Round_JWC2ActionPerformed
+    private void BtnSalirRedondoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirRedondoActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_btn_Round_JWC2ActionPerformed
+    }//GEN-LAST:event_BtnSalirRedondoActionPerformed
+
+    private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
+       LoginAdminView loginAdmin = new LoginAdminView();
+       loginAdmin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BtnSalirActionPerformed
+
+    private void BtnEliminarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarClientesActionPerformed
+        abrirEliminarClientesView();
+    }//GEN-LAST:event_BtnEliminarClientesActionPerformed
+
+    private void BtnAgregarEntrenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarEntrenadorActionPerformed
+        abrirAgregarEntrenadorView();
+    }//GEN-LAST:event_BtnAgregarEntrenadorActionPerformed
+
+    private void BtnDesactEntrenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDesactEntrenadorActionPerformed
+        abrirDesactivarEntrenadorView();
+    }//GEN-LAST:event_BtnDesactEntrenadorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -245,10 +284,34 @@ public class AdminMenuView extends javax.swing.JFrame {
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnDesactEntrenador;
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnEliminarClientes;
     private swing.Btn_Round_JWC BtnSalir;
-    private swing.Btn_Round_JWC btn_Round_JWC2;
+    private swing.Btn_Round_JWC BtnSalirRedondo;
     private img_redondo_degradado_jwc.imagen_redondo_degradado_JWC imagen_redondo_degradado_JWC1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private swing.Panel_Round_JWC panel_Round_JWC1;
     // End of variables declaration//GEN-END:variables
+
+    private void abrirAgregarClientesView() {
+        AgregarClientesView agregarClientes = new AgregarClientesView ();
+        agregarClientes.setVisible(true);
+        this.dispose();
+    }
+
+    private void abrirEliminarClientesView() {
+        EliminarClientesView eliminarClientes = new EliminarClientesView ();
+        eliminarClientes.setVisible(true);
+        this.dispose();
+    }
+
+    private void abrirAgregarEntrenadorView() {
+        AgregarEntrenadorView agregarEntrenador = new AgregarEntrenadorView ();
+        agregarEntrenador.setVisible(true);
+        this.dispose();
+    }
+
+    private void abrirDesactivarEntrenadorView() {
+        DesactivarEntrenadorView desactivarEntrenador = new DesactivarEntrenadorView();
+        desactivarEntrenador.setVisible(true);
+        this.dispose();
+    }
 }

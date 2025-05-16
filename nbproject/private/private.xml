@@ -3,12 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/deana/OneDrive/Escritorio/AuditFitness-Swing/AuditFitnessApp/AuditFitness/src/AuditFitness/vista/auth/LoginAdminView.java</file>
-            <file>file:/C:/Users/deana/OneDrive/Escritorio/AuditFitness-Swing/AuditFitnessApp/AuditFitness/src/AuditFitness/controlador/auth/AdminLoginController.java</file>
-            <file>file:/C:/Users/deana/OneDrive/Escritorio/AuditFitness-Swing/AuditFitnessApp/AuditFitness/src/AuditFitness/modelo/repository/AdministradorRepository.java</file>
-            <file>file:/C:/Users/deana/OneDrive/Escritorio/AuditFitness-Swing/AuditFitnessApp/AuditFitness/src/AuditFitness/modelo/repository/AdministradorRepositoryImpl.java</file>
-            <file>file:/C:/Users/deana/OneDrive/Escritorio/AuditFitness-Swing/AuditFitnessApp/AuditFitness/src/AuditFitness/modelo/service/AdministradorService.java</file>
-            <file>file:/C:/Users/deana/OneDrive/Escritorio/AuditFitness-Swing/AuditFitnessApp/AuditFitness/src/AuditFitness/modelo/entidades/Cliente.java</file>
+            <file>file:/C:/Users/deana/OneDrive/Escritorio/AuditFitness-Swing/AuditFitnessApp/AuditFitness/src/AuditFitness/modelo/repository/RutinaRepositoryImpl.java</file>
+            <file>file:/C:/Users/deana/OneDrive/Escritorio/AuditFitness-Swing/AuditFitnessApp/AuditFitness/src/AuditFitness/modelo/entidades/Rutina.java</file>
+            <file>file:/C:/Users/deana/OneDrive/Escritorio/AuditFitness-Swing/AuditFitnessApp/AuditFitness/src/AuditFitness/modelo/service/RutinaService.java</file>
+            <file>file:/C:/Users/deana/OneDrive/Escritorio/AuditFitness-Swing/AuditFitnessApp/AuditFitness/src/AuditFitness/controlador/entrenador/AsignarRutinaController.java</file>
+            <file>file:/C:/Users/deana/OneDrive/Escritorio/AuditFitness-Swing/AuditFitnessApp/AuditFitness/src/AuditFitness/modelo/repository/RutinaRepository.java</file>
+            <file>file:/C:/Users/deana/OneDrive/Escritorio/AuditFitness-Swing/AuditFitnessApp/AuditFitness/src/AuditFitness/vista/cliente/VerMisRutinasView.java</file>
+            <file>file:/C:/Users/deana/OneDrive/Escritorio/AuditFitness-Swing/AuditFitnessApp/AuditFitness/src/AuditFitness/vista/cliente/ClienteMenuView.java</file>
         </group>
     </open-files>
 </project-private>

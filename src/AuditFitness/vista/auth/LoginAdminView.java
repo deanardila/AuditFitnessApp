@@ -10,13 +10,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import javax.swing.JOptionPane;
- 
 
-
-/**
- *
- * @author deana
- */
 public class LoginAdminView extends javax.swing.JFrame {
     private String username;
     private String password;
@@ -44,6 +38,7 @@ public class LoginAdminView extends javax.swing.JFrame {
         Contrasenia = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
         BtnIniciarSesion = new swing.Btn_Round_JWC();
+        BtnAtras = new swing.Btn_Round_JWC();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -123,6 +118,20 @@ public class LoginAdminView extends javax.swing.JFrame {
         });
         LoginView.add(BtnIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, -1, 40));
 
+        BtnAtras.setBackground(new java.awt.Color(204, 102, 0));
+        BtnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/salida.png"))); // NOI18N
+        BtnAtras.setText("");
+        BtnAtras.setArco_esquina(20);
+        BtnAtras.setColor_H_text(new java.awt.Color(204, 102, 0));
+        BtnAtras.setColor_Hover(new java.awt.Color(255, 255, 255));
+        BtnAtras.setColor_Normal(new java.awt.Color(204, 102, 0));
+        BtnAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAtrasActionPerformed(evt);
+            }
+        });
+        LoginView.add(BtnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 490, 50, 30));
+
         javax.swing.GroupLayout panel_Round_JWC1Layout = new javax.swing.GroupLayout(panel_Round_JWC1);
         panel_Round_JWC1.setLayout(panel_Round_JWC1Layout);
         panel_Round_JWC1Layout.setHorizontalGroup(
@@ -167,7 +176,7 @@ public class LoginAdminView extends javax.swing.JFrame {
             return;
     }//GEN-LAST:event_BtnIniciarSesionActionPerformed
 
-    // Validar credenciales desde el archivo CSV
+        // Validar credenciales desde el archivo CSV
         if (validarCredenciales(username, password)) {
             // Abrir el menú del administrador si las credenciales son correctas
             new AdminMenuView().setVisible(true);
@@ -182,7 +191,7 @@ public class LoginAdminView extends javax.swing.JFrame {
         String[] credenciales;
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
             while ((line = br.readLine()) != null) {
-                credenciales = line.split(","); // Asegúrate de que el separador sea correcto
+                credenciales = line.split(","); 
                 if (credenciales[0].equals(username) && credenciales[1].equals(password)) {
                     return true; // Credenciales válidas
                 }
@@ -196,8 +205,23 @@ public class LoginAdminView extends javax.swing.JFrame {
     public void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {  
           BtnIniciarSesionActionPerformed(evt);
     }
-        
-        
+    public void mostrarMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje);
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+    
+    private void BtnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAtrasActionPerformed
+        RolView rol = new RolView();
+        rol.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BtnAtrasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -234,6 +258,7 @@ public class LoginAdminView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private swing.Btn_Round_JWC BtnAtras;
     public swing.Btn_Round_JWC BtnIniciarSesion;
     private swing.Btn_Round_JWC BtnSalirRedondo;
     private javax.swing.JLabel Contrasenia;
@@ -246,17 +271,7 @@ public class LoginAdminView extends javax.swing.JFrame {
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 
-    public void mostrarMensaje(String mensaje) {
-        JOptionPane.showMessageDialog(this, mensaje);
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
+    
 }
 
 

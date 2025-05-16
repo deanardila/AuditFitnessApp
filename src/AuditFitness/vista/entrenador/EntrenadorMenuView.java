@@ -4,6 +4,7 @@
  */
 package AuditFitness.vista.entrenador;
 
+import AuditFitness.vista.auth.LoginEntrenadorView;
 import java.awt.Color;
 
 /**
@@ -92,6 +93,11 @@ public class EntrenadorMenuView extends javax.swing.JFrame {
         BtnMostrarRutina.setColor_NoHover_text(new java.awt.Color(153, 153, 153));
         BtnMostrarRutina.setEsquina_inferior_izquierdo(40);
         BtnMostrarRutina.setEsquina_superior_izquierdo(40);
+        BtnMostrarRutina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnMostrarRutinaActionPerformed(evt);
+            }
+        });
         panel_Round_JWC2.add(BtnMostrarRutina, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, 50));
 
         BtnRegistrarProgreso.setForeground(new java.awt.Color(153, 153, 153));
@@ -107,6 +113,11 @@ public class EntrenadorMenuView extends javax.swing.JFrame {
         BtnRegistrarProgreso.setColor_NoHover_text(new java.awt.Color(153, 153, 153));
         BtnRegistrarProgreso.setEsquina_inferior_izquierdo(40);
         BtnRegistrarProgreso.setEsquina_superior_izquierdo(40);
+        BtnRegistrarProgreso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRegistrarProgresoActionPerformed(evt);
+            }
+        });
         panel_Round_JWC2.add(BtnRegistrarProgreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, 50));
 
         BtnMostrarProgreso.setForeground(new java.awt.Color(153, 153, 153));
@@ -122,6 +133,11 @@ public class EntrenadorMenuView extends javax.swing.JFrame {
         BtnMostrarProgreso.setColor_NoHover_text(new java.awt.Color(153, 153, 153));
         BtnMostrarProgreso.setEsquina_inferior_izquierdo(40);
         BtnMostrarProgreso.setEsquina_superior_izquierdo(40);
+        BtnMostrarProgreso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnMostrarProgresoActionPerformed(evt);
+            }
+        });
         panel_Round_JWC2.add(BtnMostrarProgreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, 50));
 
         BtnMostrarAsistencia.setForeground(new java.awt.Color(153, 153, 153));
@@ -137,6 +153,11 @@ public class EntrenadorMenuView extends javax.swing.JFrame {
         BtnMostrarAsistencia.setColor_NoHover_text(new java.awt.Color(153, 153, 153));
         BtnMostrarAsistencia.setEsquina_inferior_izquierdo(40);
         BtnMostrarAsistencia.setEsquina_superior_izquierdo(40);
+        BtnMostrarAsistencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnMostrarAsistenciaActionPerformed(evt);
+            }
+        });
         panel_Round_JWC2.add(BtnMostrarAsistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, -1, 50));
 
         jPanel1.setBackground(new java.awt.Color(242, 240, 240));
@@ -162,9 +183,8 @@ public class EntrenadorMenuView extends javax.swing.JFrame {
 
         lbUsername.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         lbUsername.setForeground(new java.awt.Color(255, 255, 255));
-        lbUsername.setText("Username: Entrenador");
         lbUsername.setToolTipText("");
-        panel_Round_JWC2.add(lbUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, 20));
+        panel_Round_JWC2.add(lbUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, 140, 20));
 
         BtnSalir.setBackground(new java.awt.Color(204, 102, 0));
         BtnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/salida.png"))); // NOI18N
@@ -218,7 +238,7 @@ public class EntrenadorMenuView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnAgregarRutinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarRutinaActionPerformed
-        // TODO add your handling code here:
+        abrirAgregarRutinaView();
     }//GEN-LAST:event_BtnAgregarRutinaActionPerformed
 
     private void BtnSalirRedondoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirRedondoActionPerformed
@@ -226,8 +246,26 @@ public class EntrenadorMenuView extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnSalirRedondoActionPerformed
 
     private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
-        // TODO add your handling code here:
+       LoginEntrenadorView loginEntrenador = new LoginEntrenadorView ();
+       loginEntrenador.setVisible(true);
+       this.dispose();
     }//GEN-LAST:event_BtnSalirActionPerformed
+
+    private void BtnMostrarRutinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMostrarRutinaActionPerformed
+        abrirMostrarRutinaView();
+    }//GEN-LAST:event_BtnMostrarRutinaActionPerformed
+
+    private void BtnRegistrarProgresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegistrarProgresoActionPerformed
+        abrirRegistrarProgresoView();
+    }//GEN-LAST:event_BtnRegistrarProgresoActionPerformed
+
+    private void BtnMostrarProgresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMostrarProgresoActionPerformed
+        abrirMostrarProgresoView();
+    }//GEN-LAST:event_BtnMostrarProgresoActionPerformed
+
+    private void BtnMostrarAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMostrarAsistenciaActionPerformed
+        abrirMostrarAsistenciaView();
+    }//GEN-LAST:event_BtnMostrarAsistenciaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,4 +293,37 @@ public class EntrenadorMenuView extends javax.swing.JFrame {
     private javax.swing.JLabel lbUsername;
     private swing.Panel_Round_JWC panel_Round_JWC2;
     // End of variables declaration//GEN-END:variables
+
+    private void abrirAgregarRutinaView() {
+        AgregarRutinaView agregarRutina = new AgregarRutinaView ();
+        agregarRutina .setVisible(true);
+        this.dispose();
+    }
+
+    private void abrirMostrarRutinaView() {
+       MostrarRutinaView mostrarRutina = new MostrarRutinaView ();
+       mostrarRutina.setVisible(true);
+       this.dispose();
+    }
+
+    private void abrirRegistrarProgresoView() {
+        RegistrarProgresoView registrarProgreso = new RegistrarProgresoView();
+        registrarProgreso.setVisible(true);
+        this.dispose();
+    }
+
+    private void abrirMostrarProgresoView() {
+       MostrarProgresoView mostrarProgreso= new MostrarProgresoView();
+       mostrarProgreso.setVisible(true);
+       this.dispose();
+    }
+
+    private void abrirMostrarAsistenciaView() {
+        MostrarAsistenciaView mostrarAsistencia = new MostrarAsistenciaView();
+        mostrarAsistencia.setVisible(true);
+        this.dispose();
+    }
+    
+    
 }
+

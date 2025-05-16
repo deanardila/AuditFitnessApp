@@ -50,7 +50,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="btn_Round_JWC2" min="-2" pref="15" max="-2" attributes="0"/>
+                          <Component id="BtnSalirRedondo" min="-2" pref="15" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
@@ -69,7 +69,7 @@
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane1" min="-2" pref="505" max="-2" attributes="0"/>
+                                  <Component id="TablaEntrenadorElim" min="-2" pref="505" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace pref="72" max="32767" attributes="0"/>
@@ -83,7 +83,7 @@
               <Component id="AdminMenuView" alignment="0" pref="620" max="32767" attributes="0"/>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                  <Component id="btn_Round_JWC2" min="-2" pref="15" max="-2" attributes="0"/>
+                  <Component id="BtnSalirRedondo" min="-2" pref="15" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -94,7 +94,7 @@
                       <Component id="BtnEnviar" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                  <Component id="jScrollPane1" min="-2" pref="115" max="-2" attributes="0"/>
+                  <Component id="TablaEntrenadorElim" min="-2" pref="115" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -148,6 +148,9 @@
                 <Property name="esquina_inferior_izquierdo" type="int" value="40"/>
                 <Property name="esquina_superior_izquierdo" type="int" value="40"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnEliminarClientesActionPerformed"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="10" y="250" width="-1" height="50"/>
@@ -188,6 +191,9 @@
                 <Property name="esquina_inferior_izquierdo" type="int" value="40"/>
                 <Property name="esquina_superior_izquierdo" type="int" value="40"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnAgregarEntrenadorActionPerformed"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="10" y="300" width="-1" height="50"/>
@@ -225,6 +231,9 @@
                 <Property name="esquina_inferior_izquierdo" type="int" value="40"/>
                 <Property name="esquina_superior_izquierdo" type="int" value="40"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnDesactEntrenadorActionPerformed"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="10" y="350" width="-1" height="50"/>
@@ -357,6 +366,9 @@
                   <Color blue="0" green="66" red="cc" type="rgb"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnSalirActionPerformed"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="10" y="430" width="190" height="40"/>
@@ -365,7 +377,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="swing.Btn_Round_JWC" name="btn_Round_JWC2">
+        <Component class="swing.Btn_Round_JWC" name="BtnSalirRedondo">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="66" red="cc" type="rgb"/>
@@ -383,7 +395,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_Round_JWC2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnSalirRedondoActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
@@ -394,7 +406,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Eliminar Entrenador:"/>
+            <Property name="text" type="java.lang.String" value="Desactivar Entrenador:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JFormattedTextField" name="Identificacion">
@@ -445,7 +457,7 @@
             <Property name="text" type="java.lang.String" value="Ingrese la identificaci&#xf3;n del entrenador: "/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+        <Container class="javax.swing.JScrollPane" name="TablaEntrenadorElim">
           <AuxValues>
             <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
           </AuxValues>

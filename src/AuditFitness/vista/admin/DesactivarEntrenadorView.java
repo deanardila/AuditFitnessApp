@@ -4,6 +4,7 @@
  */
 package AuditFitness.vista.admin;
 
+import AuditFitness.vista.auth.LoginAdminView;
 import java.awt.Color;
 
 /**
@@ -38,12 +39,12 @@ public class DesactivarEntrenadorView extends javax.swing.JFrame {
         imagen_redondo_degradado_JWC1 = new img_redondo_degradado_jwc.imagen_redondo_degradado_JWC();
         jLabel1 = new javax.swing.JLabel();
         BtnSalir = new swing.Btn_Round_JWC();
-        btn_Round_JWC2 = new swing.Btn_Round_JWC();
+        BtnSalirRedondo = new swing.Btn_Round_JWC();
         jLabel2 = new javax.swing.JLabel();
         Identificacion = new javax.swing.JFormattedTextField();
         BtnEnviar = new swing.Btn_Round_JWC();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        TablaEntrenadorElim = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -74,6 +75,11 @@ public class DesactivarEntrenadorView extends javax.swing.JFrame {
         BtnEliminarClientes.setColor_NoHover_text(new java.awt.Color(153, 153, 153));
         BtnEliminarClientes.setEsquina_inferior_izquierdo(40);
         BtnEliminarClientes.setEsquina_superior_izquierdo(40);
+        BtnEliminarClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEliminarClientesActionPerformed(evt);
+            }
+        });
         AdminMenuView.add(BtnEliminarClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, 50));
 
         BtnAgregarEntrenador.setForeground(new java.awt.Color(153, 153, 153));
@@ -89,6 +95,11 @@ public class DesactivarEntrenadorView extends javax.swing.JFrame {
         BtnAgregarEntrenador.setColor_NoHover_text(new java.awt.Color(153, 153, 153));
         BtnAgregarEntrenador.setEsquina_inferior_izquierdo(40);
         BtnAgregarEntrenador.setEsquina_superior_izquierdo(40);
+        BtnAgregarEntrenador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAgregarEntrenadorActionPerformed(evt);
+            }
+        });
         AdminMenuView.add(BtnAgregarEntrenador, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, 50));
 
         BtnDesactEntrenador.setForeground(new java.awt.Color(153, 153, 153));
@@ -103,6 +114,11 @@ public class DesactivarEntrenadorView extends javax.swing.JFrame {
         BtnDesactEntrenador.setColor_NoHover_text(new java.awt.Color(153, 153, 153));
         BtnDesactEntrenador.setEsquina_inferior_izquierdo(40);
         BtnDesactEntrenador.setEsquina_superior_izquierdo(40);
+        BtnDesactEntrenador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnDesactEntrenadorActionPerformed(evt);
+            }
+        });
         AdminMenuView.add(BtnDesactEntrenador, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, 50));
 
         BtnAgregarClientes.setForeground(new java.awt.Color(153, 153, 153));
@@ -159,23 +175,28 @@ public class DesactivarEntrenadorView extends javax.swing.JFrame {
         BtnSalir.setColor_H_text(new java.awt.Color(204, 102, 0));
         BtnSalir.setColor_Hover(new java.awt.Color(255, 255, 255));
         BtnSalir.setColor_Normal(new java.awt.Color(204, 102, 0));
+        BtnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSalirActionPerformed(evt);
+            }
+        });
         AdminMenuView.add(BtnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 190, 40));
 
-        btn_Round_JWC2.setBackground(new java.awt.Color(204, 102, 0));
-        btn_Round_JWC2.setText("");
-        btn_Round_JWC2.setArco_esquina(15);
-        btn_Round_JWC2.setColor_H_text(new java.awt.Color(204, 102, 0));
-        btn_Round_JWC2.setColor_Hover(new java.awt.Color(204, 102, 0));
-        btn_Round_JWC2.setColor_Normal(new java.awt.Color(204, 102, 0));
-        btn_Round_JWC2.addActionListener(new java.awt.event.ActionListener() {
+        BtnSalirRedondo.setBackground(new java.awt.Color(204, 102, 0));
+        BtnSalirRedondo.setText("");
+        BtnSalirRedondo.setArco_esquina(15);
+        BtnSalirRedondo.setColor_H_text(new java.awt.Color(204, 102, 0));
+        BtnSalirRedondo.setColor_Hover(new java.awt.Color(204, 102, 0));
+        BtnSalirRedondo.setColor_Normal(new java.awt.Color(204, 102, 0));
+        BtnSalirRedondo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_Round_JWC2ActionPerformed(evt);
+                BtnSalirRedondoActionPerformed(evt);
             }
         });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Eliminar Entrenador:");
+        jLabel2.setText("Desactivar Entrenador:");
 
         Identificacion.setBackground(new java.awt.Color(255, 255, 255));
         Identificacion.setForeground(new java.awt.Color(0, 0, 0));
@@ -228,7 +249,7 @@ public class DesactivarEntrenadorView extends javax.swing.JFrame {
             }
         });
         jTable1.setGridColor(new java.awt.Color(255, 102, 0));
-        jScrollPane1.setViewportView(jTable1);
+        TablaEntrenadorElim.setViewportView(jTable1);
 
         javax.swing.GroupLayout panel_Round_JWC1Layout = new javax.swing.GroupLayout(panel_Round_JWC1);
         panel_Round_JWC1.setLayout(panel_Round_JWC1Layout);
@@ -239,7 +260,7 @@ public class DesactivarEntrenadorView extends javax.swing.JFrame {
                 .addGroup(panel_Round_JWC1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_Round_JWC1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_Round_JWC2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(BtnSalirRedondo, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(19, 19, 19))
                     .addGroup(panel_Round_JWC1Layout.createSequentialGroup()
                         .addGroup(panel_Round_JWC1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -254,7 +275,7 @@ public class DesactivarEntrenadorView extends javax.swing.JFrame {
                                         .addComponent(BtnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(panel_Round_JWC1Layout.createSequentialGroup()
                                 .addGap(63, 63, 63)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(TablaEntrenadorElim, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(72, Short.MAX_VALUE))))
         );
         panel_Round_JWC1Layout.setVerticalGroup(
@@ -262,7 +283,7 @@ public class DesactivarEntrenadorView extends javax.swing.JFrame {
             .addComponent(AdminMenuView, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
             .addGroup(panel_Round_JWC1Layout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(btn_Round_JWC2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BtnSalirRedondo, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
@@ -272,7 +293,7 @@ public class DesactivarEntrenadorView extends javax.swing.JFrame {
                     .addComponent(Identificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TablaEntrenadorElim, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -283,12 +304,12 @@ public class DesactivarEntrenadorView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnAgregarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarClientesActionPerformed
-        // TODO add your handling code here:
+         abrirAgregarClientesView();
     }//GEN-LAST:event_BtnAgregarClientesActionPerformed
 
-    private void btn_Round_JWC2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_Round_JWC2ActionPerformed
+    private void BtnSalirRedondoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirRedondoActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_btn_Round_JWC2ActionPerformed
+    }//GEN-LAST:event_BtnSalirRedondoActionPerformed
 
     private void IdentificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdentificacionActionPerformed
         // TODO add your handling code here:
@@ -297,6 +318,24 @@ public class DesactivarEntrenadorView extends javax.swing.JFrame {
     private void BtnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEnviarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnEnviarActionPerformed
+
+    private void BtnEliminarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarClientesActionPerformed
+        abrirEliminarClientesView();
+    }//GEN-LAST:event_BtnEliminarClientesActionPerformed
+
+    private void BtnAgregarEntrenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarEntrenadorActionPerformed
+        abrirAgregarEntrenadorView();
+    }//GEN-LAST:event_BtnAgregarEntrenadorActionPerformed
+
+    private void BtnDesactEntrenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDesactEntrenadorActionPerformed
+        abrirDesactivarEntrenadorView();
+    }//GEN-LAST:event_BtnDesactEntrenadorActionPerformed
+
+    private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
+        LoginAdminView loginAdmin = new LoginAdminView();
+       loginAdmin.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BtnSalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -344,15 +383,40 @@ public class DesactivarEntrenadorView extends javax.swing.JFrame {
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnEliminarClientes;
     private swing.Btn_Round_JWC BtnEnviar;
     private swing.Btn_Round_JWC BtnSalir;
+    private swing.Btn_Round_JWC BtnSalirRedondo;
     private javax.swing.JFormattedTextField Identificacion;
-    private swing.Btn_Round_JWC btn_Round_JWC2;
+    private javax.swing.JScrollPane TablaEntrenadorElim;
     private img_redondo_degradado_jwc.imagen_redondo_degradado_JWC imagen_redondo_degradado_JWC1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private swing.Panel_Round_JWC panel_Round_JWC1;
     // End of variables declaration//GEN-END:variables
+
+    private void abrirAgregarClientesView() {
+        AgregarClientesView agregarClientes = new AgregarClientesView ();
+        agregarClientes.setVisible(true);
+        this.dispose();
+    }
+
+    private void abrirEliminarClientesView() {
+        EliminarClientesView eliminarClientes = new EliminarClientesView ();
+        eliminarClientes.setVisible(true);
+        this.dispose();
+    }
+
+    private void abrirAgregarEntrenadorView() {
+        AgregarEntrenadorView agregarEntrenador = new AgregarEntrenadorView ();
+        agregarEntrenador.setVisible(true);
+        this.dispose();
+    }
+
+    private void abrirDesactivarEntrenadorView() {
+        DesactivarEntrenadorView desactivarEntrenador = new DesactivarEntrenadorView();
+        desactivarEntrenador.setVisible(true);
+        this.dispose();
+    }
 }
+

@@ -4,13 +4,13 @@
  */
 package AuditFitness.vista.entrenador;
 
+import AuditFitness.vista.auth.LoginEntrenadorView;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.time.Day;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
@@ -60,7 +60,7 @@ public class MostrarProgresoView extends javax.swing.JFrame {
         panelChart = new javax.swing.JPanel();
         Identificacion1 = new javax.swing.JFormattedTextField();
         BtnEnviar1 = new swing.Btn_Round_JWC();
-        BtnEnviar2 = new swing.Btn_Round_JWC();
+        BtnGraficar = new swing.Btn_Round_JWC();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -109,6 +109,11 @@ public class MostrarProgresoView extends javax.swing.JFrame {
         BtnMostrarRutina.setColor_NoHover_text(new java.awt.Color(153, 153, 153));
         BtnMostrarRutina.setEsquina_inferior_izquierdo(40);
         BtnMostrarRutina.setEsquina_superior_izquierdo(40);
+        BtnMostrarRutina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnMostrarRutinaActionPerformed(evt);
+            }
+        });
         panel_Round_JWC2.add(BtnMostrarRutina, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, 50));
 
         BtnRegistrarProgreso.setForeground(new java.awt.Color(153, 153, 153));
@@ -124,6 +129,11 @@ public class MostrarProgresoView extends javax.swing.JFrame {
         BtnRegistrarProgreso.setColor_NoHover_text(new java.awt.Color(153, 153, 153));
         BtnRegistrarProgreso.setEsquina_inferior_izquierdo(40);
         BtnRegistrarProgreso.setEsquina_superior_izquierdo(40);
+        BtnRegistrarProgreso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRegistrarProgresoActionPerformed(evt);
+            }
+        });
         panel_Round_JWC2.add(BtnRegistrarProgreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, 50));
 
         BtnMostrarProgreso.setForeground(new java.awt.Color(153, 153, 153));
@@ -139,6 +149,11 @@ public class MostrarProgresoView extends javax.swing.JFrame {
         BtnMostrarProgreso.setColor_NoHover_text(new java.awt.Color(153, 153, 153));
         BtnMostrarProgreso.setEsquina_inferior_izquierdo(40);
         BtnMostrarProgreso.setEsquina_superior_izquierdo(40);
+        BtnMostrarProgreso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnMostrarProgresoActionPerformed(evt);
+            }
+        });
         panel_Round_JWC2.add(BtnMostrarProgreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, 50));
 
         BtnMostrarAsistencia.setForeground(new java.awt.Color(153, 153, 153));
@@ -154,6 +169,11 @@ public class MostrarProgresoView extends javax.swing.JFrame {
         BtnMostrarAsistencia.setColor_NoHover_text(new java.awt.Color(153, 153, 153));
         BtnMostrarAsistencia.setEsquina_inferior_izquierdo(40);
         BtnMostrarAsistencia.setEsquina_superior_izquierdo(40);
+        BtnMostrarAsistencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnMostrarAsistenciaActionPerformed(evt);
+            }
+        });
         panel_Round_JWC2.add(BtnMostrarAsistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, -1, 50));
 
         jPanel1.setBackground(new java.awt.Color(242, 240, 240));
@@ -272,16 +292,16 @@ public class MostrarProgresoView extends javax.swing.JFrame {
             }
         });
 
-        BtnEnviar2.setBackground(new java.awt.Color(204, 102, 0));
-        BtnEnviar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/parte-superior-del-avion-de-papel.png"))); // NOI18N
-        BtnEnviar2.setText("");
-        BtnEnviar2.setArco_esquina(20);
-        BtnEnviar2.setColor_H_text(new java.awt.Color(204, 102, 0));
-        BtnEnviar2.setColor_Hover(new java.awt.Color(255, 153, 51));
-        BtnEnviar2.setColor_Normal(new java.awt.Color(204, 102, 0));
-        BtnEnviar2.addActionListener(new java.awt.event.ActionListener() {
+        BtnGraficar.setBackground(new java.awt.Color(204, 102, 0));
+        BtnGraficar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/parte-superior-del-avion-de-papel.png"))); // NOI18N
+        BtnGraficar.setText("");
+        BtnGraficar.setArco_esquina(20);
+        BtnGraficar.setColor_H_text(new java.awt.Color(204, 102, 0));
+        BtnGraficar.setColor_Hover(new java.awt.Color(255, 153, 51));
+        BtnGraficar.setColor_Normal(new java.awt.Color(204, 102, 0));
+        BtnGraficar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnEnviar2ActionPerformed(evt);
+                BtnGraficarActionPerformed(evt);
             }
         });
 
@@ -314,7 +334,7 @@ public class MostrarProgresoView extends javax.swing.JFrame {
                                         .addGap(18, 18, 18)
                                         .addComponent(BtnEnviar1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(BtnEnviar2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(BtnGraficar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel2)))
                             .addGroup(EntrenadorMenuViewLayout.createSequentialGroup()
                                 .addGap(43, 43, 43)
@@ -339,7 +359,7 @@ public class MostrarProgresoView extends javax.swing.JFrame {
                 .addGroup(EntrenadorMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(BtnEnviar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Identificacion1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnEnviar2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(BtnGraficar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(33, 33, 33)
                 .addComponent(panelChart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -352,7 +372,7 @@ public class MostrarProgresoView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnAgregarRutinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarRutinaActionPerformed
-        // TODO add your handling code here:
+        abrirAgregarRutinaView();
     }//GEN-LAST:event_BtnAgregarRutinaActionPerformed
 
     private void BtnSalirRedondoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirRedondoActionPerformed
@@ -360,7 +380,9 @@ public class MostrarProgresoView extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnSalirRedondoActionPerformed
 
     private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
-        // TODO add your handling code here:
+        LoginEntrenadorView loginEntrenador = new LoginEntrenadorView ();
+        loginEntrenador.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_BtnSalirActionPerformed
 
     private void IdentificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdentificacionActionPerformed
@@ -379,7 +401,7 @@ public class MostrarProgresoView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnEnviar1ActionPerformed
 
-    private void BtnEnviar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEnviar2ActionPerformed
+    private void BtnGraficarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGraficarActionPerformed
         // TODO add your handling code here:
         
         TimeSeries series = new TimeSeries("Ventas");
@@ -411,7 +433,23 @@ public class MostrarProgresoView extends javax.swing.JFrame {
         
         System.out.println("Dibujar");
         
-    }//GEN-LAST:event_BtnEnviar2ActionPerformed
+    }//GEN-LAST:event_BtnGraficarActionPerformed
+
+    private void BtnMostrarRutinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMostrarRutinaActionPerformed
+        abrirMostrarRutinaView();
+    }//GEN-LAST:event_BtnMostrarRutinaActionPerformed
+
+    private void BtnRegistrarProgresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegistrarProgresoActionPerformed
+        abrirRegistrarProgresoView();
+    }//GEN-LAST:event_BtnRegistrarProgresoActionPerformed
+
+    private void BtnMostrarProgresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMostrarProgresoActionPerformed
+        abrirMostrarProgresoView();
+    }//GEN-LAST:event_BtnMostrarProgresoActionPerformed
+
+    private void BtnMostrarAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMostrarAsistenciaActionPerformed
+        abrirMostrarAsistenciaView();
+    }//GEN-LAST:event_BtnMostrarAsistenciaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -428,7 +466,7 @@ public class MostrarProgresoView extends javax.swing.JFrame {
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnAgregarRutina;
     private swing.Btn_Round_JWC BtnEnviar;
     private swing.Btn_Round_JWC BtnEnviar1;
-    private swing.Btn_Round_JWC BtnEnviar2;
+    private swing.Btn_Round_JWC BtnGraficar;
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnMostrarAsistencia;
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnMostrarProgreso;
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnMostrarRutina;
@@ -447,4 +485,34 @@ public class MostrarProgresoView extends javax.swing.JFrame {
     private swing.Panel_Round_JWC panel_Round_JWC2;
     private org.jfree.chart.urls.TimeSeriesURLGenerator timeSeriesURLGenerator1;
     // End of variables declaration//GEN-END:variables
+
+private void abrirAgregarRutinaView() {
+        AgregarRutinaView agregarRutina = new AgregarRutinaView ();
+        agregarRutina .setVisible(true);
+        this.dispose();
+    }
+
+    private void abrirMostrarRutinaView() {
+       MostrarRutinaView mostrarRutina = new MostrarRutinaView ();
+       mostrarRutina.setVisible(true);
+       this.dispose();
+    }
+
+    private void abrirRegistrarProgresoView() {
+        RegistrarProgresoView registrarProgreso = new RegistrarProgresoView();
+        registrarProgreso.setVisible(true);
+        this.dispose();
+    }
+
+    private void abrirMostrarProgresoView() {
+       MostrarProgresoView mostrarProgreso= new MostrarProgresoView();
+       mostrarProgreso.setVisible(true);
+       this.dispose();
+    }
+
+    private void abrirMostrarAsistenciaView() {
+        MostrarAsistenciaView mostrarAsistencia = new MostrarAsistenciaView();
+        mostrarAsistencia.setVisible(true);
+        this.dispose();
+    }
 }

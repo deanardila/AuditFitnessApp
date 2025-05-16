@@ -38,6 +38,7 @@ public class LoginEntrenadorView extends javax.swing.JFrame {
         Contrasenia = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
         BtnIniciarSesion = new swing.Btn_Round_JWC();
+        BtnAtras = new swing.Btn_Round_JWC();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -117,6 +118,20 @@ public class LoginEntrenadorView extends javax.swing.JFrame {
         });
         LoginView.add(BtnIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 320, -1, 40));
 
+        BtnAtras.setBackground(new java.awt.Color(204, 102, 0));
+        BtnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/salida.png"))); // NOI18N
+        BtnAtras.setText("");
+        BtnAtras.setArco_esquina(20);
+        BtnAtras.setColor_H_text(new java.awt.Color(204, 102, 0));
+        BtnAtras.setColor_Hover(new java.awt.Color(255, 255, 255));
+        BtnAtras.setColor_Normal(new java.awt.Color(204, 102, 0));
+        BtnAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAtrasActionPerformed(evt);
+            }
+        });
+        LoginView.add(BtnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 490, 50, 30));
+
         javax.swing.GroupLayout panel_Round_JWC1Layout = new javax.swing.GroupLayout(panel_Round_JWC1);
         panel_Round_JWC1.setLayout(panel_Round_JWC1Layout);
         panel_Round_JWC1Layout.setHorizontalGroup(
@@ -190,6 +205,12 @@ public class LoginEntrenadorView extends javax.swing.JFrame {
         BtnIniciarSesionActionPerformed(evt);
     }//GEN-LAST:event_txtPasswordActionPerformed
 
+    private void BtnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAtrasActionPerformed
+        RolView rol = new RolView();
+        rol.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_BtnAtrasActionPerformed
+
     public void mostrarMensaje(String mensaje) {
     JOptionPane.showMessageDialog(this, mensaje); // Mostrar un cuadro de diálogo con el mensaje
     }
@@ -211,6 +232,7 @@ public class LoginEntrenadorView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private swing.Btn_Round_JWC BtnAtras;
     public swing.Btn_Round_JWC BtnIniciarSesion;
     private swing.Btn_Round_JWC BtnSalirRedondo;
     private javax.swing.JLabel Contrasenia;

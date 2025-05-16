@@ -4,6 +4,7 @@
  */
 package AuditFitness.vista.entrenador;
 
+import AuditFitness.vista.auth.LoginEntrenadorView;
 import java.awt.Color;
 
 /**
@@ -47,7 +48,7 @@ public class MostrarRutinaView extends javax.swing.JFrame {
         Identificacion = new javax.swing.JFormattedTextField();
         BtnEnviar = new swing.Btn_Round_JWC();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TablaEjercicios = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -97,6 +98,11 @@ public class MostrarRutinaView extends javax.swing.JFrame {
         BtnMostrarRutina.setColor_NoHover_text(new java.awt.Color(153, 153, 153));
         BtnMostrarRutina.setEsquina_inferior_izquierdo(40);
         BtnMostrarRutina.setEsquina_superior_izquierdo(40);
+        BtnMostrarRutina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnMostrarRutinaActionPerformed(evt);
+            }
+        });
         panel_Round_JWC2.add(BtnMostrarRutina, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, 50));
 
         BtnRegistrarProgreso.setForeground(new java.awt.Color(153, 153, 153));
@@ -112,6 +118,11 @@ public class MostrarRutinaView extends javax.swing.JFrame {
         BtnRegistrarProgreso.setColor_NoHover_text(new java.awt.Color(153, 153, 153));
         BtnRegistrarProgreso.setEsquina_inferior_izquierdo(40);
         BtnRegistrarProgreso.setEsquina_superior_izquierdo(40);
+        BtnRegistrarProgreso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRegistrarProgresoActionPerformed(evt);
+            }
+        });
         panel_Round_JWC2.add(BtnRegistrarProgreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, 50));
 
         BtnMostrarProgreso.setForeground(new java.awt.Color(153, 153, 153));
@@ -127,6 +138,11 @@ public class MostrarRutinaView extends javax.swing.JFrame {
         BtnMostrarProgreso.setColor_NoHover_text(new java.awt.Color(153, 153, 153));
         BtnMostrarProgreso.setEsquina_inferior_izquierdo(40);
         BtnMostrarProgreso.setEsquina_superior_izquierdo(40);
+        BtnMostrarProgreso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnMostrarProgresoActionPerformed(evt);
+            }
+        });
         panel_Round_JWC2.add(BtnMostrarProgreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, 50));
 
         BtnMostrarAsistencia.setForeground(new java.awt.Color(153, 153, 153));
@@ -142,6 +158,11 @@ public class MostrarRutinaView extends javax.swing.JFrame {
         BtnMostrarAsistencia.setColor_NoHover_text(new java.awt.Color(153, 153, 153));
         BtnMostrarAsistencia.setEsquina_inferior_izquierdo(40);
         BtnMostrarAsistencia.setEsquina_superior_izquierdo(40);
+        BtnMostrarAsistencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnMostrarAsistenciaActionPerformed(evt);
+            }
+        });
         panel_Round_JWC2.add(BtnMostrarAsistencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, -1, 50));
 
         jPanel1.setBackground(new java.awt.Color(242, 240, 240));
@@ -222,11 +243,11 @@ public class MostrarRutinaView extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
-        jTable1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jTable1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(255, 102, 0));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        TablaEjercicios.setBackground(new java.awt.Color(255, 255, 255));
+        TablaEjercicios.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        TablaEjercicios.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        TablaEjercicios.setForeground(new java.awt.Color(255, 102, 0));
+        TablaEjercicios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -238,9 +259,9 @@ public class MostrarRutinaView extends javax.swing.JFrame {
                 "Ejercicios", "Series", "Repeticiones"
             }
         ));
-        jTable1.setGridColor(new java.awt.Color(255, 102, 0));
-        jTable1.setSelectionForeground(new java.awt.Color(0, 0, 0));
-        jScrollPane2.setViewportView(jTable1);
+        TablaEjercicios.setGridColor(new java.awt.Color(255, 102, 0));
+        TablaEjercicios.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        jScrollPane2.setViewportView(TablaEjercicios);
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
@@ -300,7 +321,7 @@ public class MostrarRutinaView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnAgregarRutinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarRutinaActionPerformed
-        // TODO add your handling code here:
+        abrirAgregarRutinaView();
     }//GEN-LAST:event_BtnAgregarRutinaActionPerformed
 
     private void BtnSalirRedondoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirRedondoActionPerformed
@@ -308,7 +329,9 @@ public class MostrarRutinaView extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnSalirRedondoActionPerformed
 
     private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
-        // TODO add your handling code here:
+        LoginEntrenadorView loginEntrenador = new LoginEntrenadorView ();
+        loginEntrenador.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_BtnSalirActionPerformed
 
     private void IdentificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdentificacionActionPerformed
@@ -318,6 +341,22 @@ public class MostrarRutinaView extends javax.swing.JFrame {
     private void BtnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEnviarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnEnviarActionPerformed
+
+    private void BtnMostrarRutinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMostrarRutinaActionPerformed
+        abrirMostrarRutinaView();
+    }//GEN-LAST:event_BtnMostrarRutinaActionPerformed
+
+    private void BtnRegistrarProgresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegistrarProgresoActionPerformed
+        abrirRegistrarProgresoView();
+    }//GEN-LAST:event_BtnRegistrarProgresoActionPerformed
+
+    private void BtnMostrarProgresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMostrarProgresoActionPerformed
+        abrirMostrarProgresoView();
+    }//GEN-LAST:event_BtnMostrarProgresoActionPerformed
+
+    private void BtnMostrarAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMostrarAsistenciaActionPerformed
+        abrirMostrarAsistenciaView();
+    }//GEN-LAST:event_BtnMostrarAsistenciaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -343,13 +382,43 @@ public class MostrarRutinaView extends javax.swing.JFrame {
     private swing.Btn_Round_JWC BtnSalirRedondo;
     private swing.Panel_Round_JWC EntrenadorMenuView;
     private javax.swing.JFormattedTextField Identificacion;
+    private javax.swing.JTable TablaEjercicios;
     private img_redondo_degradado_jwc.imagen_redondo_degradado_JWC imagen_redondo_degradado_JWC1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lbUsername;
     private swing.Panel_Round_JWC panel_Round_JWC2;
     // End of variables declaration//GEN-END:variables
+
+    private void abrirAgregarRutinaView() {
+        AgregarRutinaView agregarRutina = new AgregarRutinaView ();
+        agregarRutina .setVisible(true);
+        this.dispose();
+    }
+
+    private void abrirMostrarRutinaView() {
+       MostrarRutinaView mostrarRutina = new MostrarRutinaView ();
+       mostrarRutina.setVisible(true);
+       this.dispose();
+    }
+
+    private void abrirRegistrarProgresoView() {
+        RegistrarProgresoView registrarProgreso = new RegistrarProgresoView();
+        registrarProgreso.setVisible(true);
+        this.dispose();
+    }
+
+    private void abrirMostrarProgresoView() {
+       MostrarProgresoView mostrarProgreso= new MostrarProgresoView();
+       mostrarProgreso.setVisible(true);
+       this.dispose();
+    }
+
+    private void abrirMostrarAsistenciaView() {
+        MostrarAsistenciaView mostrarAsistencia = new MostrarAsistenciaView();
+        mostrarAsistencia.setVisible(true);
+        this.dispose();
+    }
 }
