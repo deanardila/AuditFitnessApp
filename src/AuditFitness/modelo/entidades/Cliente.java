@@ -31,7 +31,7 @@ public class Cliente extends Usuario {
     }
 
     public void agregarProgreso(String registro){
-        this.rutinasAsignadas.add(registro);
+        this.progreso.add(registro);
     }
 
     public List<String> getRutinasAsignadas() {
@@ -59,7 +59,7 @@ public class Cliente extends Usuario {
     }
 
     @Override
-    public String toSring(){
+    public String toString(){
         return "Cliente: " +
                 "Username: " + getUsername() +
                 ", Nombre: " + getNombre() +

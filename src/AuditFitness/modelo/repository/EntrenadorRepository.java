@@ -4,10 +4,17 @@
  */
 package AuditFitness.modelo.repository;
 
+import AuditFitness.modelo.entidades.Entrenador;
+import java.io.IOException;
+import java.util.List;
+
 /**
  *
  * @author deana
  */
 public interface EntrenadorRepository {
-    
+    List<Entrenador> readEntrenadores() throws IOException; // Lee todos los entrenadores
+    void addEntrenador(Entrenador entrenadorr) throws IOException; // Agrega un nuevo entrenador
+    boolean entrenadorExiste(String username) throws IOException; // Verifica si un entrenador existe
+    Entrenador buscarPorUsername(String username) throws IOException; // Busca entrenador por username
 }

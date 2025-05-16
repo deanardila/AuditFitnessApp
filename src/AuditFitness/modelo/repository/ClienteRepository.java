@@ -5,6 +5,7 @@
 package AuditFitness.modelo.repository;
 
 import AuditFitness.modelo.entidades.Cliente;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -12,9 +13,8 @@ import java.util.List;
  * @author deana
  */
 public interface ClienteRepository {
-    void guardar (Cliente cliente);
-    Cliente buscarPorUsername(String username);
-    Cliente buscarPorIdentificacion(String identificacion);
-    List<Cliente> listarTodos();
-    void eliminar(Cliente cliente);
+    List<Cliente> readClientes() throws IOException; // Lee todos los clientes
+    void addCliente(Cliente cliente) throws IOException; // Agrega un nuevo cliente
+    boolean clienteExiste(String username) throws IOException; // Verifica si un cliente existe
+    Cliente buscarPorUsername(String username) throws IOException; // Busca cliente por username
 }

@@ -4,7 +4,11 @@
  */
 package AuditFitness.vista.auth;
 
+import AuditFitness.vista.entrenador.EntrenadorMenuView;
 import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 
 
@@ -13,7 +17,9 @@ import javax.swing.JOptionPane;
  * @author deana
  */
 public class LoginEntrenadorView extends javax.swing.JFrame {
-
+    private String username;
+    private String password;
+    
     public LoginEntrenadorView() {
         initComponents(); setBackground(new Color(0,0,0,0));
     }
@@ -153,6 +159,31 @@ public class LoginEntrenadorView extends javax.swing.JFrame {
             mostrarMensaje("Por favor, complete todos los campos.");
             return;
         }
+        
+         // Validar credenciales desde el archivo CSV
+        if (validarCredenciales(username, password)) {
+            // Abrir el menú del administrador si las credenciales son correctas
+            new EntrenadorMenuView().setVisible(true);
+            this.dispose(); // Cierra la vista de inicio de sesión
+        } else {
+            mostrarMensaje("Credenciales inválidas.");
+        }
+    }
+        private boolean validarCredenciales(String username, String password) {
+        String csvFile = "src/data/entrenadores.csv";
+        String line;
+        String[] credenciales;
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+            while ((line = br.readLine()) != null) {
+                credenciales = line.split(","); // Asegúrate de que el separador sea correcto
+                if (credenciales[0].equals(username) && credenciales[1].equals(password)) {
+                    return true; // Credenciales válidas
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false; // Credenciales no válidas
     }//GEN-LAST:event_BtnIniciarSesionActionPerformed
 
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
@@ -161,6 +192,14 @@ public class LoginEntrenadorView extends javax.swing.JFrame {
 
     public void mostrarMensaje(String mensaje) {
     JOptionPane.showMessageDialog(this, mensaje); // Mostrar un cuadro de diálogo con el mensaje
+    }
+    
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
     }
     
     public static void main(String args[]) {
@@ -172,7 +211,7 @@ public class LoginEntrenadorView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private swing.Btn_Round_JWC BtnIniciarSesion;
+    public swing.Btn_Round_JWC BtnIniciarSesion;
     private swing.Btn_Round_JWC BtnSalirRedondo;
     private javax.swing.JLabel Contrasenia;
     private swing.Panel_Round_JWC LoginView;

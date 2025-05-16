@@ -193,7 +193,7 @@ public class LoginAdminView extends javax.swing.JFrame {
         return false; // Credenciales no válidas
     }
 
-    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {  
+    public void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {  
           BtnIniciarSesionActionPerformed(evt);
     }
         
@@ -234,7 +234,7 @@ public class LoginAdminView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private swing.Btn_Round_JWC BtnIniciarSesion;
+    public swing.Btn_Round_JWC BtnIniciarSesion;
     private swing.Btn_Round_JWC BtnSalirRedondo;
     private javax.swing.JLabel Contrasenia;
     private swing.Panel_Round_JWC LoginView;
@@ -246,8 +246,16 @@ public class LoginAdminView extends javax.swing.JFrame {
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 
-    private void mostrarMensaje(String mensaje) {
+    public void mostrarMensaje(String mensaje) {
         JOptionPane.showMessageDialog(this, mensaje);
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
     }
 }
 

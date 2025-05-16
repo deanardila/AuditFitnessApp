@@ -4,7 +4,6 @@
  */
 package AuditFitness.modelo.repository;
 import AuditFitness.modelo.entidades.Administrador;
-import AuditFitness.modelo.entidades.UsuarioRole;
 
 import java.io.*;
 import java.io.FileWriter;
