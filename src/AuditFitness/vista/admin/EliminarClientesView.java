@@ -44,8 +44,9 @@ public class EliminarClientesView extends javax.swing.JFrame {
         Identificacion = new javax.swing.JFormattedTextField();
         BtnEnviar = new swing.Btn_Round_JWC();
         jLabel3 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        TablaClienteElim = new javax.swing.JTable();
+        BtnFormularioClientes = new swing.Btn_Round_JWC();
+        TablaEntrenadorElim = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -223,11 +224,24 @@ public class EliminarClientesView extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Ingrese la identificación del cliente: ");
 
-        TablaClienteElim.setBackground(new java.awt.Color(255, 255, 255));
-        TablaClienteElim.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        TablaClienteElim.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        TablaClienteElim.setForeground(new java.awt.Color(255, 102, 0));
-        TablaClienteElim.setModel(new javax.swing.table.DefaultTableModel(
+        BtnFormularioClientes.setBackground(new java.awt.Color(204, 102, 0));
+        BtnFormularioClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/quitar-usuario.png"))); // NOI18N
+        BtnFormularioClientes.setText("");
+        BtnFormularioClientes.setArco_esquina(20);
+        BtnFormularioClientes.setColor_H_text(new java.awt.Color(204, 102, 0));
+        BtnFormularioClientes.setColor_Hover(new java.awt.Color(255, 153, 51));
+        BtnFormularioClientes.setColor_Normal(new java.awt.Color(204, 102, 0));
+        BtnFormularioClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnFormularioClientesActionPerformed(evt);
+            }
+        });
+
+        jTable1.setBackground(new java.awt.Color(255, 255, 255));
+        jTable1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jTable1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        jTable1.setForeground(new java.awt.Color(255, 102, 0));
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -237,7 +251,7 @@ public class EliminarClientesView extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Identificación", "Nombre", "Apellidos", "Usuario"
+                "Identificación", "Nombre", "Usuario", "Estado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -248,8 +262,10 @@ public class EliminarClientesView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        TablaClienteElim.setGridColor(new java.awt.Color(255, 102, 0));
-        jScrollPane1.setViewportView(TablaClienteElim);
+        jTable1.setGridColor(new java.awt.Color(255, 102, 0));
+        jTable1.setRowHeight(25);
+        jTable1.setRowMargin(11);
+        TablaEntrenadorElim.setViewportView(jTable1);
 
         javax.swing.GroupLayout panel_Round_JWC1Layout = new javax.swing.GroupLayout(panel_Round_JWC1);
         panel_Round_JWC1.setLayout(panel_Round_JWC1Layout);
@@ -263,20 +279,18 @@ public class EliminarClientesView extends javax.swing.JFrame {
                         .addComponent(BtnSalirRedondo, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(19, 19, 19))
                     .addGroup(panel_Round_JWC1Layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
                         .addGroup(panel_Round_JWC1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
                             .addGroup(panel_Round_JWC1Layout.createSequentialGroup()
-                                .addGap(52, 52, 52)
-                                .addGroup(panel_Round_JWC1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2)
-                                    .addGroup(panel_Round_JWC1Layout.createSequentialGroup()
-                                        .addComponent(Identificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(BtnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(panel_Round_JWC1Layout.createSequentialGroup()
-                                .addGap(63, 63, 63)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(72, Short.MAX_VALUE))))
+                                .addComponent(Identificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(BtnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BtnFormularioClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(TablaEntrenadorElim, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(83, Short.MAX_VALUE))))
         );
         panel_Round_JWC1Layout.setVerticalGroup(
             panel_Round_JWC1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -291,9 +305,10 @@ public class EliminarClientesView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel_Round_JWC1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Identificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnFormularioClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(TablaEntrenadorElim, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -336,6 +351,12 @@ public class EliminarClientesView extends javax.swing.JFrame {
        loginAdmin.setVisible(true);
        this.dispose();
     }//GEN-LAST:event_BtnSalirActionPerformed
+
+    private void BtnFormularioClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnFormularioClientesActionPerformed
+        // Crear y mostrar la vista del formulario de cliente
+        FormularioClientesView formularioClientesView = new FormularioClientesView(this, true);
+        formularioClientesView.setVisible(true);
+    }//GEN-LAST:event_BtnFormularioClientesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -382,16 +403,17 @@ public class EliminarClientesView extends javax.swing.JFrame {
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnDesactEntrenador;
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnEliminarClientes;
     private swing.Btn_Round_JWC BtnEnviar;
+    private swing.Btn_Round_JWC BtnFormularioClientes;
     private swing.Btn_Round_JWC BtnSalir;
     private swing.Btn_Round_JWC BtnSalirRedondo;
     private javax.swing.JFormattedTextField Identificacion;
-    private javax.swing.JTable TablaClienteElim;
+    private javax.swing.JScrollPane TablaEntrenadorElim;
     private img_redondo_degradado_jwc.imagen_redondo_degradado_JWC imagen_redondo_degradado_JWC1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private swing.Panel_Round_JWC panel_Round_JWC1;
     // End of variables declaration//GEN-END:variables
 

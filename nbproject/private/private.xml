@@ -3,16 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/deana/OneDrive/Escritorio/AuditFitness-Swing/AuditFitnessApp/AuditFitness/src/AuditFitness/controlador/entrenador/AsignarRutinaController.java</file>
-            <file>file:/C:/Users/deana/OneDrive/Escritorio/AuditFitness-Swing/AuditFitnessApp/AuditFitness/src/AuditFitness/controlador/admin/AddEntrenadorController.java</file>
             <file>file:/C:/Users/deana/OneDrive/Escritorio/AuditFitness-Swing/AuditFitnessApp/AuditFitness/src/AuditFitness/controlador/admin/AddClienteController.java</file>
             <file>file:/C:/Users/deana/OneDrive/Escritorio/AuditFitness-Swing/AuditFitnessApp/AuditFitness/src/data/clientes.csv</file>
             <file>file:/C:/Users/deana/OneDrive/Escritorio/AuditFitness-Swing/AuditFitnessApp/AuditFitness/src/AuditFitness/modelo/service/ClienteService.java</file>
-            <file>file:/C:/Users/deana/OneDrive/Escritorio/AuditFitness-Swing/AuditFitnessApp/AuditFitness/src/AuditFitness/vista/admin/AgregarClientesView.java</file>
-            <file>file:/C:/Users/deana/OneDrive/Escritorio/AuditFitness-Swing/AuditFitnessApp/AuditFitness/src/AuditFitness/vista/entrenador/MostrarProgresoView.java</file>
             <file>file:/C:/Users/deana/OneDrive/Escritorio/AuditFitness-Swing/AuditFitnessApp/AuditFitness/src/AuditFitness/vista/admin/FormularioClientesView.java</file>
-            <file>file:/C:/Users/deana/OneDrive/Escritorio/AuditFitness-Swing/AuditFitnessApp/AuditFitness/src/AuditFitness/vista/admin/FormularioEntrenadoresView.java</file>
-            <file>file:/C:/Users/deana/OneDrive/Escritorio/AuditFitness-Swing/AuditFitnessApp/AuditFitness/src/AuditFitness/vista/auth/LoginAdminView.java</file>
+            <file>file:/C:/Users/deana/OneDrive/Escritorio/AuditFitness-Swing/AuditFitnessApp/AuditFitness/src/AuditFitness/controlador/admin/FormularioClienteController.java</file>
+            <file>file:/C:/Users/deana/OneDrive/Escritorio/AuditFitness-Swing/AuditFitnessApp/AuditFitness/src/AuditFitness/vista/admin/AgregarClientesView.java</file>
         </group>
     </open-files>
 </project-private>

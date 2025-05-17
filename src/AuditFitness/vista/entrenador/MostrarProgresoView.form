@@ -77,7 +77,7 @@
                                           <Component id="Identificacion1" min="-2" pref="245" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="BtnEnviar1" min="-2" pref="36" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
                                           <Component id="BtnGraficar" min="-2" pref="36" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
@@ -587,7 +587,7 @@
               <Color blue="0" green="66" red="cc" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/images/parte-superior-del-avion-de-papel.png"/>
+              <Image iconType="3" name="/images/grafico-de-linea.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value=""/>
             <Property name="arco_esquina" type="int" value="20"/>

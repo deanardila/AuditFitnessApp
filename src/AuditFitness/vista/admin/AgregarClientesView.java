@@ -344,7 +344,7 @@ public class AgregarClientesView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIdentificacionActionPerformed
 
     private void BtnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEnviarActionPerformed
-       String identificacion = txtIdentificacion.getText().trim(); // Obtener la identificación ingresada
+ String identificacion = txtIdentificacion.getText().trim(); // Obtener la identificación ingresada
     // Validar que la identificación no esté vacía
     if (identificacion.isEmpty()) {
         mostrarMensaje("Por favor, ingresa una identificación válida.");
@@ -441,7 +441,7 @@ public class AgregarClientesView extends javax.swing.JFrame {
         this.dispose();
     }
 
-    public void agregarListenerVerificar(ActionListener actionListener) {
+public void agregarListenerVerificar(ActionListener actionListener) {
         
     }
 
@@ -507,4 +507,13 @@ public class AgregarClientesView extends javax.swing.JFrame {
     jTable1.setModel(model); // Asignar el modelo al JTable
 }
 
+    public void agregarListenerFormularioClientes(ActionListener actionListener) {
+        
+    }
+
+    public void abrirFormularioClientesView() {
+        
+    }
+    
 }
+

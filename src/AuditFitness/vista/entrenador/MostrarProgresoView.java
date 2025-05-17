@@ -293,7 +293,7 @@ public class MostrarProgresoView extends javax.swing.JFrame {
         });
 
         BtnGraficar.setBackground(new java.awt.Color(204, 102, 0));
-        BtnGraficar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/parte-superior-del-avion-de-papel.png"))); // NOI18N
+        BtnGraficar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/grafico-de-linea.png"))); // NOI18N
         BtnGraficar.setText("");
         BtnGraficar.setArco_esquina(20);
         BtnGraficar.setColor_H_text(new java.awt.Color(204, 102, 0));
@@ -333,7 +333,7 @@ public class MostrarProgresoView extends javax.swing.JFrame {
                                         .addComponent(Identificacion1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(BtnEnviar1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(BtnGraficar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jLabel2)))
                             .addGroup(EntrenadorMenuViewLayout.createSequentialGroup()

@@ -4,15 +4,23 @@
  */
 package AuditFitness.vista.admin;
 
+import AuditFitness.modelo.entidades.Entrenador;
 import AuditFitness.vista.auth.LoginAdminView;
 import java.awt.Color;
+import java.awt.Frame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author deana
  */
 public class AgregarEntrenadorView extends javax.swing.JFrame {
-
     /**
      * Creates new form Inicio
      */
@@ -41,10 +49,11 @@ public class AgregarEntrenadorView extends javax.swing.JFrame {
         BtnSalir = new swing.Btn_Round_JWC();
         BtnSalirRedondo = new swing.Btn_Round_JWC();
         jLabel2 = new javax.swing.JLabel();
-        Identificacion = new javax.swing.JFormattedTextField();
+        txtIdentificacion = new javax.swing.JFormattedTextField();
         BtnEnviar = new swing.Btn_Round_JWC();
         jLabel3 = new javax.swing.JLabel();
-        TablaEntrenadorAgg = new javax.swing.JScrollPane();
+        BtnFormularioEntrenador = new swing.Btn_Round_JWC();
+        TablaClientesAgg = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -198,11 +207,11 @@ public class AgregarEntrenadorView extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Agregar Entrenador:");
 
-        Identificacion.setBackground(new java.awt.Color(255, 255, 255));
-        Identificacion.setForeground(new java.awt.Color(0, 0, 0));
-        Identificacion.addActionListener(new java.awt.event.ActionListener() {
+        txtIdentificacion.setBackground(new java.awt.Color(255, 255, 255));
+        txtIdentificacion.setForeground(new java.awt.Color(0, 0, 0));
+        txtIdentificacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IdentificacionActionPerformed(evt);
+                txtIdentificacionActionPerformed(evt);
             }
         });
 
@@ -223,33 +232,53 @@ public class AgregarEntrenadorView extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Ingrese la identificación del entrenador: ");
 
+        BtnFormularioEntrenador.setBackground(new java.awt.Color(204, 102, 0));
+        BtnFormularioEntrenador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/agregar (1).png"))); // NOI18N
+        BtnFormularioEntrenador.setText("");
+        BtnFormularioEntrenador.setArco_esquina(20);
+        BtnFormularioEntrenador.setColor_H_text(new java.awt.Color(204, 102, 0));
+        BtnFormularioEntrenador.setColor_Hover(new java.awt.Color(255, 153, 51));
+        BtnFormularioEntrenador.setColor_Normal(new java.awt.Color(204, 102, 0));
+        BtnFormularioEntrenador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnFormularioEntrenadorActionPerformed(evt);
+            }
+        });
+
         jTable1.setBackground(new java.awt.Color(255, 255, 255));
         jTable1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTable1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         jTable1.setForeground(new java.awt.Color(255, 102, 0));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Identificación", "Nombre", "Apellidos", "Usuario"
+                "Identificación", "Nombre", "Usuario"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, false
+                true, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN);
         jTable1.setGridColor(new java.awt.Color(255, 102, 0));
-        TablaEntrenadorAgg.setViewportView(jTable1);
+        jTable1.setRowHeight(25);
+        TablaClientesAgg.setViewportView(jTable1);
 
         javax.swing.GroupLayout panel_Round_JWC1Layout = new javax.swing.GroupLayout(panel_Round_JWC1);
         panel_Round_JWC1.setLayout(panel_Round_JWC1Layout);
@@ -263,19 +292,17 @@ public class AgregarEntrenadorView extends javax.swing.JFrame {
                         .addComponent(BtnSalirRedondo, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(19, 19, 19))
                     .addGroup(panel_Round_JWC1Layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
                         .addGroup(panel_Round_JWC1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
                             .addGroup(panel_Round_JWC1Layout.createSequentialGroup()
-                                .addGap(52, 52, 52)
-                                .addGroup(panel_Round_JWC1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2)
-                                    .addGroup(panel_Round_JWC1Layout.createSequentialGroup()
-                                        .addComponent(Identificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(BtnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(panel_Round_JWC1Layout.createSequentialGroup()
-                                .addGap(63, 63, 63)
-                                .addComponent(TablaEntrenadorAgg, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(BtnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BtnFormularioEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(TablaClientesAgg, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(72, Short.MAX_VALUE))))
         );
         panel_Round_JWC1Layout.setVerticalGroup(
@@ -290,10 +317,11 @@ public class AgregarEntrenadorView extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel_Round_JWC1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Identificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
-                .addComponent(TablaEntrenadorAgg, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnFormularioEntrenador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addComponent(TablaClientesAgg, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -311,12 +339,25 @@ public class AgregarEntrenadorView extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_BtnSalirRedondoActionPerformed
 
-    private void IdentificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdentificacionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_IdentificacionActionPerformed
+    private void txtIdentificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdentificacionActionPerformed
+        BtnEnviarActionPerformed(evt);
+    }//GEN-LAST:event_txtIdentificacionActionPerformed
 
     private void BtnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEnviarActionPerformed
-        // TODO add your handling code here:
+        String identificacion = txtIdentificacion.getText().trim(); // Obtener la identificación ingresada
+    // Validar que la identificación no esté vacía
+    if (identificacion.isEmpty()) {
+        mostrarMensaje("Por favor, ingresa una identificación válida.");
+        return; 
+    }     
+    // Validar identificación desde el archivo CSV
+    Entrenador entrenador= cargarEntrenadorPorIdentificacion(identificacion);
+    if (entrenador != null) {
+        // Si el cliente existe, mostrarlo en la tabla
+        mostrarEntrenadores(entrenador);
+    } else {
+        mostrarMensaje("Usuario no encontrado.");
+    }
     }//GEN-LAST:event_BtnEnviarActionPerformed
 
     private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
@@ -336,6 +377,12 @@ public class AgregarEntrenadorView extends javax.swing.JFrame {
     private void BtnDesactEntrenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDesactEntrenadorActionPerformed
        abrirDesactivarEntrenadorView();
     }//GEN-LAST:event_BtnDesactEntrenadorActionPerformed
+
+    private void BtnFormularioEntrenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnFormularioEntrenadorActionPerformed
+        // Crear y mostrar la vista del formulario de cliente
+        FormularioEntrenadoresView formularioEntrenadoresView = new FormularioEntrenadoresView(this, true);
+        formularioEntrenadoresView.setVisible(true);
+    }//GEN-LAST:event_BtnFormularioEntrenadorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -382,10 +429,10 @@ public class AgregarEntrenadorView extends javax.swing.JFrame {
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnDesactEntrenador;
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnEliminarClientes;
     private swing.Btn_Round_JWC BtnEnviar;
+    private swing.Btn_Round_JWC BtnFormularioEntrenador;
     private swing.Btn_Round_JWC BtnSalir;
     private swing.Btn_Round_JWC BtnSalirRedondo;
-    private javax.swing.JFormattedTextField Identificacion;
-    private javax.swing.JScrollPane TablaEntrenadorAgg;
+    private javax.swing.JScrollPane TablaClientesAgg;
     private img_redondo_degradado_jwc.imagen_redondo_degradado_JWC imagen_redondo_degradado_JWC1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -393,6 +440,7 @@ public class AgregarEntrenadorView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTable jTable1;
     private swing.Panel_Round_JWC panel_Round_JWC1;
+    private javax.swing.JFormattedTextField txtIdentificacion;
     // End of variables declaration//GEN-END:variables
 
     private void abrirAgregarClientesView() {
@@ -417,5 +465,80 @@ public class AgregarEntrenadorView extends javax.swing.JFrame {
         DesactivarEntrenadorView desactivarEntrenador = new DesactivarEntrenadorView();
         desactivarEntrenador.setVisible(true);
         this.dispose();
+    }
+    
+    public void agregarListenerVerificar(ActionListener actionListener) {
+        
+    }
+    
+    public String getIdentificacion() {
+        return null;
+    }
+
+    public void mostrarClientes(Object[][] data, String[] columnNames) {
+        
+    }
+
+    private void mostrarMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    private void mostrarEntrenadores(Entrenador entrenador) {
+        // Crear un modelo de datos para la tabla
+    String[] columnNames = {"Username", "Nombre", "Identificación"};
+    Object[][] data = {
+        {entrenador.getUsername(), entrenador.getNombre(), entrenador.getIdentificacion()}
+    };
+    // Crear un modelo de tabla y asignarlo al JTable
+    DefaultTableModel model = new DefaultTableModel(data, columnNames);
+    jTable1.setModel(model); // Asignar el modelo al JTable
+    }
+
+    private Entrenador cargarEntrenadorPorIdentificacion(String identificacion) {
+        String csvFile = "src/data/entrenadores.csv";
+        String line;
+        String[] datosEntrenador;
+    try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+        while ((line = br.readLine()) != null) {
+            datosEntrenador = line.split(","); 
+            if (datosEntrenador[3].equals(identificacion)) { // Suponiendo que la identificación está en la posición 3
+                String username = datosEntrenador[0];
+                String password = datosEntrenador[1];
+                String nombre = datosEntrenador[2];
+                return new Entrenador(username, password, nombre, identificacion); // Retornar el entrenador encontrado
+            }
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    return null; // Retornar null si no se encuentra el entrenador
+    }
+
+    public void mostrarEntrenadores(Object[][] data, String[] columnNames) {
+        
+    }
+
+    public void abrirFormularioEntrenadoresView(Frame vista) {
+        FormularioEntrenadoresView formularioEntrenadoresView = new FormularioEntrenadoresView(vista, true);
+        formularioEntrenadoresView.setVisible(true);
+   
+        formularioEntrenadoresView.agregarListenerRegistrar(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // Obtener los datos del formulario
+            String nombre = formularioEntrenadoresView.getNombre();
+            String identificacion = formularioEntrenadoresView.getIdentificacion();
+            String contraseña = formularioEntrenadoresView.getContraseña();
+            String confirmarContraseña = formularioEntrenadoresView.getConfirmarContraseña();
+    
+            // Si el registro es exitoso:
+            formularioEntrenadoresView.mostrarMensaje("Entrenador registrado exitosamente.");
+            formularioEntrenadoresView.limpiarCampos(); // Limpiar campos después de registrar
+        }
+    });
+    }
+
+    public void abrirFormularioEntrenadoresView() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

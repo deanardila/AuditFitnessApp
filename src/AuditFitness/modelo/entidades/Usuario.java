@@ -10,10 +10,10 @@ package AuditFitness.modelo.entidades;
  */
 public abstract class Usuario {
     private UsuarioRole role;
-    private String username;
-    private String password;
-    private String nombre;
-    private String identificacion;
+    String username;
+    String password;
+    String nombre;
+    String identificacion;
 
     //Constructor
     public Usuario(String username, String password, String nombre, String identificacion, UsuarioRole role) {

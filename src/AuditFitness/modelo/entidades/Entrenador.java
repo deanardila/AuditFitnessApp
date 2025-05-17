@@ -16,7 +16,7 @@ public class Entrenador extends Usuario{
     private String especialidad;
     private List<Cliente> clientes;
     
-    public Entrenador(String username, String password, String nombre, String identificacion, String especialidad){
+    public Entrenador(String username, String password, String nombre, String identificacion){
         super(username, password, nombre, identificacion, UsuarioRole.ENTRENADOR);
         this.especialidad = especialidad;
         this.clientes = new ArrayList<>();

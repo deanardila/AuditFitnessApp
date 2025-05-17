@@ -7,7 +7,6 @@ package AuditFitness.controlador.admin;
 import AuditFitness.modelo.entidades.Cliente;
 import AuditFitness.modelo.service.ClienteService;
 import AuditFitness.vista.admin.AgregarClientesView;
-import AuditFitness.vista.admin.FormularioClientesView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -17,11 +16,11 @@ import java.awt.event.ActionListener;
  * @author deana
  */
 public class AddClienteController {
-    private final AgregarClientesView vista;
+   private final AgregarClientesView vista;
     private final ClienteService clienteService; // Servicio para manejar clientes
     
     public AddClienteController(AgregarClientesView vista, ClienteService clienteService) {
-        this.vista = vista;
+       this.vista = vista;
         this.clienteService = clienteService;
         // Agregar ActionListener al botón de verificar
         vista.agregarListenerVerificar(new ActionListener() {
@@ -31,19 +30,6 @@ public class AddClienteController {
             }
         });
         
-        // Agregar ActionListener al botón BtnFormularioClientes
-        vista.agregarListenerFormularioClientes(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                abrirFormularioClientes();
-            }
-        });
-    }
-    
-    private void abrirFormularioClientes() {
-        // Crear y mostrar la vista del formulario de cliente
-        FormularioClientesView formularioClientesView = new FormularioClientesView();
-        formularioClientesView.setVisible(true);
     }
     
     private void verificarCliente() {
@@ -53,7 +39,7 @@ public class AddClienteController {
         if (cliente != null) {
             // Si el cliente existe, mostrarlo en la tabla
             Object[][] data = {
-                {cliente.getUsername(), cliente.getNombre(), cliente.getIdentificacion()} // Agrega más campos si es necesario
+                {cliente.getUsername(), cliente.getNombre(), cliente.getIdentificacion()} 
             };
             String[] columnNames = {"Username", "Nombre", "Identificación"};
             vista.mostrarClientes(data, columnNames); // Mostrar el cliente en la tabla

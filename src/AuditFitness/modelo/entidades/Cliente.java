@@ -67,4 +67,12 @@ public class Cliente extends Usuario {
                 ", Rutinas: " + rutinasAsignadas.size();
     }
 
+    public String toCSVString() {
+    return String.join(",",
+        this.username,
+        this.nombre,
+        this.identificacion,
+        this.password
+    );
+}
 }

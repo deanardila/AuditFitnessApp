@@ -46,6 +46,7 @@ public class DesactivarEntrenadorView extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         TablaEntrenadorElim = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        BtnFormularioClientes = new swing.Btn_Round_JWC();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -237,7 +238,7 @@ public class DesactivarEntrenadorView extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Identificación", "Nombre", "Apellidos", "Usuario"
+                "Identificación", "Nombre", "Usuario", "Estado"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -249,7 +250,22 @@ public class DesactivarEntrenadorView extends javax.swing.JFrame {
             }
         });
         jTable1.setGridColor(new java.awt.Color(255, 102, 0));
+        jTable1.setRowHeight(25);
+        jTable1.setRowMargin(11);
         TablaEntrenadorElim.setViewportView(jTable1);
+
+        BtnFormularioClientes.setBackground(new java.awt.Color(204, 102, 0));
+        BtnFormularioClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/quitar-usuario.png"))); // NOI18N
+        BtnFormularioClientes.setText("");
+        BtnFormularioClientes.setArco_esquina(20);
+        BtnFormularioClientes.setColor_H_text(new java.awt.Color(204, 102, 0));
+        BtnFormularioClientes.setColor_Hover(new java.awt.Color(255, 153, 51));
+        BtnFormularioClientes.setColor_Normal(new java.awt.Color(204, 102, 0));
+        BtnFormularioClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnFormularioClientesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel_Round_JWC1Layout = new javax.swing.GroupLayout(panel_Round_JWC1);
         panel_Round_JWC1.setLayout(panel_Round_JWC1Layout);
@@ -263,20 +279,18 @@ public class DesactivarEntrenadorView extends javax.swing.JFrame {
                         .addComponent(BtnSalirRedondo, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(19, 19, 19))
                     .addGroup(panel_Round_JWC1Layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
                         .addGroup(panel_Round_JWC1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
                             .addGroup(panel_Round_JWC1Layout.createSequentialGroup()
-                                .addGap(52, 52, 52)
-                                .addGroup(panel_Round_JWC1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2)
-                                    .addGroup(panel_Round_JWC1Layout.createSequentialGroup()
-                                        .addComponent(Identificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(BtnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(panel_Round_JWC1Layout.createSequentialGroup()
-                                .addGap(63, 63, 63)
-                                .addComponent(TablaEntrenadorElim, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(72, Short.MAX_VALUE))))
+                                .addComponent(Identificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(BtnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BtnFormularioClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(TablaEntrenadorElim, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(83, Short.MAX_VALUE))))
         );
         panel_Round_JWC1Layout.setVerticalGroup(
             panel_Round_JWC1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -291,8 +305,9 @@ public class DesactivarEntrenadorView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel_Round_JWC1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Identificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                    .addComponent(BtnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnFormularioClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
                 .addComponent(TablaEntrenadorElim, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -336,6 +351,12 @@ public class DesactivarEntrenadorView extends javax.swing.JFrame {
        loginAdmin.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnSalirActionPerformed
+
+    private void BtnFormularioClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnFormularioClientesActionPerformed
+        // Crear y mostrar la vista del formulario de cliente
+        FormularioClientesView formularioClientesView = new FormularioClientesView(this, true);
+        formularioClientesView.setVisible(true);
+    }//GEN-LAST:event_BtnFormularioClientesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -382,6 +403,7 @@ public class DesactivarEntrenadorView extends javax.swing.JFrame {
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnDesactEntrenador;
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnEliminarClientes;
     private swing.Btn_Round_JWC BtnEnviar;
+    private swing.Btn_Round_JWC BtnFormularioClientes;
     private swing.Btn_Round_JWC BtnSalir;
     private swing.Btn_Round_JWC BtnSalirRedondo;
     private javax.swing.JFormattedTextField Identificacion;

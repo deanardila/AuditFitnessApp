@@ -5,6 +5,9 @@
 package AuditFitness.vista.admin;
 
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -13,22 +16,26 @@ import javax.swing.JTextField;
  * @author deana
  */
 public class FormularioClientesView extends javax.swing.JDialog {
-    private JTextField jTextFieldNombre;
-    private JTextField jTextFieldIdentificacion;
+    private JTextField jTextFieldUsername;
     private JTextField jTextFieldContraseña;
     private JTextField jTextFieldConfirmarContraseña;
+    private JTextField jTextFieldNombre;
+    private JTextField jTextFieldIdentificacion;
     
     /**
      * Creates new form FormularioClientes
      */
     public FormularioClientesView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        initComponents();
-        
+        initComponents(); 
     }
 
     void agregarListenerRegistrar(ActionListener actionListener) {
        BtnRegistrarCl.addActionListener(actionListener);
+    }
+    
+    public String getUsername() {
+        return jTextField9.getText().trim();
     }
     
      public String getNombre() {
@@ -73,6 +80,8 @@ public class FormularioClientesView extends javax.swing.JDialog {
         BtnRegistrarCl = new swing.Btn_Round_JWC();
         jLabel10 = new javax.swing.JLabel();
         jTextField8 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jTextField9 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -164,6 +173,14 @@ public class FormularioClientesView extends javax.swing.JDialog {
         jTextField8.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
         jTextField8.setForeground(new java.awt.Color(0, 0, 0));
 
+        jLabel11.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setText("Usuario: ");
+
+        jTextField9.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField9.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        jTextField9.setForeground(new java.awt.Color(0, 0, 0));
+
         javax.swing.GroupLayout RegistrarClienteViewLayout = new javax.swing.GroupLayout(RegistrarClienteView);
         RegistrarClienteView.setLayout(RegistrarClienteViewLayout);
         RegistrarClienteViewLayout.setHorizontalGroup(
@@ -176,14 +193,6 @@ public class FormularioClientesView extends javax.swing.JDialog {
                         .addComponent(BtnRegistrarCl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(55, 55, 55)
                         .addComponent(BtnCancelarCl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(RegistrarClienteViewLayout.createSequentialGroup()
-                        .addGroup(RegistrarClienteViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10))
-                        .addGap(27, 27, 27)
-                        .addGroup(RegistrarClienteViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(RegistrarClienteViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(RegistrarClienteViewLayout.createSequentialGroup()
                             .addComponent(jLabel6)
@@ -192,14 +201,31 @@ public class FormularioClientesView extends javax.swing.JDialog {
                         .addGroup(RegistrarClienteViewLayout.createSequentialGroup()
                             .addComponent(jLabel7)
                             .addGap(99, 99, 99)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(RegistrarClienteViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(RegistrarClienteViewLayout.createSequentialGroup()
+                            .addComponent(jLabel11)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, RegistrarClienteViewLayout.createSequentialGroup()
+                            .addGroup(RegistrarClienteViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel9)
+                                .addComponent(jLabel10))
+                            .addGap(27, 27, 27)
+                            .addGroup(RegistrarClienteViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         RegistrarClienteViewLayout.setVerticalGroup(
             RegistrarClienteViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RegistrarClienteViewLayout.createSequentialGroup()
                 .addComponent(panel_Round_JWC3, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(RegistrarClienteViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField9))
+                .addGap(4, 4, 4)
                 .addGroup(RegistrarClienteViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField8))
@@ -215,7 +241,7 @@ public class FormularioClientesView extends javax.swing.JDialog {
                 .addGroup(RegistrarClienteViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField4))
-                .addGap(56, 56, 56)
+                .addGap(31, 31, 31)
                 .addGroup(RegistrarClienteViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnRegistrarCl, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnCancelarCl, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -253,13 +279,14 @@ public class FormularioClientesView extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnCancelarClActionPerformed
 
     private void BtnRegistrarClActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegistrarClActionPerformed
-        // Obtener los datos del formulario
+       // Obtener los datos del formulario
+        String username = jTextFieldUsername.getText().trim();
         String nombre = jTextFieldNombre.getText().trim();
         String identificacion = jTextFieldIdentificacion.getText().trim();
         String contraseña = jTextFieldContraseña.getText().trim();
         String confirmarContraseña = jTextFieldConfirmarContraseña.getText().trim();
         // Validar los datos
-        if (nombre.isEmpty() || identificacion.isEmpty() || contraseña.isEmpty()) {
+        if (username.isEmpty() || contraseña.isEmpty() || nombre.isEmpty() || identificacion.isEmpty() ) {
             JOptionPane.showMessageDialog(this, "Por favor, completa todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -267,15 +294,30 @@ public class FormularioClientesView extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        
+        // Guardar los datos en el archivo CSV
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/data/clientes.csv", true))) { 
+        writer.write(username +","  +identificacion + "," + nombre + "," + contraseña);
+        writer.newLine(); // Agregar nueva línea
+        // Mostrar mensaje de éxito
+        JOptionPane.showMessageDialog(this, "Cliente registrado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        // Limpiar campos después de registrar
+        limpiarCampos();
+    } catch (IOException e) {
+        // Manejo de excepciones
+        JOptionPane.showMessageDialog(this, "Error al guardar los datos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_BtnRegistrarClActionPerformed
     
     // Método para limpiar los campos del formulario
-    void limpiarCampos() {
-        jTextFieldNombre.setText("");
-        jTextFieldIdentificacion.setText("");
-        jTextFieldContraseña.setText("");
-        jTextFieldConfirmarContraseña.setText("");
-    }
+    public void limpiarCampos() {
+    jTextField9.setText("");
+    jTextField7.setText("");
+    jTextField8.setText("");
+    jTextField5.setText("");
+    jTextField4.setText("");
+}
+
     
     /**
      * @param args the command line arguments
@@ -326,6 +368,7 @@ public class FormularioClientesView extends javax.swing.JDialog {
     private swing.Btn_Round_JWC BtnSalirRedondo1;
     private swing.Panel_Round_JWC RegistrarClienteView;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -334,6 +377,7 @@ public class FormularioClientesView extends javax.swing.JDialog {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField jTextField9;
     private swing.Panel_Round_JWC panel_Round_JWC3;
     // End of variables declaration//GEN-END:variables
 

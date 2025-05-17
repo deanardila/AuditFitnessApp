@@ -28,7 +28,7 @@ public class EntrenadorRepositoryImpl implements EntrenadorRepository{
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
                 if (data.length == 6) {
-                    Entrenador entrenador = new Entrenador(data[0], data[1], data[3], data[4],data[5]);
+                    Entrenador entrenador = new Entrenador(data[0], data[1], data[3], data[4]);
                     entrenadores.add(entrenador);
                 }
             }

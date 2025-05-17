@@ -4,18 +4,57 @@
  */
 package AuditFitness.vista.admin;
 
+import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
 /**
  *
  * @author deana
  */
 public class FormularioEntrenadoresView extends javax.swing.JDialog {
-
+    private JTextField jTextFieldUsername;
+    private JTextField jTextFieldContraseña;
+    private JTextField jTextFieldConfirmarContraseña;
+    private JTextField jTextFieldNombre;
+    private JTextField jTextFieldIdentificacion;
+    
     /**
      * Creates new form FormularioClientes
      */
     public FormularioEntrenadoresView(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        initComponents();
+        initComponents(); 
+    }
+
+    void agregarListenerRegistrar(ActionListener actionListener) {
+       BtnRegistrar.addActionListener(actionListener);
+    }
+    
+    public String getUsername() {
+        return jTextField9.getText().trim();
+    }
+    
+     public String getNombre() {
+        return jTextField7.getText().trim();
+    }
+
+    public String getIdentificacion() {
+        return jTextField8.getText().trim(); // jTextField8 es el campo de identificación
+    }
+    public String getContraseña() {
+        return jTextField5.getText().trim(); // jTextField5 es el campo de contraseña
+    }
+    public String getConfirmarContraseña() {
+        return jTextField4.getText().trim(); // jTextField4 es el campo de confirmar contraseña
+    }
+    // Método para limpiar los campos del formulario
+    // Método para mostrar mensajes
+    public void mostrarMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje, "Información", JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**
@@ -35,14 +74,14 @@ public class FormularioEntrenadoresView extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
-        BtnCancelarEn = new swing.Btn_Round_JWC();
-        BtnRegistrarEn = new swing.Btn_Round_JWC();
+        BtnCancelar = new swing.Btn_Round_JWC();
+        BtnRegistrar = new swing.Btn_Round_JWC();
         jLabel10 = new javax.swing.JLabel();
         jTextField8 = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jTextField9 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -75,7 +114,7 @@ public class FormularioEntrenadoresView extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 48)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(204, 102, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Registrar Entrenadores");
+        jLabel2.setText("Registrar Entrenador");
         panel_Round_JWC3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, 70));
 
         jTextField4.setBackground(new java.awt.Color(255, 255, 255));
@@ -94,43 +133,35 @@ public class FormularioEntrenadoresView extends javax.swing.JDialog {
         jTextField5.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
         jTextField5.setForeground(new java.awt.Color(0, 0, 0));
 
-        jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel8.setText("Apellidos:");
-
-        jTextField6.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField6.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(0, 0, 0));
-
         jLabel9.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel9.setText("Nombre:");
+        jLabel9.setText("Nombre y Apellidos:");
 
         jTextField7.setBackground(new java.awt.Color(255, 255, 255));
         jTextField7.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
         jTextField7.setForeground(new java.awt.Color(0, 0, 0));
 
-        BtnCancelarEn.setBackground(new java.awt.Color(204, 102, 0));
-        BtnCancelarEn.setText("Cancelar");
-        BtnCancelarEn.setArco_esquina(20);
-        BtnCancelarEn.setColor_H_text(new java.awt.Color(204, 102, 0));
-        BtnCancelarEn.setColor_Normal(new java.awt.Color(204, 102, 0));
-        BtnCancelarEn.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
-        BtnCancelarEn.addActionListener(new java.awt.event.ActionListener() {
+        BtnCancelar.setBackground(new java.awt.Color(204, 102, 0));
+        BtnCancelar.setText("Cancelar");
+        BtnCancelar.setArco_esquina(20);
+        BtnCancelar.setColor_H_text(new java.awt.Color(204, 102, 0));
+        BtnCancelar.setColor_Normal(new java.awt.Color(204, 102, 0));
+        BtnCancelar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        BtnCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCancelarEnActionPerformed(evt);
+                BtnCancelarActionPerformed(evt);
             }
         });
 
-        BtnRegistrarEn.setBackground(new java.awt.Color(204, 102, 0));
-        BtnRegistrarEn.setText("Registrar");
-        BtnRegistrarEn.setArco_esquina(20);
-        BtnRegistrarEn.setColor_H_text(new java.awt.Color(204, 102, 0));
-        BtnRegistrarEn.setColor_Normal(new java.awt.Color(204, 102, 0));
-        BtnRegistrarEn.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
-        BtnRegistrarEn.addActionListener(new java.awt.event.ActionListener() {
+        BtnRegistrar.setBackground(new java.awt.Color(204, 102, 0));
+        BtnRegistrar.setText("Registrar");
+        BtnRegistrar.setArco_esquina(20);
+        BtnRegistrar.setColor_H_text(new java.awt.Color(204, 102, 0));
+        BtnRegistrar.setColor_Normal(new java.awt.Color(204, 102, 0));
+        BtnRegistrar.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        BtnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnRegistrarEnActionPerformed(evt);
+                BtnRegistrarActionPerformed(evt);
             }
         });
 
@@ -142,18 +173,26 @@ public class FormularioEntrenadoresView extends javax.swing.JDialog {
         jTextField8.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
         jTextField8.setForeground(new java.awt.Color(0, 0, 0));
 
+        jLabel11.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setText("Usuario: ");
+
+        jTextField9.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField9.setFont(new java.awt.Font("Segoe UI Semibold", 1, 12)); // NOI18N
+        jTextField9.setForeground(new java.awt.Color(0, 0, 0));
+
         javax.swing.GroupLayout RegistrarClienteViewLayout = new javax.swing.GroupLayout(RegistrarClienteView);
         RegistrarClienteView.setLayout(RegistrarClienteViewLayout);
         RegistrarClienteViewLayout.setHorizontalGroup(
             RegistrarClienteViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(panel_Round_JWC3, javax.swing.GroupLayout.DEFAULT_SIZE, 563, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegistrarClienteViewLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(BtnCancelarEn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55))
             .addGroup(RegistrarClienteViewLayout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addGroup(RegistrarClienteViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(RegistrarClienteViewLayout.createSequentialGroup()
+                        .addComponent(BtnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55)
+                        .addComponent(BtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(RegistrarClienteViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(RegistrarClienteViewLayout.createSequentialGroup()
                             .addComponent(jLabel6)
@@ -162,31 +201,31 @@ public class FormularioEntrenadoresView extends javax.swing.JDialog {
                         .addGroup(RegistrarClienteViewLayout.createSequentialGroup()
                             .addComponent(jLabel7)
                             .addGap(99, 99, 99)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(RegistrarClienteViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(RegistrarClienteViewLayout.createSequentialGroup()
-                            .addComponent(jLabel8)
-                            .addGap(115, 115, 115)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(RegistrarClienteViewLayout.createSequentialGroup()
-                        .addGroup(RegistrarClienteViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10))
-                        .addGap(81, 81, 81)
-                        .addGroup(RegistrarClienteViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLabel11)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, RegistrarClienteViewLayout.createSequentialGroup()
+                            .addGroup(RegistrarClienteViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel9)
+                                .addComponent(jLabel10))
+                            .addGap(27, 27, 27)
+                            .addGroup(RegistrarClienteViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(RegistrarClienteViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(RegistrarClienteViewLayout.createSequentialGroup()
-                    .addGap(56, 56, 56)
-                    .addComponent(BtnRegistrarEn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(307, Short.MAX_VALUE)))
         );
         RegistrarClienteViewLayout.setVerticalGroup(
             RegistrarClienteViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(RegistrarClienteViewLayout.createSequentialGroup()
                 .addComponent(panel_Round_JWC3, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(RegistrarClienteViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField9))
+                .addGap(4, 4, 4)
                 .addGroup(RegistrarClienteViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField8))
@@ -196,24 +235,17 @@ public class FormularioEntrenadoresView extends javax.swing.JDialog {
                     .addComponent(jTextField7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(RegistrarClienteViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(RegistrarClienteViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(RegistrarClienteViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField4))
-                .addGap(57, 57, 57)
-                .addComponent(BtnCancelarEn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(53, 53, 53))
-            .addGroup(RegistrarClienteViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, RegistrarClienteViewLayout.createSequentialGroup()
-                    .addContainerGap(357, Short.MAX_VALUE)
-                    .addComponent(BtnRegistrarEn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(51, 51, 51)))
+                .addGap(31, 31, 31)
+                .addGroup(RegistrarClienteViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(BtnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(55, 55, 55))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -228,9 +260,11 @@ public class FormularioEntrenadoresView extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 525, Short.MAX_VALUE)
+            .addGap(0, 478, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(RegistrarClienteView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createSequentialGroup()
+                    .addComponent(RegistrarClienteView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         pack();
@@ -240,14 +274,50 @@ public class FormularioEntrenadoresView extends javax.swing.JDialog {
         System.exit(0);
     }//GEN-LAST:event_BtnSalirRedondo1ActionPerformed
 
-    private void BtnCancelarEnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarEnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnCancelarEnActionPerformed
+    private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_BtnCancelarActionPerformed
 
-    private void BtnRegistrarEnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegistrarEnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnRegistrarEnActionPerformed
+    private void BtnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegistrarActionPerformed
+       // Obtener los datos del formulario
+        String username = jTextFieldUsername.getText().trim();
+        String nombre = jTextFieldNombre.getText().trim();
+        String identificacion = jTextFieldIdentificacion.getText().trim();
+        String contraseña = jTextFieldContraseña.getText().trim();
+        String confirmarContraseña = jTextFieldConfirmarContraseña.getText().trim();
+        // Validar los datos
+        if (username.isEmpty() || contraseña.isEmpty() || nombre.isEmpty() || identificacion.isEmpty() ) {
+            JOptionPane.showMessageDialog(this, "Por favor, completa todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (!contraseña.equals(confirmarContraseña)) {
+            JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        // Guardar los datos en el archivo CSV
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/data/entrenadores.csv", true))) { 
+        writer.write(username +","  +identificacion + "," + nombre + "," + contraseña);
+        writer.newLine(); // Agregar nueva línea
+        // Mostrar mensaje de éxito
+        JOptionPane.showMessageDialog(this, "Entrenador registrado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+        // Limpiar campos después de registrar
+        limpiarCampos();
+    } catch (IOException e) {
+        // Manejo de excepciones
+        JOptionPane.showMessageDialog(this, "Error al guardar los datos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    }//GEN-LAST:event_BtnRegistrarActionPerformed
     
+    // Método para limpiar los campos del formulario
+    public void limpiarCampos() {
+    jTextField9.setText("");
+    jTextField7.setText("");
+    jTextField8.setText("");
+    jTextField5.setText("");
+    jTextField4.setText("");
+}
+
     
     /**
      * @param args the command line arguments
@@ -295,21 +365,23 @@ public class FormularioEntrenadoresView extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private swing.Btn_Round_JWC BtnCancelarEn;
-    private swing.Btn_Round_JWC BtnRegistrarEn;
+    private swing.Btn_Round_JWC BtnCancelar;
+    private swing.Btn_Round_JWC BtnRegistrar;
     private swing.Btn_Round_JWC BtnSalirRedondo1;
     private swing.Panel_Round_JWC RegistrarClienteView;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField jTextField9;
     private swing.Panel_Round_JWC panel_Round_JWC3;
     // End of variables declaration//GEN-END:variables
+
+    
 }

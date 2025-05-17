@@ -6,6 +6,8 @@ package AuditFitness.modelo.service;
 
 import AuditFitness.modelo.entidades.Entrenador;
 import AuditFitness.modelo.repository.EntrenadorRepository;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 
 /**
@@ -14,7 +16,8 @@ import java.io.IOException;
  */
 public class EntrenadorService {
     private final EntrenadorRepository entrenadorRepository;
-
+    private static final String RUTA_ENTRENADORES_CSV = "src/data/entrenadores.csv"; // Ruta al archivo CSV 
+    
     //Inyeccion de dependencia por constructor
     public EntrenadorService(EntrenadorRepository entrenadorRepository){
         this.entrenadorRepository = entrenadorRepository;
@@ -33,5 +36,25 @@ public class EntrenadorService {
            e.printStackTrace(); // Manejo de excepciones
             }
            return null; //Credenciales invalidas
+    }
+    
+    public Entrenador buscarEntrenadorPorIdentificacion(String Identificacion) {
+        try (BufferedReader br = new BufferedReader(new FileReader(RUTA_ENTRENADORES_CSV))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                String[] datos = linea.split(","); // Los datos están separados por comas
+                String username = datos[0];
+                String password = datos[1];
+                String nombre = datos[2];
+                String identificacion = datos[3];
+                // Verificar si la identificacion coincide
+                if (identificacion.equals(Identificacion)) {
+                    return new Entrenador(username, password, nombre, identificacion); // Retornar el entrenador encontrado
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null; // Retornar null si no se encuentra el entrenador
     }
 }

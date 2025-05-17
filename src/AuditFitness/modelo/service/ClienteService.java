@@ -8,6 +8,7 @@ import AuditFitness.modelo.entidades.Cliente;
 import AuditFitness.modelo.repository.ClienteRepository;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 
@@ -16,7 +17,7 @@ import java.io.IOException;
  * @author deana
  */
 public class ClienteService {
-    private final ClienteRepository clienteRepository;
+     private final ClienteRepository clienteRepository;
     private static final String RUTA_CLIENTES_CSV = "src/data/clientes.csv"; // Ruta al archivo CSV
     
     // Inyección de dependencia 
@@ -58,5 +59,24 @@ public class ClienteService {
         }
         return null; // Retornar null si no se encuentra el cliente
     }
+    
+    public boolean registrarCliente(Cliente cliente) {
+    try {
+        // Verificar si el cliente ya existe
+        if (buscarClientePorIdentificacion(cliente.getIdentificacion()) != null) {
+            return false;
+        }
+        
+        // Escribir en el CSV (ajusta según tu implementación)
+        FileWriter writer = new FileWriter("clientes.csv", true);
+        writer.append(cliente.toCSVString() + "\n");
+        writer.close();
+        
+        return true;
+    } catch (IOException e) {
+        e.printStackTrace();
+        return false;
+    }
+}
 }
 
