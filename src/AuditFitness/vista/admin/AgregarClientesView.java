@@ -4,15 +4,23 @@
  */
 package AuditFitness.vista.admin;
 
+import AuditFitness.modelo.entidades.Cliente;
 import AuditFitness.vista.auth.LoginAdminView;
 import java.awt.Color;
+import java.awt.Frame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author deana
  */
 public class AgregarClientesView extends javax.swing.JFrame {
-
     /**
      * Creates new form Inicio
      */
@@ -41,11 +49,12 @@ public class AgregarClientesView extends javax.swing.JFrame {
         BtnSalir = new swing.Btn_Round_JWC();
         BtnSalirRedondo = new swing.Btn_Round_JWC();
         jLabel2 = new javax.swing.JLabel();
-        Identificacion = new javax.swing.JFormattedTextField();
+        txtIdentificacion = new javax.swing.JFormattedTextField();
         BtnEnviar = new swing.Btn_Round_JWC();
         jLabel3 = new javax.swing.JLabel();
         TablaClientesAgg = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        BtnFormularioClientes = new swing.Btn_Round_JWC();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -198,11 +207,11 @@ public class AgregarClientesView extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Agregar Cliente:");
 
-        Identificacion.setBackground(new java.awt.Color(255, 255, 255));
-        Identificacion.setForeground(new java.awt.Color(0, 0, 0));
-        Identificacion.addActionListener(new java.awt.event.ActionListener() {
+        txtIdentificacion.setBackground(new java.awt.Color(255, 255, 255));
+        txtIdentificacion.setForeground(new java.awt.Color(0, 0, 0));
+        txtIdentificacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IdentificacionActionPerformed(evt);
+                txtIdentificacionActionPerformed(evt);
             }
         });
 
@@ -229,27 +238,47 @@ public class AgregarClientesView extends javax.swing.JFrame {
         jTable1.setForeground(new java.awt.Color(255, 102, 0));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Identificación", "Nombre", "Apellidos", "Usuario"
+                "Identificación", "Nombre", "Usuario"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false, false, false
+                true, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_LAST_COLUMN);
         jTable1.setGridColor(new java.awt.Color(255, 102, 0));
+        jTable1.setRowHeight(25);
         TablaClientesAgg.setViewportView(jTable1);
+
+        BtnFormularioClientes.setBackground(new java.awt.Color(204, 102, 0));
+        BtnFormularioClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/agregar (1).png"))); // NOI18N
+        BtnFormularioClientes.setText("");
+        BtnFormularioClientes.setArco_esquina(20);
+        BtnFormularioClientes.setColor_H_text(new java.awt.Color(204, 102, 0));
+        BtnFormularioClientes.setColor_Hover(new java.awt.Color(255, 153, 51));
+        BtnFormularioClientes.setColor_Normal(new java.awt.Color(204, 102, 0));
+        BtnFormularioClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnFormularioClientesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel_Round_JWC1Layout = new javax.swing.GroupLayout(panel_Round_JWC1);
         panel_Round_JWC1.setLayout(panel_Round_JWC1Layout);
@@ -263,19 +292,17 @@ public class AgregarClientesView extends javax.swing.JFrame {
                         .addComponent(BtnSalirRedondo, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(19, 19, 19))
                     .addGroup(panel_Round_JWC1Layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
                         .addGroup(panel_Round_JWC1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
                             .addGroup(panel_Round_JWC1Layout.createSequentialGroup()
-                                .addGap(52, 52, 52)
-                                .addGroup(panel_Round_JWC1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2)
-                                    .addGroup(panel_Round_JWC1Layout.createSequentialGroup()
-                                        .addComponent(Identificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(BtnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(panel_Round_JWC1Layout.createSequentialGroup()
-                                .addGap(63, 63, 63)
-                                .addComponent(TablaClientesAgg, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(txtIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(BtnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BtnFormularioClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(TablaClientesAgg, javax.swing.GroupLayout.PREFERRED_SIZE, 516, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(72, Short.MAX_VALUE))))
         );
         panel_Round_JWC1Layout.setVerticalGroup(
@@ -290,10 +317,11 @@ public class AgregarClientesView extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel_Round_JWC1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Identificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtIdentificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnFormularioClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
-                .addComponent(TablaClientesAgg, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TablaClientesAgg, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -311,14 +339,27 @@ public class AgregarClientesView extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_BtnSalirRedondoActionPerformed
 
-    private void IdentificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdentificacionActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_IdentificacionActionPerformed
+    private void txtIdentificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdentificacionActionPerformed
+        BtnEnviarActionPerformed(evt);
+    }//GEN-LAST:event_txtIdentificacionActionPerformed
 
     private void BtnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEnviarActionPerformed
-        // TODO add your handling code here:
+       String identificacion = txtIdentificacion.getText().trim(); // Obtener la identificación ingresada
+    // Validar que la identificación no esté vacía
+    if (identificacion.isEmpty()) {
+        mostrarMensaje("Por favor, ingresa una identificación válida.");
+        return; 
+    }     
+    // Validar identificación desde el archivo CSV
+    Cliente cliente = cargarClientePorIdentificacion(identificacion);
+    if (cliente != null) {
+        // Si el cliente existe, mostrarlo en la tabla
+        mostrarClienteEnTabla(cliente);
+    } else {
+        mostrarMensaje("Usuario no encontrado.");
+    }
     }//GEN-LAST:event_BtnEnviarActionPerformed
-
+    
     private void BtnEliminarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarClientesActionPerformed
        abrirEliminarClientesView();
     }//GEN-LAST:event_BtnEliminarClientesActionPerformed
@@ -337,37 +378,17 @@ public class AgregarClientesView extends javax.swing.JFrame {
        this.dispose();
     }//GEN-LAST:event_BtnSalirActionPerformed
 
+    private void BtnFormularioClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnFormularioClientesActionPerformed
+        // Crear y mostrar la vista del formulario de cliente
+        FormularioClientesView formularioClientesView = new FormularioClientesView(this, true);
+        formularioClientesView.setVisible(true);
+    }//GEN-LAST:event_BtnFormularioClientesActionPerformed
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            //java.util.logging.Logger.getLogger(AdminMenuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            //java.util.logging.Logger.getLogger(AdminMenuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-           // java.util.logging.Logger.getLogger(AdminMenuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            //java.util.logging.Logger.getLogger(AdminMenuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
-        /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new AgregarClientesView().setVisible(true);
@@ -382,9 +403,9 @@ public class AgregarClientesView extends javax.swing.JFrame {
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnDesactEntrenador;
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnEliminarClientes;
     private swing.Btn_Round_JWC BtnEnviar;
+    private swing.Btn_Round_JWC BtnFormularioClientes;
     private swing.Btn_Round_JWC BtnSalir;
     private swing.Btn_Round_JWC BtnSalirRedondo;
-    private javax.swing.JFormattedTextField Identificacion;
     private javax.swing.JScrollPane TablaClientesAgg;
     private img_redondo_degradado_jwc.imagen_redondo_degradado_JWC imagen_redondo_degradado_JWC1;
     private javax.swing.JLabel jLabel1;
@@ -393,6 +414,7 @@ public class AgregarClientesView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTable jTable1;
     private swing.Panel_Round_JWC panel_Round_JWC1;
+    private javax.swing.JFormattedTextField txtIdentificacion;
     // End of variables declaration//GEN-END:variables
 
     private void abrirEliminarClientesView() {
@@ -418,4 +440,71 @@ public class AgregarClientesView extends javax.swing.JFrame {
         agregarClientes.setVisible(true);
         this.dispose();
     }
+
+    public void agregarListenerVerificar(ActionListener actionListener) {
+        
+    }
+
+    public String getIdentificacion() {
+        return null;
+    }
+
+    public void mostrarClientes(Object[][] data, String[] columnNames) {
+        
+    }
+
+    public void abrirFormularioClientesView(Frame vista) {
+    FormularioClientesView formularioClientesView = new FormularioClientesView(vista, true);
+    formularioClientesView.setVisible(true);
+    // Suponiendo que tienes un botón "Registrar" en el formulario
+    formularioClientesView.agregarListenerRegistrar(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // Obtener los datos del formulario
+            String nombre = formularioClientesView.getNombre();
+            String identificacion = formularioClientesView.getIdentificacion();
+            String contraseña = formularioClientesView.getContraseña();
+            String confirmarContraseña = formularioClientesView.getConfirmarContraseña();
+            // Aquí puedes agregar la lógica para registrar el cliente
+            // Si el registro es exitoso:
+            formularioClientesView.mostrarMensaje("Cliente registrado exitosamente.");
+            formularioClientesView.limpiarCampos(); // Limpiar campos después de registrar
+        }
+    });
+    }
+    
+    public void mostrarMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(this, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    
+    private Cliente cargarClientePorIdentificacion(String identificacion) {
+    String csvFile = "src/data/clientes.csv";
+    String line;
+    String[] datosCliente;
+    try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+        while ((line = br.readLine()) != null) {
+            datosCliente = line.split(","); 
+            if (datosCliente[3].equals(identificacion)) { // Suponiendo que la identificación está en la posición 3
+                String username = datosCliente[0];
+                String password = datosCliente[1];
+                String nombre = datosCliente[2];
+                return new Cliente(username, password, nombre, identificacion); // Retornar el cliente encontrado
+            }
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+    return null; // Retornar null si no se encuentra el cliente
+}
+    private void mostrarClienteEnTabla(Cliente cliente) {
+    // Crear un modelo de datos para la tabla
+    String[] columnNames = {"Username", "Nombre", "Identificación"};
+    Object[][] data = {
+        {cliente.getUsername(), cliente.getNombre(), cliente.getIdentificacion()}
+    };
+    // Crear un modelo de tabla y asignarlo al JTable
+    DefaultTableModel model = new DefaultTableModel(data, columnNames);
+    jTable1.setModel(model); // Asignar el modelo al JTable
+}
+
 }
