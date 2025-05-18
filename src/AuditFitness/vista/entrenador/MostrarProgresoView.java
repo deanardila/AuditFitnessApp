@@ -4,13 +4,23 @@
  */
 package AuditFitness.vista.entrenador;
 
+import AuditFitness.modelo.entidades.Cliente;
+import AuditFitness.modelo.entidades.Progreso;
+import AuditFitness.modelo.repository.ClienteRepositoryImpl;
+import AuditFitness.modelo.repository.ProgresoRepositoryImpl;
 import AuditFitness.vista.auth.LoginEntrenadorView;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.util.Comparator;
+import java.util.List;
+import javax.swing.JOptionPane;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.XYPlot;
 import org.jfree.data.time.Day;
 import org.jfree.data.time.TimeSeries;
 import org.jfree.data.time.TimeSeriesCollection;
@@ -20,16 +30,19 @@ import org.jfree.data.time.TimeSeriesCollection;
  * @author deana
  */
 public class MostrarProgresoView extends javax.swing.JFrame {
-        
-    
+
+    ClienteRepositoryImpl clienteRepositoryImpl = new ClienteRepositoryImpl();
+    ProgresoRepositoryImpl progresoRepositoryImpl = new ProgresoRepositoryImpl();
+    private Cliente clienteEncontrado;
+
     /**
      * Creates new form Inicio
      */
     public MostrarProgresoView() {
-        initComponents(); setBackground(new Color(0,0,0,0));
-        
+        initComponents();
+        setBackground(new Color(0, 0, 0, 0));
+
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -257,16 +270,19 @@ public class MostrarProgresoView extends javax.swing.JFrame {
         jLabel2.setText("Grafica del progreso del cliente: ");
 
         panelChart.setBackground(new java.awt.Color(242, 240, 240));
+        panelChart.setMaximumSize(new java.awt.Dimension(400, 300));
+        panelChart.setMinimumSize(new java.awt.Dimension(400, 300));
+        panelChart.setPreferredSize(new java.awt.Dimension(400, 300));
 
         javax.swing.GroupLayout panelChartLayout = new javax.swing.GroupLayout(panelChart);
         panelChart.setLayout(panelChartLayout);
         panelChartLayout.setHorizontalGroup(
             panelChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 416, Short.MAX_VALUE)
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         panelChartLayout.setVerticalGroup(
             panelChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 320, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         BtnGraficar.setBackground(new java.awt.Color(204, 102, 0));
@@ -311,11 +327,11 @@ public class MostrarProgresoView extends javax.swing.JFrame {
                             .addGroup(EntrenadorMenuViewLayout.createSequentialGroup()
                                 .addGap(40, 40, 40)
                                 .addComponent(panelChart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(54, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         EntrenadorMenuViewLayout.setVerticalGroup(
             EntrenadorMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel_Round_JWC2, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
+            .addComponent(panel_Round_JWC2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(EntrenadorMenuViewLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(BtnSalirRedondo, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -349,7 +365,7 @@ public class MostrarProgresoView extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnSalirRedondoActionPerformed
 
     private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
-        LoginEntrenadorView loginEntrenador = new LoginEntrenadorView ();
+        LoginEntrenadorView loginEntrenador = new LoginEntrenadorView();
         loginEntrenador.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnSalirActionPerformed
@@ -359,41 +375,80 @@ public class MostrarProgresoView extends javax.swing.JFrame {
     }//GEN-LAST:event_IdentificacionActionPerformed
 
     private void BtnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEnviarActionPerformed
-        // TODO add your handling code here:
+        String identificacionCliente = Identificacion.getText().trim();
+
+        try {
+            this.clienteEncontrado = clienteRepositoryImpl.readClientes().stream().filter(c -> c.getIdentificacion().equals(identificacionCliente)).findFirst().orElse(null);
+            if (clienteEncontrado != null) {
+                JOptionPane.showMessageDialog(null, "Cliente encontrado!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Cliente no encontrado!");
+            }
+        } catch (IOException ex) {
+            // Pon bien este error
+            JOptionPane.showMessageDialog(null, "ERROR AL BUSCAR CLIENTE");
+        }
     }//GEN-LAST:event_BtnEnviarActionPerformed
 
     private void BtnGraficarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGraficarActionPerformed
         // TODO add your handling code here:
-        
-        TimeSeries series = new TimeSeries("Peso Del Cliente");
-        series.add(new Day(1,1,2024),150);
-        series.add(new Day(2,1,2024),200);
-        series.add(new Day(3,1,2024),180);
-        
-        
-        TimeSeriesCollection dataSet = new TimeSeriesCollection();
-        dataSet.addSeries(series);
-        
-        JFreeChart chart = ChartFactory.createTimeSeriesChart(
-                "Indice de Peso Corporal",
-                "Fecha", //Eje X
-                "Peso",  // Eje Y
-                dataSet, // Datos
-                true, // Si se usa leyenda
-                true, // tooltips
-                false);//url
-        
-        ChartPanel chartPanel = new ChartPanel(chart);
-        chartPanel.setPreferredSize(new Dimension(600,400));
-        
-        panelChart.removeAll();
-        panelChart.setLayout(new BorderLayout());
-        panelChart.add(chartPanel,BorderLayout.CENTER);
-        panelChart.validate();
-        panelChart.repaint();
-        
-        System.out.println("Dibujar");
-        
+
+        try {
+            List<Progreso> progresos = progresoRepositoryImpl.listar();
+
+            List<Progreso> progresosFiltradoPorCliente = progresos.stream()
+                    .filter(p -> p != null
+                    && p.getClienteId() != null
+                    && p.getClienteId().equals(clienteEncontrado.getIdentificacion())
+                    && p.getFecha() != null
+                    && p.getPeso() != 0)
+                    .sorted(Comparator.comparing(Progreso::getFecha))
+                    .toList();
+
+            if (progresosFiltradoPorCliente.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "No hay datos de progreso para mostrar", "Información", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+
+            TimeSeries series = new TimeSeries("Peso Del Cliente");
+            progresosFiltradoPorCliente.forEach(p -> {
+                LocalDate fecha = p.getFecha();
+                Day day = new Day(fecha.getDayOfMonth(), fecha.getMonthValue(), fecha.getYear());
+                series.add(day, p.getPeso());
+            });
+
+            TimeSeriesCollection dataset = new TimeSeriesCollection();
+            dataset.addSeries(series);
+
+            JFreeChart chart = ChartFactory.createTimeSeriesChart(
+                    "Evolución de Peso Corporal",
+                    "Fecha",
+                    "Peso (kg)",
+                    dataset,
+                    true,
+                    true,
+                    false);
+
+            // Customize chart appearance
+            XYPlot plot = chart.getXYPlot();
+            plot.setBackgroundPaint(Color.WHITE);
+            plot.setDomainGridlinePaint(Color.LIGHT_GRAY);
+            plot.setRangeGridlinePaint(Color.LIGHT_GRAY);
+
+            ChartPanel chartPanel = new ChartPanel(chart);
+            chartPanel.setPreferredSize(new Dimension(400, 300));
+
+            panelChart.removeAll();
+            panelChart.setLayout(new BorderLayout());
+            panelChart.add(chartPanel, BorderLayout.CENTER);
+            panelChart.revalidate();
+            panelChart.repaint();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al generar el gráfico: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
     }//GEN-LAST:event_BtnGraficarActionPerformed
 
     private void BtnMostrarRutinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMostrarRutinaActionPerformed
@@ -445,16 +500,16 @@ public class MostrarProgresoView extends javax.swing.JFrame {
     private org.jfree.chart.urls.TimeSeriesURLGenerator timeSeriesURLGenerator1;
     // End of variables declaration//GEN-END:variables
 
-private void abrirAgregarRutinaView() {
-        AgregarRutinaView agregarRutina = new AgregarRutinaView ();
-        agregarRutina .setVisible(true);
+    private void abrirAgregarRutinaView() {
+        AgregarRutinaView agregarRutina = new AgregarRutinaView();
+        agregarRutina.setVisible(true);
         this.dispose();
     }
 
     private void abrirMostrarRutinaView() {
-       MostrarRutinaView mostrarRutina = new MostrarRutinaView ();
-       mostrarRutina.setVisible(true);
-       this.dispose();
+        MostrarRutinaView mostrarRutina = new MostrarRutinaView();
+        mostrarRutina.setVisible(true);
+        this.dispose();
     }
 
     private void abrirRegistrarProgresoView() {
@@ -464,9 +519,9 @@ private void abrirAgregarRutinaView() {
     }
 
     private void abrirMostrarProgresoView() {
-       MostrarProgresoView mostrarProgreso= new MostrarProgresoView();
-       mostrarProgreso.setVisible(true);
-       this.dispose();
+        MostrarProgresoView mostrarProgreso = new MostrarProgresoView();
+        mostrarProgreso.setVisible(true);
+        this.dispose();
     }
 
     private void abrirMostrarAsistenciaView() {

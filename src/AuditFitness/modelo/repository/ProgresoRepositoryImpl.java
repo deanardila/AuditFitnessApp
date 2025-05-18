@@ -37,7 +37,6 @@ public class ProgresoRepositoryImpl {
     try(BufferedReader br = new BufferedReader(new FileReader(ARCHIVO_ASISTENCIA))) {
         String line;
         
-        br.readLine(); // Skip header line
         while ((line = br.readLine()) != null) {
             String[] data = line.split(",");
             if (data.length == 3) { // Verify 2 fields

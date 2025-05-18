@@ -4,24 +4,37 @@
  */
 package AuditFitness.vista.entrenador;
 
+import AuditFitness.modelo.entidades.Cliente;
+import AuditFitness.modelo.entidades.Progreso;
+import AuditFitness.modelo.repository.ClienteRepositoryImpl;
+import AuditFitness.modelo.repository.ProgresoRepositoryImpl;
 import AuditFitness.vista.auth.LoginEntrenadorView;
 import java.awt.Color;
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author deana
  */
 public class RegistrarProgresoView extends javax.swing.JFrame {
-        
-    
+
+    ClienteRepositoryImpl clienteRepositoryImpl = new ClienteRepositoryImpl();
+    ProgresoRepositoryImpl progresoRepositoryImpl = new ProgresoRepositoryImpl();
+    private Cliente clienteEncontrado;
+
     /**
      * Creates new form Inicio
      */
     public RegistrarProgresoView() {
-        initComponents(); setBackground(new Color(0,0,0,0));
-        
+        initComponents();
+        setBackground(new Color(0, 0, 0, 0));
+
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,8 +61,8 @@ public class RegistrarProgresoView extends javax.swing.JFrame {
         Identificacion = new javax.swing.JFormattedTextField();
         BtnEnviar = new swing.Btn_Round_JWC();
         jLabel2 = new javax.swing.JLabel();
-        Identificacion1 = new javax.swing.JFormattedTextField();
-        BtnEnviar1 = new swing.Btn_Round_JWC();
+        TextFieldPeso = new javax.swing.JFormattedTextField();
+        BtnGuardarProgreso = new swing.Btn_Round_JWC();
         FechaProgreso = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -248,24 +261,24 @@ public class RegistrarProgresoView extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Ingrese el progreso del cliente: ");
 
-        Identificacion1.setBackground(new java.awt.Color(255, 255, 255));
-        Identificacion1.setForeground(new java.awt.Color(0, 0, 0));
-        Identificacion1.addActionListener(new java.awt.event.ActionListener() {
+        TextFieldPeso.setBackground(new java.awt.Color(255, 255, 255));
+        TextFieldPeso.setForeground(new java.awt.Color(0, 0, 0));
+        TextFieldPeso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Identificacion1ActionPerformed(evt);
+                TextFieldPesoActionPerformed(evt);
             }
         });
 
-        BtnEnviar1.setBackground(new java.awt.Color(204, 102, 0));
-        BtnEnviar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/parte-superior-del-avion-de-papel.png"))); // NOI18N
-        BtnEnviar1.setText("");
-        BtnEnviar1.setArco_esquina(20);
-        BtnEnviar1.setColor_H_text(new java.awt.Color(204, 102, 0));
-        BtnEnviar1.setColor_Hover(new java.awt.Color(255, 153, 51));
-        BtnEnviar1.setColor_Normal(new java.awt.Color(204, 102, 0));
-        BtnEnviar1.addActionListener(new java.awt.event.ActionListener() {
+        BtnGuardarProgreso.setBackground(new java.awt.Color(204, 102, 0));
+        BtnGuardarProgreso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/parte-superior-del-avion-de-papel.png"))); // NOI18N
+        BtnGuardarProgreso.setText("");
+        BtnGuardarProgreso.setArco_esquina(20);
+        BtnGuardarProgreso.setColor_H_text(new java.awt.Color(204, 102, 0));
+        BtnGuardarProgreso.setColor_Hover(new java.awt.Color(255, 153, 51));
+        BtnGuardarProgreso.setColor_Normal(new java.awt.Color(204, 102, 0));
+        BtnGuardarProgreso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnEnviar1ActionPerformed(evt);
+                BtnGuardarProgresoActionPerformed(evt);
             }
         });
 
@@ -293,9 +306,9 @@ public class RegistrarProgresoView extends javax.swing.JFrame {
                             .addGroup(EntrenadorMenuViewLayout.createSequentialGroup()
                                 .addGroup(EntrenadorMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(FechaProgreso, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(Identificacion1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE))
+                                    .addComponent(TextFieldPeso, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
-                                .addComponent(BtnEnviar1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(BtnGuardarProgreso, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         EntrenadorMenuViewLayout.setVerticalGroup(
@@ -313,11 +326,11 @@ public class RegistrarProgresoView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Identificacion1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(TextFieldPeso, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(EntrenadorMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(FechaProgreso, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnEnviar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(BtnGuardarProgreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -336,7 +349,7 @@ public class RegistrarProgresoView extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnSalirRedondoActionPerformed
 
     private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
-        LoginEntrenadorView loginEntrenador = new LoginEntrenadorView ();
+        LoginEntrenadorView loginEntrenador = new LoginEntrenadorView();
         loginEntrenador.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnSalirActionPerformed
@@ -346,16 +359,39 @@ public class RegistrarProgresoView extends javax.swing.JFrame {
     }//GEN-LAST:event_IdentificacionActionPerformed
 
     private void BtnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEnviarActionPerformed
-        // TODO add your handling code here:
+        String identificacionCliente = Identificacion.getText().trim();
+
+        try {
+            this.clienteEncontrado = clienteRepositoryImpl.readClientes().stream().filter(c -> c.getIdentificacion().equals(identificacionCliente)).findFirst().orElse(null);
+            if (clienteEncontrado != null) {
+                JOptionPane.showMessageDialog(null, "Cliente encontrado!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Cliente no encontrado!");
+            }
+        } catch (IOException ex) {
+            // Pon bien este error
+            JOptionPane.showMessageDialog(null, "ERROR AL BUSCAR CLIENTE");
+        }
+
     }//GEN-LAST:event_BtnEnviarActionPerformed
 
-    private void Identificacion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Identificacion1ActionPerformed
+    private void TextFieldPesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TextFieldPesoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Identificacion1ActionPerformed
+    }//GEN-LAST:event_TextFieldPesoActionPerformed
 
-    private void BtnEnviar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEnviar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnEnviar1ActionPerformed
+    private void BtnGuardarProgresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarProgresoActionPerformed
+        double peso = Double.parseDouble(TextFieldPeso.getText());
+        LocalDate fecha = FechaProgreso.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+        if (clienteEncontrado != null) {
+            try {
+                progresoRepositoryImpl.crear(new Progreso(clienteEncontrado.getIdentificacion(), peso, fecha));
+                JOptionPane.showMessageDialog(null, "Progreso Registrado exitosamente");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al registrar progreso");
+            }
+        }
+    }//GEN-LAST:event_BtnGuardarProgresoActionPerformed
 
     private void BtnMostrarRutinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMostrarRutinaActionPerformed
         abrirMostrarRutinaView();
@@ -388,7 +424,7 @@ public class RegistrarProgresoView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnAgregarRutina;
     private swing.Btn_Round_JWC BtnEnviar;
-    private swing.Btn_Round_JWC BtnEnviar1;
+    private swing.Btn_Round_JWC BtnGuardarProgreso;
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnMostrarAsistencia;
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnMostrarProgreso;
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnMostrarRutina;
@@ -398,7 +434,7 @@ public class RegistrarProgresoView extends javax.swing.JFrame {
     private swing.Panel_Round_JWC EntrenadorMenuView;
     private com.toedter.calendar.JDateChooser FechaProgreso;
     private javax.swing.JFormattedTextField Identificacion;
-    private javax.swing.JFormattedTextField Identificacion1;
+    private javax.swing.JFormattedTextField TextFieldPeso;
     private img_redondo_degradado_jwc.imagen_redondo_degradado_JWC imagen_redondo_degradado_JWC1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -408,15 +444,15 @@ public class RegistrarProgresoView extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void abrirAgregarRutinaView() {
-        AgregarRutinaView agregarRutina = new AgregarRutinaView ();
-        agregarRutina .setVisible(true);
+        AgregarRutinaView agregarRutina = new AgregarRutinaView();
+        agregarRutina.setVisible(true);
         this.dispose();
     }
 
     private void abrirMostrarRutinaView() {
-       MostrarRutinaView mostrarRutina = new MostrarRutinaView ();
-       mostrarRutina.setVisible(true);
-       this.dispose();
+        MostrarRutinaView mostrarRutina = new MostrarRutinaView();
+        mostrarRutina.setVisible(true);
+        this.dispose();
     }
 
     private void abrirRegistrarProgresoView() {
@@ -426,9 +462,9 @@ public class RegistrarProgresoView extends javax.swing.JFrame {
     }
 
     private void abrirMostrarProgresoView() {
-       MostrarProgresoView mostrarProgreso= new MostrarProgresoView();
-       mostrarProgreso.setVisible(true);
-       this.dispose();
+        MostrarProgresoView mostrarProgreso = new MostrarProgresoView();
+        mostrarProgreso.setVisible(true);
+        this.dispose();
     }
 
     private void abrirMostrarAsistenciaView() {
