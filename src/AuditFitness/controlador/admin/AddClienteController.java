@@ -23,12 +23,12 @@ public class AddClienteController {
        this.vista = vista;
         this.clienteService = clienteService;
         // Agregar ActionListener al botón de verificar
-        vista.agregarListenerVerificar(new ActionListener() {
+        new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 verificarCliente();
             }
-        });
+        };
         
     }
     

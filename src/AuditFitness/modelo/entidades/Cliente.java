@@ -70,9 +70,9 @@ public class Cliente extends Usuario {
     public String toCSVString() {
     return String.join(",",
         this.username,
+        this.password,
         this.nombre,
-        this.identificacion,
-        this.password
+        this.identificacion
     );
 }
 }

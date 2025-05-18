@@ -441,9 +441,7 @@ public class AgregarClientesView extends javax.swing.JFrame {
         this.dispose();
     }
 
-public void agregarListenerVerificar(ActionListener actionListener) {
-        
-    }
+
 
     public String getIdentificacion() {
         return null;

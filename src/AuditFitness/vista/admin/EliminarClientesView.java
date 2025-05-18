@@ -4,8 +4,12 @@
  */
 package AuditFitness.vista.admin;
 
+import AuditFitness.modelo.entidades.Cliente;
+import AuditFitness.modelo.repository.ClienteRepositoryImpl;
+import AuditFitness.modelo.service.ClienteService;
 import AuditFitness.vista.auth.LoginAdminView;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,11 +17,12 @@ import java.awt.Color;
  */
 public class EliminarClientesView extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Inicio
-     */
+    private ClienteRepositoryImpl clienteRepository = new ClienteRepositoryImpl();
+
     public EliminarClientesView() {
-        initComponents(); setBackground(new Color(0,0,0,0));
+        initComponents();
+        setBackground(new Color(0, 0, 0, 0));
+
     }
 
     /**
@@ -42,11 +47,8 @@ public class EliminarClientesView extends javax.swing.JFrame {
         BtnSalirRedondo = new swing.Btn_Round_JWC();
         jLabel2 = new javax.swing.JLabel();
         Identificacion = new javax.swing.JFormattedTextField();
-        BtnEnviar = new swing.Btn_Round_JWC();
         jLabel3 = new javax.swing.JLabel();
-        BtnFormularioClientes = new swing.Btn_Round_JWC();
-        TablaEntrenadorElim = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        BtnEliminar = new swing.Btn_Round_JWC();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -207,65 +209,22 @@ public class EliminarClientesView extends javax.swing.JFrame {
             }
         });
 
-        BtnEnviar.setBackground(new java.awt.Color(204, 102, 0));
-        BtnEnviar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/parte-superior-del-avion-de-papel.png"))); // NOI18N
-        BtnEnviar.setText("");
-        BtnEnviar.setArco_esquina(20);
-        BtnEnviar.setColor_H_text(new java.awt.Color(204, 102, 0));
-        BtnEnviar.setColor_Hover(new java.awt.Color(255, 153, 51));
-        BtnEnviar.setColor_Normal(new java.awt.Color(204, 102, 0));
-        BtnEnviar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnEnviarActionPerformed(evt);
-            }
-        });
-
         jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Ingrese la identificación del cliente: ");
 
-        BtnFormularioClientes.setBackground(new java.awt.Color(204, 102, 0));
-        BtnFormularioClientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/quitar-usuario.png"))); // NOI18N
-        BtnFormularioClientes.setText("");
-        BtnFormularioClientes.setArco_esquina(20);
-        BtnFormularioClientes.setColor_H_text(new java.awt.Color(204, 102, 0));
-        BtnFormularioClientes.setColor_Hover(new java.awt.Color(255, 153, 51));
-        BtnFormularioClientes.setColor_Normal(new java.awt.Color(204, 102, 0));
-        BtnFormularioClientes.addActionListener(new java.awt.event.ActionListener() {
+        BtnEliminar.setBackground(new java.awt.Color(204, 102, 0));
+        BtnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/quitar-usuario.png"))); // NOI18N
+        BtnEliminar.setText("");
+        BtnEliminar.setArco_esquina(20);
+        BtnEliminar.setColor_H_text(new java.awt.Color(204, 102, 0));
+        BtnEliminar.setColor_Hover(new java.awt.Color(255, 153, 51));
+        BtnEliminar.setColor_Normal(new java.awt.Color(204, 102, 0));
+        BtnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnFormularioClientesActionPerformed(evt);
+                BtnEliminarActionPerformed(evt);
             }
         });
-
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
-        jTable1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jTable1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(255, 102, 0));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Identificación", "Nombre", "Usuario", "Estado"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                true, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTable1.setGridColor(new java.awt.Color(255, 102, 0));
-        jTable1.setRowHeight(25);
-        jTable1.setRowMargin(11);
-        TablaEntrenadorElim.setViewportView(jTable1);
 
         javax.swing.GroupLayout panel_Round_JWC1Layout = new javax.swing.GroupLayout(panel_Round_JWC1);
         panel_Round_JWC1.setLayout(panel_Round_JWC1Layout);
@@ -286,11 +245,8 @@ public class EliminarClientesView extends javax.swing.JFrame {
                             .addGroup(panel_Round_JWC1Layout.createSequentialGroup()
                                 .addComponent(Identificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(BtnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(BtnFormularioClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(TablaEntrenadorElim, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(83, Short.MAX_VALUE))))
+                                .addComponent(BtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(279, Short.MAX_VALUE))))
         );
         panel_Round_JWC1Layout.setVerticalGroup(
             panel_Round_JWC1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,10 +261,7 @@ public class EliminarClientesView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel_Round_JWC1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Identificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnFormularioClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(TablaEntrenadorElim, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -330,12 +283,8 @@ public class EliminarClientesView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_IdentificacionActionPerformed
 
-    private void BtnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEnviarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnEnviarActionPerformed
-
     private void BtnEliminarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarClientesActionPerformed
-        abrirEliminarClientesView();
+
     }//GEN-LAST:event_BtnEliminarClientesActionPerformed
 
     private void BtnAgregarEntrenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAgregarEntrenadorActionPerformed
@@ -347,16 +296,31 @@ public class EliminarClientesView extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnDesactEntrenadorActionPerformed
 
     private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
-       LoginAdminView loginAdmin = new LoginAdminView();
-       loginAdmin.setVisible(true);
-       this.dispose();
+        LoginAdminView loginAdmin = new LoginAdminView();
+        loginAdmin.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_BtnSalirActionPerformed
 
-    private void BtnFormularioClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnFormularioClientesActionPerformed
-        // Crear y mostrar la vista del formulario de cliente
-        FormularioClientesView formularioClientesView = new FormularioClientesView(this, true);
-        formularioClientesView.setVisible(true);
-    }//GEN-LAST:event_BtnFormularioClientesActionPerformed
+    private void BtnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarActionPerformed
+        String identificacionObtenida = Identificacion.getText().trim();
+
+        if (identificacionObtenida.length() != 0) {
+            try {
+                int condicional = JOptionPane.showConfirmDialog(null, "Desea eliminar el cliente con identificación " + identificacionObtenida + " ?", "Eliminar", JOptionPane.YES_NO_OPTION);
+
+                if (condicional == 0) {
+                    clienteRepository.deleteCliente(identificacionObtenida);
+                    JOptionPane.showMessageDialog(null, "Eliminado correctamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al eliminar cliente con identificación: " + identificacionObtenida, "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Rellene los campos requeridos: " + identificacionObtenida, "Error", JOptionPane.ERROR);
+
+        }
+    }//GEN-LAST:event_BtnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -375,7 +339,7 @@ public class EliminarClientesView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-           // java.util.logging.Logger.getLogger(AdminMenuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            // java.util.logging.Logger.getLogger(AdminMenuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
             //java.util.logging.Logger.getLogger(AdminMenuView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
@@ -401,36 +365,33 @@ public class EliminarClientesView extends javax.swing.JFrame {
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnAgregarClientes;
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnAgregarEntrenador;
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnDesactEntrenador;
+    private swing.Btn_Round_JWC BtnEliminar;
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnEliminarClientes;
-    private swing.Btn_Round_JWC BtnEnviar;
-    private swing.Btn_Round_JWC BtnFormularioClientes;
     private swing.Btn_Round_JWC BtnSalir;
     private swing.Btn_Round_JWC BtnSalirRedondo;
     private javax.swing.JFormattedTextField Identificacion;
-    private javax.swing.JScrollPane TablaEntrenadorElim;
     private img_redondo_degradado_jwc.imagen_redondo_degradado_JWC imagen_redondo_degradado_JWC1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTable jTable1;
     private swing.Panel_Round_JWC panel_Round_JWC1;
     // End of variables declaration//GEN-END:variables
 
     private void abrirAgregarClientesView() {
-        AgregarClientesView agregarClientes = new AgregarClientesView ();
+        AgregarClientesView agregarClientes = new AgregarClientesView();
         agregarClientes.setVisible(true);
         this.dispose();
     }
 
     private void abrirEliminarClientesView() {
-        EliminarClientesView eliminarClientes = new EliminarClientesView ();
+        EliminarClientesView eliminarClientes = new EliminarClientesView();
         eliminarClientes.setVisible(true);
         this.dispose();
     }
 
     private void abrirAgregarEntrenadorView() {
-        AgregarEntrenadorView agregarEntrenador = new AgregarEntrenadorView ();
+        AgregarEntrenadorView agregarEntrenador = new AgregarEntrenadorView();
         agregarEntrenador.setVisible(true);
         this.dispose();
     }

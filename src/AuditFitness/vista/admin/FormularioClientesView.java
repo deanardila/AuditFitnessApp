@@ -16,12 +16,6 @@ import javax.swing.JTextField;
  * @author deana
  */
 public class FormularioClientesView extends javax.swing.JDialog {
-    private JTextField jTextFieldUsername;
-    private JTextField jTextFieldContraseña;
-    private JTextField jTextFieldConfirmarContraseña;
-    private JTextField jTextFieldNombre;
-    private JTextField jTextFieldIdentificacion;
-    
     /**
      * Creates new form FormularioClientes
      */
@@ -280,11 +274,11 @@ public class FormularioClientesView extends javax.swing.JDialog {
 
     private void BtnRegistrarClActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegistrarClActionPerformed
        // Obtener los datos del formulario
-        String username = jTextFieldUsername.getText().trim();
-        String nombre = jTextFieldNombre.getText().trim();
-        String identificacion = jTextFieldIdentificacion.getText().trim();
-        String contraseña = jTextFieldContraseña.getText().trim();
-        String confirmarContraseña = jTextFieldConfirmarContraseña.getText().trim();
+        String username = this.getUsername();
+        String nombre = this.getNombre();
+        String identificacion = this.getIdentificacion();
+        String contraseña = this.getContraseña();
+        String confirmarContraseña = this.getConfirmarContraseña();
         // Validar los datos
         if (username.isEmpty() || contraseña.isEmpty() || nombre.isEmpty() || identificacion.isEmpty() ) {
             JOptionPane.showMessageDialog(this, "Por favor, completa todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -297,8 +291,9 @@ public class FormularioClientesView extends javax.swing.JDialog {
         
         // Guardar los datos en el archivo CSV
     try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/data/clientes.csv", true))) { 
-        writer.write(username +","  +identificacion + "," + nombre + "," + contraseña);
         writer.newLine(); // Agregar nueva línea
+        writer.write(username +","  + contraseña + "," + nombre + "," +identificacion);
+       
         // Mostrar mensaje de éxito
         JOptionPane.showMessageDialog(this, "Cliente registrado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
         // Limpiar campos después de registrar

@@ -21,6 +21,10 @@ public abstract class LoginController {
     }
     protected boolean validarCredenciales(String username, String password, String role) {
         List<Usuario> users = userRepository.readUsersFromCSV();
+        
+        SesionSingleton sesion = SesionSingleton.getInstance();
+        sesion.setIdenficacionSes(username);
+        
         return users.stream()
                 .anyMatch(user ->
                         user.getUsername().equals(username.trim()) &&

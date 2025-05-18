@@ -15,16 +15,17 @@ import AuditFitness.vista.auth.LoginClienteView;
  * @author deana
  */
 public class ClienteLoginController extends LoginController {
+
     private final ClienteService ClienteService;
     private final LoginClienteView loginView;
-    
-    public ClienteLoginController(UsuarioRepository repository, LoginClienteView loginView){
+
+    public ClienteLoginController(UsuarioRepository repository, LoginClienteView loginView) {
         super(repository);
         this.ClienteService = new ClienteService((ClienteRepository) repository);
         this.loginView = loginView;
         this.loginView.BtnIniciarSesion.addActionListener(e -> iniciarSesion());
     }
-    
+
     private void iniciarSesion() {
         String username = loginView.getUsername();
         String password = loginView.getPassword();
@@ -32,16 +33,18 @@ public class ClienteLoginController extends LoginController {
             Cliente cliente = ClienteService.autenticar(username, password);
             if (cliente != null) {
                 // Autenticación exitosa
+                SesionSingleton sesion = SesionSingleton.getInstance();
+                sesion.setIdenficacionSes(username);
                 loginView.mostrarMensaje("Login exitoso como Cliente");
                 // Aquí puedes redirigir a la vista correspondiente
             } else {
                 // Credenciales inválidas
                 loginView.mostrarMensaje("Credenciales inválidas");
-                }
-            } catch (Exception e) {
+            }
+        } catch (Exception e) {
             // Manejo de excepciones
             loginView.mostrarMensaje("Error durante la autenticación: " + e.getMessage());
         }
     }
-    
+
 }

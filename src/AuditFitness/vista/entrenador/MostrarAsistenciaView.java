@@ -4,24 +4,38 @@
  */
 package AuditFitness.vista.entrenador;
 
+import AuditFitness.controlador.auth.SesionSingleton;
+import AuditFitness.modelo.entidades.Asistencia;
+import AuditFitness.modelo.entidades.Cliente;
+import AuditFitness.modelo.repository.AsistenciaRepositoryImpl;
+import AuditFitness.modelo.repository.ClienteRepositoryImpl;
 import AuditFitness.vista.auth.LoginEntrenadorView;
 import java.awt.Color;
+import java.io.IOException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
  * @author deana
  */
 public class MostrarAsistenciaView extends javax.swing.JFrame {
-        
-    
+
+    ClienteRepositoryImpl clienteRepositoryImpl = new ClienteRepositoryImpl();
+    SesionSingleton sesionSingleton = SesionSingleton.getInstance();
+    AsistenciaRepositoryImpl asistenciaRepositoryImpl = new AsistenciaRepositoryImpl();
+
     /**
      * Creates new form Inicio
      */
     public MostrarAsistenciaView() {
-        initComponents(); setBackground(new Color(0,0,0,0));
-        
+        initComponents();
+        setBackground(new Color(0, 0, 0, 0));
+
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -220,7 +234,7 @@ public class MostrarAsistenciaView extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Ingrese la identificación del cliente: ");
+        jLabel1.setText("Ingrese el Nombre de Usuario del cliente: ");
 
         Identificacion.setBackground(new java.awt.Color(255, 255, 255));
         Identificacion.setForeground(new java.awt.Color(0, 0, 0));
@@ -311,7 +325,7 @@ public class MostrarAsistenciaView extends javax.swing.JFrame {
                             .addGroup(EntrenadorMenuViewLayout.createSequentialGroup()
                                 .addGap(8, 8, 8)
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(116, Short.MAX_VALUE))))
+                        .addContainerGap(71, Short.MAX_VALUE))))
         );
         EntrenadorMenuViewLayout.setVerticalGroup(
             EntrenadorMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -347,9 +361,9 @@ public class MostrarAsistenciaView extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnSalirRedondoActionPerformed
 
     private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
-       LoginEntrenadorView loginEntrenador = new LoginEntrenadorView ();
-       loginEntrenador.setVisible(true);
-       this.dispose();
+        LoginEntrenadorView loginEntrenador = new LoginEntrenadorView();
+        loginEntrenador.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_BtnSalirActionPerformed
 
     private void IdentificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdentificacionActionPerformed
@@ -357,7 +371,25 @@ public class MostrarAsistenciaView extends javax.swing.JFrame {
     }//GEN-LAST:event_IdentificacionActionPerformed
 
     private void BtnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEnviarActionPerformed
-        // TODO add your handling code here:
+        try {
+            List<Cliente> clientes = clienteRepositoryImpl.readClientes();
+            Cliente cliente = clientes.stream().filter(c -> c.getUsername().equals(Identificacion.getText().trim())).findFirst().orElse(null);
+
+            if (cliente != null) {
+                String usernameClienteEncontrado = cliente.getUsername();
+                List<Asistencia> asistencias = asistenciaRepositoryImpl.listar();
+
+                List<Asistencia> asistenciasClienteSeleccionado = asistencias.stream().filter(a -> a.getUsernameCliente().equals(usernameClienteEncontrado)).toList();
+
+                Object[][] data = asistenciasClienteSeleccionado.stream()
+                        .map(asistencia -> new Object[]{asistencia.getFecha()})
+                        .toArray(Object[][]::new);
+
+                jTable1.setModel(new DefaultTableModel(data, new String[]  {"Fecha"}));
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(MostrarAsistenciaView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_BtnEnviarActionPerformed
 
     private void BtnMostrarRutinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMostrarRutinaActionPerformed
@@ -434,15 +466,15 @@ public class MostrarAsistenciaView extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void abrirAgregarRutinaView() {
-        AgregarRutinaView agregarRutina = new AgregarRutinaView ();
-        agregarRutina .setVisible(true);
+        AgregarRutinaView agregarRutina = new AgregarRutinaView();
+        agregarRutina.setVisible(true);
         this.dispose();
     }
 
     private void abrirMostrarRutinaView() {
-       MostrarRutinaView mostrarRutina = new MostrarRutinaView ();
-       mostrarRutina.setVisible(true);
-       this.dispose();
+        MostrarRutinaView mostrarRutina = new MostrarRutinaView();
+        mostrarRutina.setVisible(true);
+        this.dispose();
     }
 
     private void abrirRegistrarProgresoView() {
@@ -452,9 +484,9 @@ public class MostrarAsistenciaView extends javax.swing.JFrame {
     }
 
     private void abrirMostrarProgresoView() {
-       MostrarProgresoView mostrarProgreso= new MostrarProgresoView();
-       mostrarProgreso.setVisible(true);
-       this.dispose();
+        MostrarProgresoView mostrarProgreso = new MostrarProgresoView();
+        mostrarProgreso.setVisible(true);
+        this.dispose();
     }
 
     private void abrirMostrarAsistenciaView() {

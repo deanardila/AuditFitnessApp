@@ -58,8 +58,6 @@ public class MostrarProgresoView extends javax.swing.JFrame {
         BtnEnviar = new swing.Btn_Round_JWC();
         jLabel2 = new javax.swing.JLabel();
         panelChart = new javax.swing.JPanel();
-        Identificacion1 = new javax.swing.JFormattedTextField();
-        BtnEnviar1 = new swing.Btn_Round_JWC();
         BtnGraficar = new swing.Btn_Round_JWC();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -256,7 +254,7 @@ public class MostrarProgresoView extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Progreso del cliente: ");
+        jLabel2.setText("Grafica del progreso del cliente: ");
 
         panelChart.setBackground(new java.awt.Color(242, 240, 240));
 
@@ -270,27 +268,6 @@ public class MostrarProgresoView extends javax.swing.JFrame {
             panelChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 320, Short.MAX_VALUE)
         );
-
-        Identificacion1.setBackground(new java.awt.Color(255, 255, 255));
-        Identificacion1.setForeground(new java.awt.Color(0, 0, 0));
-        Identificacion1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Identificacion1ActionPerformed(evt);
-            }
-        });
-
-        BtnEnviar1.setBackground(new java.awt.Color(204, 102, 0));
-        BtnEnviar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/parte-superior-del-avion-de-papel.png"))); // NOI18N
-        BtnEnviar1.setText("");
-        BtnEnviar1.setArco_esquina(20);
-        BtnEnviar1.setColor_H_text(new java.awt.Color(204, 102, 0));
-        BtnEnviar1.setColor_Hover(new java.awt.Color(255, 153, 51));
-        BtnEnviar1.setColor_Normal(new java.awt.Color(204, 102, 0));
-        BtnEnviar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnEnviar1ActionPerformed(evt);
-            }
-        });
 
         BtnGraficar.setBackground(new java.awt.Color(204, 102, 0));
         BtnGraficar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/grafico-de-linea.png"))); // NOI18N
@@ -320,26 +297,21 @@ public class MostrarProgresoView extends javax.swing.JFrame {
                         .addGroup(EntrenadorMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(EntrenadorMenuViewLayout.createSequentialGroup()
                                 .addGap(79, 79, 79)
-                                .addGroup(EntrenadorMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(EntrenadorMenuViewLayout.createSequentialGroup()
-                                        .addComponent(Identificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(BtnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(EntrenadorMenuViewLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
                                 .addGroup(EntrenadorMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(EntrenadorMenuViewLayout.createSequentialGroup()
-                                        .addComponent(Identificacion1, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(BtnEnviar1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(BtnGraficar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel2)))
+                                    .addGroup(EntrenadorMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(EntrenadorMenuViewLayout.createSequentialGroup()
+                                            .addComponent(Identificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(BtnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(EntrenadorMenuViewLayout.createSequentialGroup()
-                                .addGap(46, 46, 46)
+                                .addGap(40, 40, 40)
                                 .addComponent(panelChart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(48, Short.MAX_VALUE))))
+                        .addContainerGap(54, Short.MAX_VALUE))))
         );
         EntrenadorMenuViewLayout.setVerticalGroup(
             EntrenadorMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -353,14 +325,11 @@ public class MostrarProgresoView extends javax.swing.JFrame {
                 .addGroup(EntrenadorMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(BtnEnviar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Identificacion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addGroup(EntrenadorMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(BtnEnviar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Identificacion1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtnGraficar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addGap(51, 51, 51)
+                .addGroup(EntrenadorMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnGraficar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelChart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -393,18 +362,10 @@ public class MostrarProgresoView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnEnviarActionPerformed
 
-    private void Identificacion1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Identificacion1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Identificacion1ActionPerformed
-
-    private void BtnEnviar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEnviar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnEnviar1ActionPerformed
-
     private void BtnGraficarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGraficarActionPerformed
         // TODO add your handling code here:
         
-        TimeSeries series = new TimeSeries("Ventas");
+        TimeSeries series = new TimeSeries("Peso Del Cliente");
         series.add(new Day(1,1,2024),150);
         series.add(new Day(2,1,2024),200);
         series.add(new Day(3,1,2024),180);
@@ -414,9 +375,9 @@ public class MostrarProgresoView extends javax.swing.JFrame {
         dataSet.addSeries(series);
         
         JFreeChart chart = ChartFactory.createTimeSeriesChart(
-                "Ventas diarias",
+                "Indice de Peso Corporal",
                 "Fecha", //Eje X
-                "Valor",  // Eje Y
+                "Peso",  // Eje Y
                 dataSet, // Datos
                 true, // Si se usa leyenda
                 true, // tooltips
@@ -465,7 +426,6 @@ public class MostrarProgresoView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnAgregarRutina;
     private swing.Btn_Round_JWC BtnEnviar;
-    private swing.Btn_Round_JWC BtnEnviar1;
     private swing.Btn_Round_JWC BtnGraficar;
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnMostrarAsistencia;
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnMostrarProgreso;
@@ -475,7 +435,6 @@ public class MostrarProgresoView extends javax.swing.JFrame {
     private swing.Btn_Round_JWC BtnSalirRedondo;
     private swing.Panel_Round_JWC EntrenadorMenuView;
     private javax.swing.JFormattedTextField Identificacion;
-    private javax.swing.JFormattedTextField Identificacion1;
     private img_redondo_degradado_jwc.imagen_redondo_degradado_JWC imagen_redondo_degradado_JWC1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

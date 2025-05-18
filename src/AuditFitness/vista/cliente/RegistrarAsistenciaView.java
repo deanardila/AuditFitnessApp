@@ -4,19 +4,26 @@
  */
 package AuditFitness.vista.cliente;
 
+import AuditFitness.controlador.auth.SesionSingleton;
+import AuditFitness.modelo.entidades.Asistencia;
+import AuditFitness.modelo.repository.AsistenciaRepositoryImpl;
 import AuditFitness.util.FechaHelper;
 import AuditFitness.vista.auth.LoginClienteView;
 import java.awt.Color;
 import java.util.Calendar;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author deana
  */
 public class RegistrarAsistenciaView extends javax.swing.JFrame {
-
+    AsistenciaRepositoryImpl asistenciaRepositoryImpl = new AsistenciaRepositoryImpl();
+    SesionSingleton sesionSingleton = SesionSingleton.getInstance();
     /**
      * Creates new form Inicio
      */
@@ -47,7 +54,7 @@ public class RegistrarAsistenciaView extends javax.swing.JFrame {
         BtnSalirRedondo = new swing.Btn_Round_JWC();
         jLabel2 = new javax.swing.JLabel();
         dateChooserAsistencia = new com.toedter.calendar.JDateChooser();
-        BtnEnviar1 = new swing.Btn_Round_JWC();
+        BtnGuardarAsistencia = new swing.Btn_Round_JWC();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ClienteMenuView");
@@ -181,16 +188,16 @@ public class RegistrarAsistenciaView extends javax.swing.JFrame {
         dateChooserAsistencia.setAutoscrolls(true);
         dateChooserAsistencia.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
 
-        BtnEnviar1.setBackground(new java.awt.Color(204, 102, 0));
-        BtnEnviar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/parte-superior-del-avion-de-papel.png"))); // NOI18N
-        BtnEnviar1.setText("");
-        BtnEnviar1.setArco_esquina(20);
-        BtnEnviar1.setColor_H_text(new java.awt.Color(204, 102, 0));
-        BtnEnviar1.setColor_Hover(new java.awt.Color(255, 153, 51));
-        BtnEnviar1.setColor_Normal(new java.awt.Color(204, 102, 0));
-        BtnEnviar1.addActionListener(new java.awt.event.ActionListener() {
+        BtnGuardarAsistencia.setBackground(new java.awt.Color(204, 102, 0));
+        BtnGuardarAsistencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/parte-superior-del-avion-de-papel.png"))); // NOI18N
+        BtnGuardarAsistencia.setText("");
+        BtnGuardarAsistencia.setArco_esquina(20);
+        BtnGuardarAsistencia.setColor_H_text(new java.awt.Color(204, 102, 0));
+        BtnGuardarAsistencia.setColor_Hover(new java.awt.Color(255, 153, 51));
+        BtnGuardarAsistencia.setColor_Normal(new java.awt.Color(204, 102, 0));
+        BtnGuardarAsistencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnEnviar1ActionPerformed(evt);
+                BtnGuardarAsistenciaActionPerformed(evt);
             }
         });
 
@@ -203,19 +210,19 @@ public class RegistrarAsistenciaView extends javax.swing.JFrame {
                 .addGroup(ClienteMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ClienteMenuViewLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(ClienteMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ClienteMenuViewLayout.createSequentialGroup()
-                                .addComponent(BtnSalirRedondo, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(19, 19, 19))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ClienteMenuViewLayout.createSequentialGroup()
-                                .addComponent(dateChooserAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(BtnEnviar1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(93, 93, 93))))
+                        .addComponent(BtnSalirRedondo, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19))
                     .addGroup(ClienteMenuViewLayout.createSequentialGroup()
                         .addGap(53, 53, 53)
-                        .addComponent(jLabel2)
-                        .addContainerGap())))
+                        .addGroup(ClienteMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ClienteMenuViewLayout.createSequentialGroup()
+                                .addComponent(dateChooserAsistencia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(BtnGuardarAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(93, 93, 93))
+                            .addGroup(ClienteMenuViewLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
         );
         ClienteMenuViewLayout.setVerticalGroup(
             ClienteMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,7 +230,7 @@ public class RegistrarAsistenciaView extends javax.swing.JFrame {
             .addGroup(ClienteMenuViewLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(ClienteMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(BtnEnviar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnGuardarAsistencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(ClienteMenuViewLayout.createSequentialGroup()
                         .addComponent(BtnSalirRedondo, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(45, 45, 45)
@@ -265,11 +272,16 @@ public class RegistrarAsistenciaView extends javax.swing.JFrame {
         
         return null;
     }
-    private void BtnEnviar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEnviar1ActionPerformed
+    private void BtnGuardarAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarAsistenciaActionPerformed
         // TODO add your handling code here:
-        Date fechaRegistro = this.getFechaRegistro();
+        LocalDate fechaRegistro = getFechaRegistro().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         if(fechaRegistro!=null){            
-            System.out.println("Fecha "+FechaHelper.formatFecha(fechaRegistro));
+            try {
+                asistenciaRepositoryImpl.crear(new Asistencia(sesionSingleton.getIdenficacionSes(), fechaRegistro));
+                JOptionPane.showMessageDialog(null, "Asistencia registrada con Exito!");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al registrar asistencia", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }else{
             System.out.println("No ha seleccionado fecha");
         }
@@ -278,7 +290,7 @@ public class RegistrarAsistenciaView extends javax.swing.JFrame {
         Date fechaAlmacenada = FechaHelper.parsearFecha(fech2);
         dateChooserAsistencia.setDate(fechaAlmacenada);*/
         
-    }//GEN-LAST:event_BtnEnviar1ActionPerformed
+    }//GEN-LAST:event_BtnGuardarAsistenciaActionPerformed
 
     private void BtnVerMiProgresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerMiProgresoActionPerformed
         abrirVerMiProgresoView();
@@ -305,7 +317,7 @@ public class RegistrarAsistenciaView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private swing.Btn_Round_JWC BtnAtras;
-    private swing.Btn_Round_JWC BtnEnviar1;
+    private swing.Btn_Round_JWC BtnGuardarAsistencia;
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnRegistrarAsistencia;
     private swing.Btn_Round_JWC BtnSalirRedondo;
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnVerMiProgreso;

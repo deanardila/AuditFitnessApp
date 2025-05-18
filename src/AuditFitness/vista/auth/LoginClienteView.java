@@ -4,6 +4,7 @@
  */
 package AuditFitness.vista.auth;
 
+import AuditFitness.controlador.auth.SesionSingleton;
 import AuditFitness.vista.cliente.ClienteMenuView;
 import java.awt.Color;
 import java.io.BufferedReader;
@@ -192,6 +193,8 @@ public class LoginClienteView extends javax.swing.JFrame {
             while ((line = br.readLine()) != null) {
                 credenciales = line.split(","); // Asegúrate de que el separador sea correcto
                 if (credenciales[0].equals(username) && credenciales[1].equals(password)) {
+                    SesionSingleton sesion = SesionSingleton.getInstance();
+                    sesion.setIdenficacionSes(username);
                     return true; // Credenciales válidas
                 }
             }
