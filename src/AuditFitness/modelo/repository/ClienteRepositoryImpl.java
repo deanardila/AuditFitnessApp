@@ -9,6 +9,8 @@ import AuditFitness.modelo.entidades.Cliente;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -17,7 +19,7 @@ import java.util.List;
 public class ClienteRepositoryImpl implements ClienteRepository {
 
     private final String ARCHIVO_CLIENTES = "src/data/clientes.csv";
-
+    
     @Override
     public List<Cliente> readClientes() throws IOException {
         List<Cliente> clientes = new ArrayList<>();
@@ -39,6 +41,7 @@ public class ClienteRepositoryImpl implements ClienteRepository {
                             data[2], // nombre
                             data[3] // identificacion
                     );
+
                     clientes.add(cliente);
                 } else {
                     System.err.println("Línea ignorada (formato incorrecto): " + line);
@@ -72,6 +75,7 @@ public class ClienteRepositoryImpl implements ClienteRepository {
                 .findFirst()
                 .orElse(null); // Retorna null si no se encuentra
     }
+
 
     public void deleteCliente(String identificacion) throws IOException {
         // Leer clientes ANTES de abrir el archivo en modo escritura

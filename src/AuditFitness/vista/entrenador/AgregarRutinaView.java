@@ -4,24 +4,35 @@
  */
 package AuditFitness.vista.entrenador;
 
+import AuditFitness.modelo.entidades.Cliente;
+import AuditFitness.modelo.repository.ClienteRepositoryImpl;
+import AuditFitness.modelo.repository.ProgresoRepositoryImpl;
+import AuditFitness.modelo.repository.RutinaRepositoryImpl;
 import AuditFitness.vista.auth.LoginEntrenadorView;
 import java.awt.Color;
+import java.io.IOException;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.ListModel;
 
 /**
  *
  * @author deana
  */
 public class AgregarRutinaView extends javax.swing.JFrame {
-        
-    
+
+    ClienteRepositoryImpl clienteRepositoryImpl = new ClienteRepositoryImpl();
+    RutinaRepositoryImpl rutinaRepositoryImpl = new RutinaRepositoryImpl();
+    private Cliente clienteEncontrado;
+
     /**
      * Creates new form Inicio
      */
     public AgregarRutinaView() {
-        initComponents(); setBackground(new Color(0,0,0,0));
-        
+        initComponents();
+        setBackground(new Color(0, 0, 0, 0));
+
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,7 +59,7 @@ public class AgregarRutinaView extends javax.swing.JFrame {
         Identificacion = new javax.swing.JFormattedTextField();
         BtnEnviar = new swing.Btn_Round_JWC();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jListRutinas = new javax.swing.JList<>();
+        ComboBoxListaRutinas = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -242,16 +253,16 @@ public class AgregarRutinaView extends javax.swing.JFrame {
             }
         });
 
-        jListRutinas.setBackground(new java.awt.Color(255, 255, 255));
-        jListRutinas.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jListRutinas.setForeground(new java.awt.Color(0, 0, 0));
-        jListRutinas.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+        ComboBoxListaRutinas.setBackground(new java.awt.Color(255, 255, 255));
+        ComboBoxListaRutinas.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        ComboBoxListaRutinas.setForeground(new java.awt.Color(0, 0, 0));
+        ComboBoxListaRutinas.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "rutina_espalda_y_biceps", "rutina_hombro_y_abdomen", "rutina_pierna", "rutina_pecho_triceps_y_abdomen" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jListRutinas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-        jScrollPane1.setViewportView(jListRutinas);
+        ComboBoxListaRutinas.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(ComboBoxListaRutinas);
 
         javax.swing.GroupLayout EntrenadorMenuViewLayout = new javax.swing.GroupLayout(EntrenadorMenuView);
         EntrenadorMenuView.setLayout(EntrenadorMenuViewLayout);
@@ -308,22 +319,39 @@ public class AgregarRutinaView extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnSalirRedondoActionPerformed
 
     private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
-       LoginEntrenadorView loginEntrenador = new LoginEntrenadorView ();
-       loginEntrenador.setVisible(true);
-       this.dispose();
+        LoginEntrenadorView loginEntrenador = new LoginEntrenadorView();
+        loginEntrenador.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_BtnSalirActionPerformed
 
     private void IdentificacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdentificacionActionPerformed
 
     }//GEN-LAST:event_IdentificacionActionPerformed
 
-    
+
     private void BtnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEnviarActionPerformed
-        // TODO add your handling code here:
+        String identificacionCliente = Identificacion.getText().trim();
+
+        try {
+            this.clienteEncontrado = clienteRepositoryImpl.readClientes().stream().filter(c -> c.getIdentificacion().equals(identificacionCliente)).findFirst().orElse(null);
+            if (clienteEncontrado != null) {
+
+                String rutinaSeleccionada = ComboBoxListaRutinas.getSelectedValue().length() > 0
+                        ? ComboBoxListaRutinas.getSelectedValue().trim() : null;
+
+                rutinaRepositoryImpl.asignarRutina(rutinaSeleccionada, clienteEncontrado.getIdentificacion());
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Cliente no encontrado!");
+            }
+        } catch (IOException ex) {
+            // Pon bien este error
+            JOptionPane.showMessageDialog(null, "ERROR AL BUSCAR CLIENTE");
+        }
     }//GEN-LAST:event_BtnEnviarActionPerformed
 
     private void BtnMostrarRutinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMostrarRutinaActionPerformed
-       abrirMostrarRutinaView();
+        abrirMostrarRutinaView();
     }//GEN-LAST:event_BtnMostrarRutinaActionPerformed
 
     private void BtnRegistrarProgresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegistrarProgresoActionPerformed
@@ -359,27 +387,27 @@ public class AgregarRutinaView extends javax.swing.JFrame {
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnRegistrarProgreso;
     private swing.Btn_Round_JWC BtnSalir;
     private swing.Btn_Round_JWC BtnSalirRedondo;
+    private javax.swing.JList<String> ComboBoxListaRutinas;
     private swing.Panel_Round_JWC EntrenadorMenuView;
     private javax.swing.JFormattedTextField Identificacion;
     private img_redondo_degradado_jwc.imagen_redondo_degradado_JWC imagen_redondo_degradado_JWC1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JList<String> jListRutinas;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbUsername;
     private swing.Panel_Round_JWC panel_Round_JWC2;
     // End of variables declaration//GEN-END:variables
 
-  private void abrirAgregarRutinaView() {
-        AgregarRutinaView agregarRutina = new AgregarRutinaView ();
-        agregarRutina .setVisible(true);
+    private void abrirAgregarRutinaView() {
+        AgregarRutinaView agregarRutina = new AgregarRutinaView();
+        agregarRutina.setVisible(true);
         this.dispose();
     }
 
     private void abrirMostrarRutinaView() {
-       MostrarRutinaView mostrarRutina = new MostrarRutinaView ();
-       mostrarRutina.setVisible(true);
-       this.dispose();
+        MostrarRutinaView mostrarRutina = new MostrarRutinaView();
+        mostrarRutina.setVisible(true);
+        this.dispose();
     }
 
     private void abrirRegistrarProgresoView() {
@@ -389,14 +417,14 @@ public class AgregarRutinaView extends javax.swing.JFrame {
     }
 
     private void abrirMostrarProgresoView() {
-       MostrarProgresoView mostrarProgreso= new MostrarProgresoView();
-       mostrarProgreso.setVisible(true);
-       this.dispose();
+        MostrarProgresoView mostrarProgreso = new MostrarProgresoView();
+        mostrarProgreso.setVisible(true);
+        this.dispose();
     }
 
     private void abrirMostrarAsistenciaView() {
         MostrarAsistenciaView mostrarAsistencia = new MostrarAsistenciaView();
         mostrarAsistencia.setVisible(true);
         this.dispose();
-    }  
+    }
 }

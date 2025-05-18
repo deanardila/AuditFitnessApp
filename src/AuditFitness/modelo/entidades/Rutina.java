@@ -9,25 +9,29 @@ package AuditFitness.modelo.entidades;
  * @author deana
  */
 public class Rutina {
-    private String nombre;
-    private int repeticiones;
-    private int series;
-    
-    public Rutina(String nombre, int repeticiones, int series) {
-        this.nombre = nombre;
-        this.repeticiones = repeticiones;
-        this.series = series;
+   private String archivoRutina;
+   private String clienteId;
+
+    public Rutina(String archivoRutina, String clienteId) {
+        this.archivoRutina = archivoRutina;
+        this.clienteId = clienteId;
     }
-    
-    public String getNombre() {
-        return nombre;
+
+    public String getArchivoRutina() {
+        return archivoRutina;
     }
-    
-    public int getRepeticiones() {
-        return repeticiones;
+
+    public void setArchivoRutina(String archivoRutina) {
+        this.archivoRutina = archivoRutina;
     }
-    
-    public int getSeries() {
-        return series;
+
+    public String getClienteId() {
+        return clienteId;
     }
+
+    public void setClienteId(String clienteId) {
+        this.clienteId = clienteId;
+    }
+   
+   
 }

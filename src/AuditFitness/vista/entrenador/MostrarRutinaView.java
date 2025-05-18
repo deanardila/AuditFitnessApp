@@ -4,24 +4,36 @@
  */
 package AuditFitness.vista.entrenador;
 
+import AuditFitness.modelo.EjercicioRecord;
+import AuditFitness.modelo.entidades.Cliente;
+import AuditFitness.modelo.entidades.Rutina;
+import AuditFitness.modelo.repository.ClienteRepositoryImpl;
+import AuditFitness.modelo.repository.RutinaRepositoryImpl;
 import AuditFitness.vista.auth.LoginEntrenadorView;
 import java.awt.Color;
+import java.io.IOException;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author deana
  */
 public class MostrarRutinaView extends javax.swing.JFrame {
-        
-    
+
+    ClienteRepositoryImpl clienteRepositoryImpl = new ClienteRepositoryImpl();
+    RutinaRepositoryImpl rutinaRepositoryImpl = new RutinaRepositoryImpl();
+    private Cliente clienteEncontrado;
+
     /**
      * Creates new form Inicio
      */
     public MostrarRutinaView() {
-        initComponents(); setBackground(new Color(0,0,0,0));
-        
+        initComponents();
+        setBackground(new Color(0, 0, 0, 0));
+
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -329,7 +341,7 @@ public class MostrarRutinaView extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnSalirRedondoActionPerformed
 
     private void BtnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSalirActionPerformed
-        LoginEntrenadorView loginEntrenador = new LoginEntrenadorView ();
+        LoginEntrenadorView loginEntrenador = new LoginEntrenadorView();
         loginEntrenador.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnSalirActionPerformed
@@ -339,7 +351,43 @@ public class MostrarRutinaView extends javax.swing.JFrame {
     }//GEN-LAST:event_IdentificacionActionPerformed
 
     private void BtnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEnviarActionPerformed
-        // TODO add your handling code here:
+        String identificacionCliente = Identificacion.getText().trim();
+
+        try {
+            this.clienteEncontrado = clienteRepositoryImpl.readClientes().stream().filter(c -> c.getIdentificacion().equals(identificacionCliente)).findFirst().orElse(null);
+            if (clienteEncontrado != null) {
+
+                Rutina rutinaEncontrada = rutinaRepositoryImpl.leerRutinaCliente(clienteEncontrado.getIdentificacion());
+
+                if (rutinaEncontrada != null) {
+                    List<EjercicioRecord> ejercicios = rutinaRepositoryImpl.obtenerEjerciciosRutina(rutinaEncontrada.getArchivoRutina());
+
+                    // Definir los nombres de las columnas
+                    String[] columnNames = {"Ejercicio", "Series", "Repeticiones"};
+
+                    // Crear el modelo de tabla con 0 filas inicialmente
+                    DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+
+                    // Llenar el modelo con los datos de la lista de ejercicios
+                    for (EjercicioRecord ejercicio : ejercicios) {
+                        Object[] rowData = {
+                            ejercicio.ejercicio(), // Suponiendo que existe este método
+                            ejercicio.series(), // Suponiendo que existe este método
+                            ejercicio.repeticiones()// Suponiendo que existe este método
+                        };
+                        model.addRow(rowData);
+                    }
+                    
+                    TablaEjercicios.setModel(model);
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Cliente no encontrado!");
+            }
+        } catch (IOException ex) {
+            // Pon bien este error
+            JOptionPane.showMessageDialog(null, "ERROR AL BUSCAR CLIENTE");
+        }
     }//GEN-LAST:event_BtnEnviarActionPerformed
 
     private void BtnMostrarRutinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMostrarRutinaActionPerformed
@@ -393,15 +441,15 @@ public class MostrarRutinaView extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void abrirAgregarRutinaView() {
-        AgregarRutinaView agregarRutina = new AgregarRutinaView ();
-        agregarRutina .setVisible(true);
+        AgregarRutinaView agregarRutina = new AgregarRutinaView();
+        agregarRutina.setVisible(true);
         this.dispose();
     }
 
     private void abrirMostrarRutinaView() {
-       MostrarRutinaView mostrarRutina = new MostrarRutinaView ();
-       mostrarRutina.setVisible(true);
-       this.dispose();
+        MostrarRutinaView mostrarRutina = new MostrarRutinaView();
+        mostrarRutina.setVisible(true);
+        this.dispose();
     }
 
     private void abrirRegistrarProgresoView() {
@@ -411,9 +459,9 @@ public class MostrarRutinaView extends javax.swing.JFrame {
     }
 
     private void abrirMostrarProgresoView() {
-       MostrarProgresoView mostrarProgreso= new MostrarProgresoView();
-       mostrarProgreso.setVisible(true);
-       this.dispose();
+        MostrarProgresoView mostrarProgreso = new MostrarProgresoView();
+        mostrarProgreso.setVisible(true);
+        this.dispose();
     }
 
     private void abrirMostrarAsistenciaView() {

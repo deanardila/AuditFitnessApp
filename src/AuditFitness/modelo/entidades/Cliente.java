@@ -12,8 +12,7 @@ import java.util.List;
  * @author deana
  */
 public class Cliente extends Usuario {
-    private List<String> rutinasAsignadas;
-    private List<String> progreso;
+    private String rutinaAsignada;
     private boolean activo; //Estado del cliente
 
     //Constructor
@@ -21,34 +20,27 @@ public class Cliente extends Usuario {
     public Cliente(String username, String password, String nombre, String identificacion) {
         // Llama al constructor de la clase padre (Usuario)
         super(username, password, nombre, identificacion, UsuarioRole.CLIENTE);
-        this.rutinasAsignadas = new ArrayList<>();
-        this.progreso = new ArrayList<>();
+        this.rutinaAsignada = null;
         this.activo = true;  // Por defecto, el cliente está activo
     }
 
     public void agregarRutina(String rutinaId){
-        this.rutinasAsignadas.add(rutinaId);
+        this.rutinaAsignada = rutinaId;
     }
 
-    public void agregarProgreso(String registro){
-        this.progreso.add(registro);
+   
+
+    public String getRutinasAsignadas() {
+        return rutinaAsignada;
     }
 
-    public List<String> getRutinasAsignadas() {
-        return rutinasAsignadas;
+    public void setRutinasAsignadas(String rutinaAsignada) {
+        this.rutinaAsignada = rutinaAsignada;
     }
 
-    public void setRutinasAsignadas(List<String> rutinasAsignadas) {
-        this.rutinasAsignadas = rutinasAsignadas;
-    }
+   
 
-    public List<String> getProgreso() {
-        return progreso;
-    }
-
-    public void setProgreso(List<String> progreso) {
-        this.progreso = progreso;
-    }
+   
 
     public boolean isActivo() {
         return activo;
@@ -64,7 +56,7 @@ public class Cliente extends Usuario {
                 "Username: " + getUsername() +
                 ", Nombre: " + getNombre() +
                 ", Identificacion: " + getIdentificacion() +
-                ", Rutinas: " + rutinasAsignadas.size();
+                ", Rutinas: " + rutinaAsignada;
     }
 
     public String toCSVString() {
@@ -72,7 +64,8 @@ public class Cliente extends Usuario {
         this.username,
         this.password,
         this.nombre,
-        this.identificacion
+        this.identificacion,
+        this.rutinaAsignada
     );
 }
 }
