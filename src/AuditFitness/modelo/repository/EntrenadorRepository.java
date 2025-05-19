@@ -12,6 +12,11 @@ import java.util.List;
  *
  * @author deana
  */
+/**
+ * Interfaz que define las operaciones básicas para gestionar entrenadores en el sistema.
+ * Es como el "contrato" que especifica todas las funciones necesarias para manejar
+ * la información de los entrenadores del gimnasio.
+ */
 public interface EntrenadorRepository {
     List<Entrenador> readEntrenadores() throws IOException; // Lee todos los entrenadores
     void addEntrenador(Entrenador entrenadorr) throws IOException; // Agrega un nuevo entrenador

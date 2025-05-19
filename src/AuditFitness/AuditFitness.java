@@ -4,6 +4,8 @@
  */
 package AuditFitness;
 
+import AuditFitness.vista.auth.RolView;
+
 /**
  *
  * @author deana
@@ -11,6 +13,9 @@ package AuditFitness;
 public class AuditFitness {
 
     public static void main(String[] args) {
+        RolView vistaPrincipal = new RolView();
+        vistaPrincipal.setAlwaysOnTop(true);
+        vistaPrincipal.setVisible(true);
         
     }
     

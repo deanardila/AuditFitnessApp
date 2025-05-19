@@ -4,8 +4,17 @@
  */
 package AuditFitness.vista.cliente;
 
+import AuditFitness.controlador.auth.SesionSingleton;
+import AuditFitness.modelo.EjercicioRecord;
+import AuditFitness.modelo.entidades.Cliente;
+import AuditFitness.modelo.entidades.Rutina;
+import AuditFitness.modelo.repository.ClienteRepositoryImpl;
+import AuditFitness.modelo.repository.RutinaRepositoryImpl;
 import java.awt.Color;
+import java.io.IOException;
 import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,11 +22,18 @@ import java.util.List;
  */
 public class VerMisRutinasView extends javax.swing.JFrame {
 
+    ClienteRepositoryImpl clienteRepositoryImpl = new ClienteRepositoryImpl();
+    RutinaRepositoryImpl rutinaRepositoryImpl = new RutinaRepositoryImpl();
+    SesionSingleton sesionSingleton = SesionSingleton.getInstance();
+
+    private Cliente clienteEncontrado;
+
     /**
      * Creates new form Inicio
      */
     public VerMisRutinasView() {
-        initComponents(); setBackground(new Color(0,0,0,0));
+        initComponents();
+        setBackground(new Color(0, 0, 0, 0));
     }
 
     /**
@@ -36,12 +52,13 @@ public class VerMisRutinasView extends javax.swing.JFrame {
         BtnVerMisRutinas = new btn_efecto01_jwc.btn_efecto_V1_JWC();
         jPanel1 = new javax.swing.JPanel();
         imagen_redondo_degradado_JWC1 = new img_redondo_degradado_jwc.imagen_redondo_degradado_JWC();
-        jLabel1 = new javax.swing.JLabel();
         BtnAtras = new swing.Btn_Round_JWC();
+        jLabel1 = new javax.swing.JLabel();
         BtnSalirRedondo = new swing.Btn_Round_JWC();
         jLabel2 = new javax.swing.JLabel();
-        TablaRutina = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        BtnVerRutina = new swing.Btn_Round_JWC();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TablaEjercicios = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ClienteMenuView");
@@ -139,12 +156,6 @@ public class VerMisRutinasView extends javax.swing.JFrame {
         imagen_redondo_degradado_JWC1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/images.png"))); // NOI18N
         panel_Round_JWC2.add(imagen_redondo_degradado_JWC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 110, 100));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Username: Cliente");
-        jLabel1.setToolTipText("");
-        panel_Round_JWC2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 120, -1));
-
         BtnAtras.setBackground(new java.awt.Color(204, 102, 0));
         BtnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/salida.png"))); // NOI18N
         BtnAtras.setText("");
@@ -158,6 +169,12 @@ public class VerMisRutinasView extends javax.swing.JFrame {
             }
         });
         panel_Round_JWC2.add(BtnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 190, 40));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Menú - Cliente");
+        jLabel1.setToolTipText("");
+        panel_Round_JWC2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 100, -1));
 
         BtnSalirRedondo.setBackground(new java.awt.Color(204, 102, 0));
         BtnSalirRedondo.setText("");
@@ -175,24 +192,25 @@ public class VerMisRutinasView extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Rutinas asignadas: ");
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
-        jTable1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jTable1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(255, 102, 0));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        BtnVerRutina.setBackground(new java.awt.Color(204, 102, 0));
+        BtnVerRutina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/actualizar-flecha.png"))); // NOI18N
+        BtnVerRutina.setText("");
+        BtnVerRutina.setArco_esquina(20);
+        BtnVerRutina.setColor_H_text(new java.awt.Color(204, 102, 0));
+        BtnVerRutina.setColor_Hover(new java.awt.Color(255, 153, 51));
+        BtnVerRutina.setColor_Normal(new java.awt.Color(204, 102, 0));
+        BtnVerRutina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnVerRutinaActionPerformed(evt);
+            }
+        });
+
+        TablaEjercicios.setBackground(new java.awt.Color(255, 255, 255));
+        TablaEjercicios.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        TablaEjercicios.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        TablaEjercicios.setForeground(new java.awt.Color(255, 102, 0));
+        TablaEjercicios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
                 {null, null, null},
                 {null, null, null},
                 {null, null, null},
@@ -203,9 +221,10 @@ public class VerMisRutinasView extends javax.swing.JFrame {
                 "Ejercicios", "Series", "Repeticiones"
             }
         ));
-        jTable1.setGridColor(new java.awt.Color(255, 102, 0));
-        jTable1.setSelectionForeground(new java.awt.Color(0, 0, 0));
-        TablaRutina.setViewportView(jTable1);
+        TablaEjercicios.setGridColor(new java.awt.Color(255, 102, 0));
+        TablaEjercicios.setRowHeight(20);
+        TablaEjercicios.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        jScrollPane2.setViewportView(TablaEjercicios);
 
         javax.swing.GroupLayout ClienteMenuViewLayout = new javax.swing.GroupLayout(ClienteMenuView);
         ClienteMenuView.setLayout(ClienteMenuViewLayout);
@@ -220,10 +239,14 @@ public class VerMisRutinasView extends javax.swing.JFrame {
                         .addGap(19, 19, 19))
                     .addGroup(ClienteMenuViewLayout.createSequentialGroup()
                         .addGap(53, 53, 53)
-                        .addGroup(ClienteMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(TablaRutina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jLabel2)
+                        .addGap(247, 247, 247)
+                        .addComponent(BtnVerRutina, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(ClienteMenuViewLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2)
+                        .addContainerGap())))
         );
         ClienteMenuViewLayout.setVerticalGroup(
             ClienteMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -232,9 +255,11 @@ public class VerMisRutinasView extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addComponent(BtnSalirRedondo, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(TablaRutina, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(ClienteMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnVerRutina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -249,7 +274,7 @@ public class VerMisRutinasView extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnSalirRedondoActionPerformed
 
     private void BtnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAtrasActionPerformed
-       ClienteMenuView clienteMenu  = new ClienteMenuView();
+        ClienteMenuView clienteMenu = new ClienteMenuView();
         clienteMenu.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BtnAtrasActionPerformed
@@ -259,28 +284,68 @@ public class VerMisRutinasView extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnVerMisRutinasActionPerformed
 
     private void BtnVerMiProgresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerMiProgresoActionPerformed
-       abrirVerMiProgresoView();
+        abrirVerMiProgresoView();
     }//GEN-LAST:event_BtnVerMiProgresoActionPerformed
 
     private void BtnRegistrarAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegistrarAsistenciaActionPerformed
         abrirRegistrarAsistenciaView();
     }//GEN-LAST:event_BtnRegistrarAsistenciaActionPerformed
-    
+
+    private void BtnVerRutinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerRutinaActionPerformed
+        String clienteEncontrado = sesionSingleton.getIdenficacionSes();
+
+        try {
+            String identificacionCliente = clienteRepositoryImpl.readClientes().stream().filter(c -> c.getUsername().equals(clienteEncontrado)).findFirst().orElse(null).getIdentificacion();
+            
+            if (identificacionCliente != null) {
+                Rutina rutinaEncontrada = rutinaRepositoryImpl.leerRutinaCliente(identificacionCliente);
+                if (rutinaEncontrada != null) {
+                    List<EjercicioRecord> ejercicios = rutinaRepositoryImpl.obtenerEjerciciosRutina(rutinaEncontrada.getArchivoRutina());
+
+                    // Definir los nombres de las columnas
+                    String[] columnNames = {"Ejercicio", "Series", "Repeticiones"};
+
+                    // Crear el modelo de tabla con 0 filas inicialmente
+                    DefaultTableModel model = new DefaultTableModel(columnNames, 0);
+
+                    // Llenar el modelo con los datos de la lista de ejercicios
+                    for (EjercicioRecord ejercicio : ejercicios) {
+                        Object[] rowData = {
+                            ejercicio.ejercicio(), // Suponiendo que existe este método
+                            ejercicio.series(), // Suponiendo que existe este método
+                            ejercicio.repeticiones()// Suponiendo que existe este método
+                        };
+                        model.addRow(rowData);
+                    }
+
+                    TablaEjercicios.setModel(model);
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Cliente no encontrado!");
+            }
+        } catch (IOException ex) {
+            // Pon bien este error
+            JOptionPane.showMessageDialog(null, "ERROR AL BUSCAR CLIENTE");
+        }
+    }//GEN-LAST:event_BtnVerRutinaActionPerformed
+
     private void abrirRegistrarAsistenciaView() {
-        RegistrarAsistenciaView registrarAsistencia  = new RegistrarAsistenciaView();
+        RegistrarAsistenciaView registrarAsistencia = new RegistrarAsistenciaView();
         registrarAsistencia.setVisible(true);
         this.dispose();
     }
-    
+
     private void abrirVerMiProgresoView() {
-        VerMiProgresoView verMiProgreso  = new VerMiProgresoView();
+        VerMiProgresoView verMiProgreso = new VerMiProgresoView();
         verMiProgreso.setVisible(true);
         this.dispose();
     }
-    
-     public void mostrarRutinas(List<String[]> rutinasParaMostrar) {
-        
+
+    public void mostrarRutinas(List<String[]> rutinasParaMostrar) {
+
     }
+
     /**
      * @param args the command line arguments
      */
@@ -300,15 +365,15 @@ public class VerMisRutinasView extends javax.swing.JFrame {
     private swing.Btn_Round_JWC BtnSalirRedondo;
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnVerMiProgreso;
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnVerMisRutinas;
+    private swing.Btn_Round_JWC BtnVerRutina;
     private swing.Panel_Round_JWC ClienteMenuView;
-    private javax.swing.JScrollPane TablaRutina;
+    private javax.swing.JTable TablaEjercicios;
     private img_redondo_degradado_jwc.imagen_redondo_degradado_JWC imagen_redondo_degradado_JWC1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane2;
     private swing.Panel_Round_JWC panel_Round_JWC2;
     // End of variables declaration//GEN-END:variables
 
-   
 }

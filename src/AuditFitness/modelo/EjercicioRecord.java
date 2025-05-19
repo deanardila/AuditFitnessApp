@@ -8,6 +8,14 @@ package AuditFitness.modelo;
  *
  * @author deana
  */
+/**
+ * Clase especial que representa un ejercicio en una rutina de entrenamiento.
+ * Es como la "ficha técnica" de cada ejercicio que contiene:
+ * - Qué ejercicio hacer
+ * - Cuántas series completar
+ * - Cuántas repeticiones por serie
+ * 
+ * Los records son inmutables (sus datos no cambian después de crearse)
+ */
 public record EjercicioRecord(String ejercicio, int series, String repeticiones) {
-
 }

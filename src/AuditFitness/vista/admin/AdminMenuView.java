@@ -157,9 +157,9 @@ public class AdminMenuView extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Username: Admin");
+        jLabel1.setText("Menú - Administrador");
         jLabel1.setToolTipText("");
-        AdminMenuView.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 110, -1));
+        AdminMenuView.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 150, -1));
 
         BtnSalir.setBackground(new java.awt.Color(204, 102, 0));
         BtnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/salida.png"))); // NOI18N

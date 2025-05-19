@@ -184,7 +184,7 @@ public class EntrenadorMenuView extends javax.swing.JFrame {
 
         lbUsername.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         lbUsername.setForeground(new java.awt.Color(255, 255, 255));
-        lbUsername.setText("Username: Entrenador");
+        lbUsername.setText("Menú - Entrenador");
         lbUsername.setToolTipText("");
         panel_Round_JWC2.add(lbUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, 20));
 

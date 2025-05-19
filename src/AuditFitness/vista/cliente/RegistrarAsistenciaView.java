@@ -48,8 +48,8 @@ public class RegistrarAsistenciaView extends javax.swing.JFrame {
         BtnVerMisRutinas = new btn_efecto01_jwc.btn_efecto_V1_JWC();
         jPanel1 = new javax.swing.JPanel();
         imagen_redondo_degradado_JWC1 = new img_redondo_degradado_jwc.imagen_redondo_degradado_JWC();
-        jLabel1 = new javax.swing.JLabel();
         BtnAtras = new swing.Btn_Round_JWC();
+        jLabel1 = new javax.swing.JLabel();
         BtnSalirRedondo = new swing.Btn_Round_JWC();
         jLabel2 = new javax.swing.JLabel();
         dateChooserAsistencia = new com.toedter.calendar.JDateChooser();
@@ -146,12 +146,6 @@ public class RegistrarAsistenciaView extends javax.swing.JFrame {
         imagen_redondo_degradado_JWC1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/images.png"))); // NOI18N
         panel_Round_JWC2.add(imagen_redondo_degradado_JWC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 110, 100));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Username: Cliente");
-        jLabel1.setToolTipText("");
-        panel_Round_JWC2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 120, -1));
-
         BtnAtras.setBackground(new java.awt.Color(204, 102, 0));
         BtnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/salida.png"))); // NOI18N
         BtnAtras.setText("");
@@ -165,6 +159,12 @@ public class RegistrarAsistenciaView extends javax.swing.JFrame {
             }
         });
         panel_Round_JWC2.add(BtnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 190, 40));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Menú - Cliente");
+        jLabel1.setToolTipText("");
+        panel_Round_JWC2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 100, -1));
 
         BtnSalirRedondo.setBackground(new java.awt.Color(204, 102, 0));
         BtnSalirRedondo.setText("");
@@ -286,7 +286,6 @@ public class RegistrarAsistenciaView extends javax.swing.JFrame {
 
                 try {
                     asistenciaRepositoryImpl.crear(new Asistencia(sesionSingleton.getIdenficacionSes(), fechaRegistro));
-                    JOptionPane.showMessageDialog(null,"Asistencia registrada con Éxito!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                     
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "Error al registrar asistencia", "Error", JOptionPane.ERROR_MESSAGE);

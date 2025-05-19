@@ -4,8 +4,27 @@
  */
 package AuditFitness.vista.cliente;
 
+import AuditFitness.controlador.auth.SesionSingleton;
+import AuditFitness.modelo.entidades.Cliente;
+import AuditFitness.modelo.entidades.Progreso;
+import AuditFitness.modelo.repository.ClienteRepositoryImpl;
+import AuditFitness.modelo.repository.ProgresoRepositoryImpl;
+import AuditFitness.modelo.repository.RutinaRepositoryImpl;
 import AuditFitness.vista.auth.LoginClienteView;
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.time.LocalDate;
+import java.util.Comparator;
+import java.util.List;
+import javax.swing.JOptionPane;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.data.time.Day;
+import org.jfree.data.time.TimeSeries;
+import org.jfree.data.time.TimeSeriesCollection;
 
 /**
  *
@@ -13,11 +32,17 @@ import java.awt.Color;
  */
 public class VerMiProgresoView extends javax.swing.JFrame {
 
+    ClienteRepositoryImpl clienteRepositoryImpl = new ClienteRepositoryImpl();
+    ProgresoRepositoryImpl progresoRepositoryImpl = new ProgresoRepositoryImpl();
+    private Cliente clienteEncontrado;
+    SesionSingleton sesionSingleton = SesionSingleton.getInstance();
+
     /**
      * Creates new form Inicio
      */
     public VerMiProgresoView() {
-        initComponents(); setBackground(new Color(0,0,0,0));
+        initComponents();
+        setBackground(new Color(0, 0, 0, 0));
     }
 
     /**
@@ -37,11 +62,12 @@ public class VerMiProgresoView extends javax.swing.JFrame {
         BtnVerMisRutinas = new btn_efecto01_jwc.btn_efecto_V1_JWC();
         jPanel1 = new javax.swing.JPanel();
         imagen_redondo_degradado_JWC1 = new img_redondo_degradado_jwc.imagen_redondo_degradado_JWC();
-        jLabel1 = new javax.swing.JLabel();
         BtnAtras = new swing.Btn_Round_JWC();
+        jLabel1 = new javax.swing.JLabel();
         BtnSalirRedondo = new swing.Btn_Round_JWC();
         jLabel2 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        panelChart = new javax.swing.JPanel();
+        BtnActualizarRutina = new swing.Btn_Round_JWC();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ClienteMenuView");
@@ -139,12 +165,6 @@ public class VerMiProgresoView extends javax.swing.JFrame {
         imagen_redondo_degradado_JWC1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/images.png"))); // NOI18N
         panel_Round_JWC2.add(imagen_redondo_degradado_JWC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 110, 100));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Username: Cliente");
-        jLabel1.setToolTipText("");
-        panel_Round_JWC2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 120, -1));
-
         BtnAtras.setBackground(new java.awt.Color(204, 102, 0));
         BtnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/salida.png"))); // NOI18N
         BtnAtras.setText("");
@@ -158,6 +178,12 @@ public class VerMiProgresoView extends javax.swing.JFrame {
             }
         });
         panel_Round_JWC2.add(BtnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 420, 190, 40));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Menú - Cliente");
+        jLabel1.setToolTipText("");
+        panel_Round_JWC2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 100, -1));
 
         BtnSalirRedondo.setBackground(new java.awt.Color(204, 102, 0));
         BtnSalirRedondo.setText("");
@@ -175,18 +201,31 @@ public class VerMiProgresoView extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Progreso: ");
 
-        jPanel2.setBackground(new java.awt.Color(242, 240, 240));
+        panelChart.setBackground(new java.awt.Color(242, 240, 240));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout panelChartLayout = new javax.swing.GroupLayout(panelChart);
+        panelChart.setLayout(panelChartLayout);
+        panelChartLayout.setHorizontalGroup(
+            panelChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 432, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelChartLayout.setVerticalGroup(
+            panelChartLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 261, Short.MAX_VALUE)
         );
+
+        BtnActualizarRutina.setBackground(new java.awt.Color(204, 102, 0));
+        BtnActualizarRutina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/actualizar-flecha.png"))); // NOI18N
+        BtnActualizarRutina.setText("");
+        BtnActualizarRutina.setArco_esquina(20);
+        BtnActualizarRutina.setColor_H_text(new java.awt.Color(204, 102, 0));
+        BtnActualizarRutina.setColor_Hover(new java.awt.Color(255, 153, 51));
+        BtnActualizarRutina.setColor_Normal(new java.awt.Color(204, 102, 0));
+        BtnActualizarRutina.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnActualizarRutinaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout ClienteMenuViewLayout = new javax.swing.GroupLayout(ClienteMenuView);
         ClienteMenuView.setLayout(ClienteMenuViewLayout);
@@ -201,9 +240,12 @@ public class VerMiProgresoView extends javax.swing.JFrame {
                         .addGap(19, 19, 19))
                     .addGroup(ClienteMenuViewLayout.createSequentialGroup()
                         .addGap(53, 53, 53)
-                        .addGroup(ClienteMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
+                        .addGroup(ClienteMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(ClienteMenuViewLayout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(309, 309, 309)
+                                .addComponent(BtnActualizarRutina, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(panelChart, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         ClienteMenuViewLayout.setVerticalGroup(
@@ -213,10 +255,12 @@ public class VerMiProgresoView extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addComponent(BtnSalirRedondo, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(ClienteMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnActualizarRutina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(panelChart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         getContentPane().add(ClienteMenuView, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 620));
@@ -240,30 +284,92 @@ public class VerMiProgresoView extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnVerMisRutinasActionPerformed
 
     private void BtnVerMiProgresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerMiProgresoActionPerformed
-       abrirVerMiProgresoView();
+        abrirVerMiProgresoView();
     }//GEN-LAST:event_BtnVerMiProgresoActionPerformed
 
     private void BtnRegistrarAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegistrarAsistenciaActionPerformed
         abrirRegistrarAsistenciaView();
     }//GEN-LAST:event_BtnRegistrarAsistenciaActionPerformed
-    
+
+    private void BtnActualizarRutinaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnActualizarRutinaActionPerformed
+        String identificacionSession = sesionSingleton.getIdenficacionSes();
+
+        try {
+            this.clienteEncontrado = clienteRepositoryImpl.readClientes().stream().filter(c -> c.getUsername().equals(identificacionSession)).findFirst().orElse(null);
+            List<Progreso> progresos = progresoRepositoryImpl.listar();
+
+            List<Progreso> progresosFiltradoPorCliente = progresos.stream()
+                    .filter(p -> p != null
+                    && p.getClienteId() != null
+                    && p.getClienteId().equals(clienteEncontrado.getIdentificacion())
+                    && p.getFecha() != null
+                    && p.getPeso() != 0)
+                    .sorted(Comparator.comparing(Progreso::getFecha))
+                    .toList();
+
+            if (progresosFiltradoPorCliente.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "No hay datos de progreso para mostrar", "Información", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            }
+
+            TimeSeries series = new TimeSeries("Peso Del Cliente");
+            progresosFiltradoPorCliente.forEach(p -> {
+                LocalDate fecha = p.getFecha();
+                Day day = new Day(fecha.getDayOfMonth(), fecha.getMonthValue(), fecha.getYear());
+                series.add(day, p.getPeso());
+            });
+
+            TimeSeriesCollection dataset = new TimeSeriesCollection();
+            dataset.addSeries(series);
+
+            JFreeChart chart = ChartFactory.createTimeSeriesChart(
+                    "Evolución de Peso Corporal",
+                    "Fecha",
+                    "Peso (kg)",
+                    dataset,
+                    true,
+                    true,
+                    false);
+
+            // Customize chart appearance
+            XYPlot plot = chart.getXYPlot();
+            plot.setBackgroundPaint(Color.WHITE);
+            plot.setDomainGridlinePaint(Color.LIGHT_GRAY);
+            plot.setRangeGridlinePaint(Color.LIGHT_GRAY);
+
+            ChartPanel chartPanel = new ChartPanel(chart);
+            chartPanel.setPreferredSize(new Dimension(400, 300));
+
+            panelChart.removeAll();
+            panelChart.setLayout(new BorderLayout());
+            panelChart.add(chartPanel, BorderLayout.CENTER);
+            panelChart.revalidate();
+            panelChart.repaint();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al generar el gráfico: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_BtnActualizarRutinaActionPerformed
+
     private void abrirRegistrarAsistenciaView() {
-        RegistrarAsistenciaView registrarAsistencia  = new RegistrarAsistenciaView();
+        RegistrarAsistenciaView registrarAsistencia = new RegistrarAsistenciaView();
         registrarAsistencia.setVisible(true);
         this.dispose();
     }
-    
+
     private void abrirVerMiProgresoView() {
-        VerMiProgresoView verMiProgreso  = new VerMiProgresoView();
+        VerMiProgresoView verMiProgreso = new VerMiProgresoView();
         verMiProgreso.setVisible(true);
         this.dispose();
     }
-    
+
     private void abrirVerMisRutinasView() {
-        VerMisRutinasView verMisRutinas  = new VerMisRutinasView();
+        VerMisRutinasView verMisRutinas = new VerMisRutinasView();
         verMisRutinas.setVisible(true);
         this.dispose();
     }
+
     /**
      * @param args the command line arguments
      */
@@ -277,6 +383,7 @@ public class VerMiProgresoView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private swing.Btn_Round_JWC BtnActualizarRutina;
     private swing.Btn_Round_JWC BtnAtras;
     private btn_efecto01_jwc.btn_efecto_V1_JWC BtnRegistrarAsistencia;
     private swing.Btn_Round_JWC BtnSalirRedondo;
@@ -287,7 +394,7 @@ public class VerMiProgresoView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel panelChart;
     private swing.Panel_Round_JWC panel_Round_JWC2;
     private org.jfree.chart.urls.TimeSeriesURLGenerator timeSeriesURLGenerator1;
     // End of variables declaration//GEN-END:variables

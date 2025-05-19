@@ -40,8 +40,8 @@ public class EliminarClientesView extends javax.swing.JFrame {
         BtnAgregarClientes = new btn_efecto01_jwc.btn_efecto_V1_JWC();
         jPanel1 = new javax.swing.JPanel();
         imagen_redondo_degradado_JWC1 = new img_redondo_degradado_jwc.imagen_redondo_degradado_JWC();
-        jLabel1 = new javax.swing.JLabel();
         BtnSalir = new swing.Btn_Round_JWC();
+        jLabel1 = new javax.swing.JLabel();
         BtnSalirRedondo = new swing.Btn_Round_JWC();
         jLabel2 = new javax.swing.JLabel();
         Identificacion = new javax.swing.JFormattedTextField();
@@ -162,12 +162,6 @@ public class EliminarClientesView extends javax.swing.JFrame {
         imagen_redondo_degradado_JWC1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/images.png"))); // NOI18N
         AdminMenuView.add(imagen_redondo_degradado_JWC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 110, 100));
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Username: Admin");
-        jLabel1.setToolTipText("");
-        AdminMenuView.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 110, -1));
-
         BtnSalir.setBackground(new java.awt.Color(204, 102, 0));
         BtnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/salida.png"))); // NOI18N
         BtnSalir.setText("");
@@ -182,6 +176,12 @@ public class EliminarClientesView extends javax.swing.JFrame {
             }
         });
         AdminMenuView.add(BtnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 190, 40));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Menú - Administrador");
+        jLabel1.setToolTipText("");
+        AdminMenuView.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 150, -1));
 
         BtnSalirRedondo.setBackground(new java.awt.Color(204, 102, 0));
         BtnSalirRedondo.setText("");

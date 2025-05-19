@@ -137,9 +137,9 @@ public class ClienteMenuView extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Username: Cliente");
+        jLabel1.setText("Menú - Cliente");
         jLabel1.setToolTipText("");
-        panel_Round_JWC2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, 120, -1));
+        panel_Round_JWC2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 150, 100, -1));
 
         BtnAtras.setBackground(new java.awt.Color(204, 102, 0));
         BtnAtras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/salida.png"))); // NOI18N

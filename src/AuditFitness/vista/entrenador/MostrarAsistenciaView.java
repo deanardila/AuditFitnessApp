@@ -54,8 +54,8 @@ public class MostrarAsistenciaView extends javax.swing.JFrame {
         BtnMostrarAsistencia = new btn_efecto01_jwc.btn_efecto_V1_JWC();
         jPanel1 = new javax.swing.JPanel();
         imagen_redondo_degradado_JWC1 = new img_redondo_degradado_jwc.imagen_redondo_degradado_JWC();
-        lbUsername = new javax.swing.JLabel();
         BtnSalir = new swing.Btn_Round_JWC();
+        lbUsername = new javax.swing.JLabel();
         BtnSalirRedondo = new swing.Btn_Round_JWC();
         jLabel1 = new javax.swing.JLabel();
         Identificacion = new javax.swing.JFormattedTextField();
@@ -199,12 +199,6 @@ public class MostrarAsistenciaView extends javax.swing.JFrame {
         imagen_redondo_degradado_JWC1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/images.png"))); // NOI18N
         panel_Round_JWC2.add(imagen_redondo_degradado_JWC1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 110, 100));
 
-        lbUsername.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
-        lbUsername.setForeground(new java.awt.Color(255, 255, 255));
-        lbUsername.setText("Username: Entrenador");
-        lbUsername.setToolTipText("");
-        panel_Round_JWC2.add(lbUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, 20));
-
         BtnSalir.setBackground(new java.awt.Color(204, 102, 0));
         BtnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/salida.png"))); // NOI18N
         BtnSalir.setText("");
@@ -218,6 +212,12 @@ public class MostrarAsistenciaView extends javax.swing.JFrame {
             }
         });
         panel_Round_JWC2.add(BtnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 460, 190, 40));
+
+        lbUsername.setFont(new java.awt.Font("Segoe UI Semibold", 1, 14)); // NOI18N
+        lbUsername.setForeground(new java.awt.Color(255, 255, 255));
+        lbUsername.setText("Menú - Entrenador");
+        lbUsername.setToolTipText("");
+        panel_Round_JWC2.add(lbUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, 20));
 
         BtnSalirRedondo.setBackground(new java.awt.Color(204, 102, 0));
         BtnSalirRedondo.setText("");

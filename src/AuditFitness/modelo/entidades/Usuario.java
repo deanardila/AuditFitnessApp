@@ -8,16 +8,35 @@ package AuditFitness.modelo.entidades;
  *
  * @author deana
  */
-public abstract class Usuario {
-    private UsuarioRole role;
-    String username;
-    String password;
-    String nombre;
-    String identificacion;
+/**
+ * Clase base abstracta que representa a cualquier usuario del sistema del gimnasio.
+ * Es como la "plantilla general" para todos los tipos de usuarios (clientes, entrenadores, administradores).
+ * 
+ * Contiene la información común que todos comparten:
+ * - Credenciales de acceso
+ * - Datos personales básicos
+ * - Tipo de rol (permisos)
+ */
+    public abstract class Usuario {
+        private UsuarioRole role; // Tipo de usuario (CLIENTE, ENTRENADOR o ADMINISTRADOR)
+        String username; // Nombre de usuario para iniciar sesión
+        String password; // Contraseña de acceso (almacenada de forma segura)
+        String nombre; // Nombre real
+        String identificacion; // Número de identificación único
 
-    //Constructor
+    // === CONSTRUCTOR ===
+    
+    /**
+     * Crea un nuevo usuario con información básica
+     * @param username Nombre de usuario (sin espacios extras)
+     * @param password Contraseña (sin espacios extras)
+     * @param nombre Nombre completo (sin espacios extras)
+     * @param identificacion Número único de identificacion
+     * @param role Tipo de usuario (rol)
+     */
     public Usuario(String username, String password, String nombre, String identificacion, UsuarioRole role) {
-        this.username = username.trim(); // Trim para limpiar espacios
+        // Asigna y limpia los espacios en blanco sobrantes:
+        this.username = username.trim(); 
         this.password = password.trim();
         this.nombre = nombre.trim();
         this.identificacion = identificacion.trim();
@@ -61,6 +80,12 @@ public abstract class Usuario {
         return role;
     }
 
+    // === MÉTODOS ESPECIALES ===
+    
+    /**
+     * Convierte los datos del usuario a formato CSV para guardar en archivos
+     * @return Cadena con los datos separados por comas
+     */
     public String toCSVString(){
         return String.join(",",
                 this.username,
@@ -68,8 +93,12 @@ public abstract class Usuario {
                 this.password,
                 this.nombre,
                 this.identificacion,
-                this.role.name());
+                this.role.name()); // Convierte el rol a texto
     }
 
+    /**
+     * Método abstracto que cada tipo de usuario debe implementar
+     * @return Representación personalizada en texto del usuario
+     */
     public abstract String toString();
 }
