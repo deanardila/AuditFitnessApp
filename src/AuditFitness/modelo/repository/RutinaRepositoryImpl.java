@@ -15,6 +15,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,7 +28,7 @@ public class RutinaRepositoryImpl implements RutinaRepository {
             bw.write(clienteId + "," + rutina);
             bw.newLine();
         } catch (Exception e) {
-            System.err.println("Error al asignar rutina: " + e.getMessage());
+            JOptionPane.showMessageDialog(null,"Error al asignar rutina: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }
@@ -56,7 +57,7 @@ public class RutinaRepositoryImpl implements RutinaRepository {
             return null; // Or throw an exception if preferred
 
         } catch (Exception e) {
-            System.err.println("Error al leer rutina: " + e.getMessage());
+            JOptionPane.showMessageDialog(null,"Error al leer rutina: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
             return null;
         }
@@ -100,11 +101,12 @@ public class RutinaRepositoryImpl implements RutinaRepository {
 
                         ejercicios.add(new EjercicioRecord(nombreEjercicio, series, repeticiones));
                     } catch (NumberFormatException e) {
-                        System.err.println("Error parsing series count in line: " + line);
-                        // Alternatively: throw new IOException("Invalid series count in line: " + line, e);
+                        JOptionPane.showMessageDialog(null,"Recuento de series no válido en la línea: " +line, "Error", JOptionPane.ERROR_MESSAGE);
+                        
+                     
                     }
                 } else {
-                    System.err.println("Skipping malformed line: " + line);
+                    JOptionPane.showMessageDialog(null,"Línea malformada:" + line, "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }

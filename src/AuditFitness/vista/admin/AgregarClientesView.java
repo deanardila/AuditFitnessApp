@@ -344,7 +344,7 @@ public class AgregarClientesView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIdentificacionActionPerformed
 
     private void BtnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEnviarActionPerformed
- String identificacion = txtIdentificacion.getText().trim(); // Obtener la identificación ingresada
+    String identificacion = txtIdentificacion.getText().trim(); // Obtener la identificación ingresada
     // Validar que la identificación no esté vacía
     if (identificacion.isEmpty()) {
         mostrarMensaje("Por favor, ingresa una identificación válida.");
@@ -441,8 +441,6 @@ public class AgregarClientesView extends javax.swing.JFrame {
         this.dispose();
     }
 
-
-
     public String getIdentificacion() {
         return null;
     }
@@ -454,7 +452,6 @@ public class AgregarClientesView extends javax.swing.JFrame {
     public void abrirFormularioClientesView(Frame vista) {
     FormularioClientesView formularioClientesView = new FormularioClientesView(vista, true);
     formularioClientesView.setVisible(true);
-    // Suponiendo que tienes un botón "Registrar" en el formulario
     formularioClientesView.agregarListenerRegistrar(new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -463,7 +460,7 @@ public class AgregarClientesView extends javax.swing.JFrame {
             String identificacion = formularioClientesView.getIdentificacion();
             String contraseña = formularioClientesView.getContraseña();
             String confirmarContraseña = formularioClientesView.getConfirmarContraseña();
-            // Aquí puedes agregar la lógica para registrar el cliente
+
             // Si el registro es exitoso:
             formularioClientesView.mostrarMensaje("Cliente registrado exitosamente.");
             formularioClientesView.limpiarCampos(); // Limpiar campos después de registrar

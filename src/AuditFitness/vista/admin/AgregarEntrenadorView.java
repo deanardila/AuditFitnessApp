@@ -344,7 +344,7 @@ public class AgregarEntrenadorView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIdentificacionActionPerformed
 
     private void BtnEnviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEnviarActionPerformed
-        String identificacion = txtIdentificacion.getText().trim(); // Obtener la identificación ingresada
+    String identificacion = txtIdentificacion.getText().trim(); // Obtener la identificación ingresada
     // Validar que la identificación no esté vacía
     if (identificacion.isEmpty()) {
         mostrarMensaje("Por favor, ingresa una identificación válida.");
@@ -379,7 +379,7 @@ public class AgregarEntrenadorView extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnDesactEntrenadorActionPerformed
 
     private void BtnFormularioEntrenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnFormularioEntrenadorActionPerformed
-        // Crear y mostrar la vista del formulario de cliente
+        // Crear y mostrar la vista del formulario de entrenador
         FormularioEntrenadoresView formularioEntrenadoresView = new FormularioEntrenadoresView(this, true);
         formularioEntrenadoresView.setVisible(true);
     }//GEN-LAST:event_BtnFormularioEntrenadorActionPerformed
@@ -466,11 +466,7 @@ public class AgregarEntrenadorView extends javax.swing.JFrame {
         desactivarEntrenador.setVisible(true);
         this.dispose();
     }
-    
-    public void agregarListenerVerificar(ActionListener actionListener) {
-        
-    }
-    
+   
     public String getIdentificacion() {
         return null;
     }
@@ -521,10 +517,9 @@ public class AgregarEntrenadorView extends javax.swing.JFrame {
     public void abrirFormularioEntrenadoresView(Frame vista) {
         FormularioEntrenadoresView formularioEntrenadoresView = new FormularioEntrenadoresView(vista, true);
         formularioEntrenadoresView.setVisible(true);
-   
         formularioEntrenadoresView.agregarListenerRegistrar(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
             // Obtener los datos del formulario
             String nombre = formularioEntrenadoresView.getNombre();
             String identificacion = formularioEntrenadoresView.getIdentificacion();
@@ -537,8 +532,12 @@ public class AgregarEntrenadorView extends javax.swing.JFrame {
         }
     });
     }
+    
+    public void agregarListenerFormularioEntrenador(ActionListener actionListener) {
+        
+    }
 
     public void abrirFormularioEntrenadoresView() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+ 
     }
 }

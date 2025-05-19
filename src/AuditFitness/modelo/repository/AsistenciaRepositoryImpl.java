@@ -5,7 +5,6 @@
 package AuditFitness.modelo.repository;
 
 import AuditFitness.modelo.entidades.Asistencia;
-import AuditFitness.modelo.entidades.Asistencia;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;

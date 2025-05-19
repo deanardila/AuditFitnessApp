@@ -9,19 +9,12 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 /**
  *
  * @author deana
  */
 public class FormularioEntrenadoresView extends javax.swing.JDialog {
-    private JTextField jTextFieldUsername;
-    private JTextField jTextFieldContraseña;
-    private JTextField jTextFieldConfirmarContraseña;
-    private JTextField jTextFieldNombre;
-    private JTextField jTextFieldIdentificacion;
-    
     /**
      * Creates new form FormularioClientes
      */
@@ -280,11 +273,11 @@ public class FormularioEntrenadoresView extends javax.swing.JDialog {
 
     private void BtnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRegistrarActionPerformed
        // Obtener los datos del formulario
-        String username = jTextFieldUsername.getText().trim();
-        String nombre = jTextFieldNombre.getText().trim();
-        String identificacion = jTextFieldIdentificacion.getText().trim();
-        String contraseña = jTextFieldContraseña.getText().trim();
-        String confirmarContraseña = jTextFieldConfirmarContraseña.getText().trim();
+        String username = this.getUsername().trim();
+        String nombre = this.getNombre().trim();
+        String identificacion = this.getIdentificacion().trim();
+        String contraseña = this.getContraseña().trim();
+        String confirmarContraseña = this.getConfirmarContraseña().trim();
         // Validar los datos
         if (username.isEmpty() || contraseña.isEmpty() || nombre.isEmpty() || identificacion.isEmpty() ) {
             JOptionPane.showMessageDialog(this, "Por favor, completa todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);

@@ -9,5 +9,5 @@ package AuditFitness.modelo.repository;
  * @author deana
  */
 public interface RutinaRepository {
-
+    
 }

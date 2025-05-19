@@ -11,6 +11,7 @@ package AuditFitness.controlador.auth;
 public class SesionSingleton {
     
     public String idenficacionSes = null;
+    private String nombre;
     
     private SesionSingleton() {
     }
@@ -30,6 +31,14 @@ public class SesionSingleton {
 
     public void setIdenficacionSes(String idenficacionSes) {
         this.idenficacionSes = idenficacionSes;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
     
     

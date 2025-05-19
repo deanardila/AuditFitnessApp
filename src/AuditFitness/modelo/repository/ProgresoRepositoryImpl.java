@@ -12,6 +12,7 @@ import java.io.FileWriter;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,7 +28,7 @@ public class ProgresoRepositoryImpl {
             
             return progreso;
         } catch(Exception e) {
-            System.out.println("No se ha podido crear el progreso");
+            JOptionPane.showMessageDialog(null,"No se ha podido crear el progreso", "Advertencia", JOptionPane.WARNING_MESSAGE);
             return null;
         }
     }
@@ -47,7 +48,7 @@ public class ProgresoRepositoryImpl {
         
         return progresos;
     } catch (Exception e) {
-        System.out.println("Error reading file: " + e.getMessage());
+        JOptionPane.showMessageDialog(null,"Error al leer el archivo: " + e.getMessage(), "Advertencia", JOptionPane.WARNING_MESSAGE);
         e.printStackTrace(); // Better error handling
         return new ArrayList<>(); // Return empty list instead of null
     }

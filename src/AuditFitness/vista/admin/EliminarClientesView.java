@@ -4,9 +4,7 @@
  */
 package AuditFitness.vista.admin;
 
-import AuditFitness.modelo.entidades.Cliente;
 import AuditFitness.modelo.repository.ClienteRepositoryImpl;
-import AuditFitness.modelo.service.ClienteService;
 import AuditFitness.vista.auth.LoginAdminView;
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -244,9 +242,9 @@ public class EliminarClientesView extends javax.swing.JFrame {
                             .addComponent(jLabel2)
                             .addGroup(panel_Round_JWC1Layout.createSequentialGroup()
                                 .addComponent(Identificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(BtnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(279, Short.MAX_VALUE))))
+                        .addContainerGap(285, Short.MAX_VALUE))))
         );
         panel_Round_JWC1Layout.setVerticalGroup(
             panel_Round_JWC1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -310,7 +308,6 @@ public class EliminarClientesView extends javax.swing.JFrame {
 
                 if (condicional == 0) {
                     clienteRepository.deleteCliente(identificacionObtenida);
-                    JOptionPane.showMessageDialog(null, "Eliminado correctamente", "Exito", JOptionPane.INFORMATION_MESSAGE);
                 }
 
             } catch (Exception e) {

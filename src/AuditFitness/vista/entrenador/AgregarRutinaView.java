@@ -6,14 +6,11 @@ package AuditFitness.vista.entrenador;
 
 import AuditFitness.modelo.entidades.Cliente;
 import AuditFitness.modelo.repository.ClienteRepositoryImpl;
-import AuditFitness.modelo.repository.ProgresoRepositoryImpl;
 import AuditFitness.modelo.repository.RutinaRepositoryImpl;
 import AuditFitness.vista.auth.LoginEntrenadorView;
 import java.awt.Color;
 import java.io.IOException;
-import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-import javax.swing.ListModel;
 
 /**
  *
@@ -335,18 +332,22 @@ public class AgregarRutinaView extends javax.swing.JFrame {
         try {
             this.clienteEncontrado = clienteRepositoryImpl.readClientes().stream().filter(c -> c.getIdentificacion().equals(identificacionCliente)).findFirst().orElse(null);
             if (clienteEncontrado != null) {
-
                 String rutinaSeleccionada = ComboBoxListaRutinas.getSelectedValue().length() > 0
                         ? ComboBoxListaRutinas.getSelectedValue().trim() : null;
 
-                rutinaRepositoryImpl.asignarRutina(rutinaSeleccionada, clienteEncontrado.getIdentificacion());
-
+               // Verifica que se haya seleccionado una rutina válida
+                    if (rutinaSeleccionada != null) {
+                        rutinaRepositoryImpl.asignarRutina(rutinaSeleccionada, clienteEncontrado.getIdentificacion());
+                        JOptionPane.showMessageDialog(null, "Rutina asignada correctamente","Éxito", JOptionPane.INFORMATION_MESSAGE
+                        );
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No se ha seleccionado ninguna rutina.", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                    }
             } else {
-                JOptionPane.showMessageDialog(null, "Cliente no encontrado!");
+                JOptionPane.showMessageDialog(null, "Cliente no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } catch (IOException ex) {
-            // Pon bien este error
-            JOptionPane.showMessageDialog(null, "ERROR AL BUSCAR CLIENTE");
+            JOptionPane.showMessageDialog(null, "Error al buscar el cliente o asignar la rutina: " + ex.getMessage(), "Error crítico", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_BtnEnviarActionPerformed
 

@@ -272,6 +272,7 @@ public class MostrarRutinaView extends javax.swing.JFrame {
             }
         ));
         TablaEjercicios.setGridColor(new java.awt.Color(255, 102, 0));
+        TablaEjercicios.setRowHeight(20);
         TablaEjercicios.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jScrollPane2.setViewportView(TablaEjercicios);
 
@@ -287,25 +288,27 @@ public class MostrarRutinaView extends javax.swing.JFrame {
                 .addComponent(panel_Round_JWC2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(EntrenadorMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(EntrenadorMenuViewLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BtnSalirRedondo, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19))
-                    .addGroup(EntrenadorMenuViewLayout.createSequentialGroup()
                         .addGroup(EntrenadorMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(EntrenadorMenuViewLayout.createSequentialGroup()
-                                .addGap(79, 79, 79)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel2))
+                            .addGroup(EntrenadorMenuViewLayout.createSequentialGroup()
+                                .addGap(112, 112, 112)
                                 .addGroup(EntrenadorMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(EntrenadorMenuViewLayout.createSequentialGroup()
                                         .addComponent(Identificacion, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(BtnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)))
-                            .addGroup(EntrenadorMenuViewLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(EntrenadorMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(19, Short.MAX_VALUE))))
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, EntrenadorMenuViewLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 516, Short.MAX_VALUE)
+                        .addComponent(BtnSalirRedondo, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19))
+                    .addGroup(EntrenadorMenuViewLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane2)
+                        .addContainerGap())))
         );
         EntrenadorMenuViewLayout.setVerticalGroup(
             EntrenadorMenuViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -322,11 +325,11 @@ public class MostrarRutinaView extends javax.swing.JFrame {
                 .addGap(39, 39, 39)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getContentPane().add(EntrenadorMenuView, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 700, 620));
+        getContentPane().add(EntrenadorMenuView, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 760, 620));
 
         pack();
         setLocationRelativeTo(null);
@@ -356,9 +359,7 @@ public class MostrarRutinaView extends javax.swing.JFrame {
         try {
             this.clienteEncontrado = clienteRepositoryImpl.readClientes().stream().filter(c -> c.getIdentificacion().equals(identificacionCliente)).findFirst().orElse(null);
             if (clienteEncontrado != null) {
-
                 Rutina rutinaEncontrada = rutinaRepositoryImpl.leerRutinaCliente(clienteEncontrado.getIdentificacion());
-
                 if (rutinaEncontrada != null) {
                     List<EjercicioRecord> ejercicios = rutinaRepositoryImpl.obtenerEjerciciosRutina(rutinaEncontrada.getArchivoRutina());
 

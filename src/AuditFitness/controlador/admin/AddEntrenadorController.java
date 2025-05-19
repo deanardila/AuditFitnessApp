@@ -22,16 +22,17 @@ public class AddEntrenadorController {
        this.vista = vista;
         this.entrenadorService = entrenadorService;
         // Agregar ActionListener al botón de verificar
-        vista.agregarListenerVerificar(new ActionListener() {
+        new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 verificarEntrenador();
             }
-        });
+        };
     }
+    
         private void verificarEntrenador() {
         String Identificacion = vista.getIdentificacion(); // Obtener la identificacion ingresada
-        // Verificar si el cliente existe
+        // Verificar si el entrenador existe
         Entrenador entrenador = entrenadorService.buscarEntrenadorPorIdentificacion(Identificacion);
         if (entrenador != null) {
             // Si el cliente existe, mostrarlo en la tabla

@@ -9,15 +9,13 @@ import AuditFitness.modelo.entidades.Cliente;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author deana
  */
 public class ClienteRepositoryImpl implements ClienteRepository {
-
     private final String ARCHIVO_CLIENTES = "src/data/clientes.csv";
     
     @Override
@@ -44,7 +42,7 @@ public class ClienteRepositoryImpl implements ClienteRepository {
 
                     clientes.add(cliente);
                 } else {
-                    System.err.println("Línea ignorada (formato incorrecto): " + line);
+                     JOptionPane.showMessageDialog(null, "Línea ignorada (formato incorrecto): " + line,"Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }
@@ -54,7 +52,6 @@ public class ClienteRepositoryImpl implements ClienteRepository {
     @Override
     public void addCliente(Cliente cliente) throws IOException {
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(ARCHIVO_CLIENTES, true))) {
-            bw.newLine();
             bw.write(cliente.toCSVString());
             bw.newLine();
         }
@@ -78,30 +75,39 @@ public class ClienteRepositoryImpl implements ClienteRepository {
 
 
     public void deleteCliente(String identificacion) throws IOException {
-        // Leer clientes ANTES de abrir el archivo en modo escritura
-        List<Cliente> clientes = this.readClientes();
+            // 1. Leer la lista de clientes actual
+               List<Cliente> clientes = this.readClientes();
 
-        System.out.println(clientes.size());
+            // 2. Buscar si el cliente existe ANTES de eliminarlo
+            boolean clienteExiste = clientes.stream()
+                    .anyMatch(cliente -> cliente.getIdentificacion().equals(identificacion));
 
-        // 1. Eliminar el cliente de la lista en memoria
-        clientes.removeIf(cliente
-                -> cliente.getIdentificacion().equals(identificacion)
-        );
-
-        // 2. Reescribir el archivo solo si se eliminó un cliente
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(ARCHIVO_CLIENTES))) { // Sobrescribe el archivo
-            bw.write("username,password,nombre,identificacion");
-            bw.newLine();
-            for (Cliente cliente : clientes) {
-                bw.write(cliente.toCSVString());
-                bw.newLine();
+                 if (!clienteExiste) {
+                    JOptionPane.showMessageDialog(
+                        null,
+                        "No se encontró ningún cliente con la identificación: " + identificacion,
+                        "Cliente no encontrado",
+                        JOptionPane.WARNING_MESSAGE
+                    );
+                    return; // Sale del método sin hacer cambios
             }
-            System.out.println("Cliente eliminado correctamente.");
-        } catch (IOException e) {
-            System.err.println("Error al escribir en el archivo: " + e.getMessage());
-            throw e; // Relanza la excepción para manejo externo
+
+            // 3. Si el cliente existe, lo eliminamos
+            clientes.removeIf(cliente -> cliente.getIdentificacion().equals(identificacion));
+
+            // 4. Guardar los cambios en el archivo
+            try (BufferedWriter bw = new BufferedWriter(new FileWriter(ARCHIVO_CLIENTES))) {
+                bw.write("username,password,nombre,identificacion");
+                bw.newLine();
+                for (Cliente cliente : clientes) {
+                    bw.write(cliente.toCSVString());
+                    bw.newLine();
+                }
+                JOptionPane.showMessageDialog(null, "Cliente eliminado correctamente.","Éxito",JOptionPane.INFORMATION_MESSAGE);
+
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(null, "Error al guardar los cambios: " + e.getMessage(),"Error", JOptionPane.ERROR_MESSAGE);
+                throw e; // Relanza la excepción para manejo externo
+                    }
         }
-
-    }
-
 }

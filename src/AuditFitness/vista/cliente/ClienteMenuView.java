@@ -12,7 +12,6 @@ import java.awt.Color;
  * @author deana
  */
 public class ClienteMenuView extends javax.swing.JFrame {
-
     /**
      * Creates new form Inicio
      */

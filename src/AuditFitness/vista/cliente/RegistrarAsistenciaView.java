@@ -7,12 +7,10 @@ package AuditFitness.vista.cliente;
 import AuditFitness.controlador.auth.SesionSingleton;
 import AuditFitness.modelo.entidades.Asistencia;
 import AuditFitness.modelo.repository.AsistenciaRepositoryImpl;
-import AuditFitness.util.FechaHelper;
 import AuditFitness.vista.auth.LoginClienteView;
 import java.awt.Color;
 import java.util.Calendar;
 import java.util.Date;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import javax.swing.JOptionPane;
@@ -24,6 +22,7 @@ import javax.swing.JOptionPane;
 public class RegistrarAsistenciaView extends javax.swing.JFrame {
     AsistenciaRepositoryImpl asistenciaRepositoryImpl = new AsistenciaRepositoryImpl();
     SesionSingleton sesionSingleton = SesionSingleton.getInstance();
+    
     /**
      * Creates new form Inicio
      */
@@ -273,23 +272,25 @@ public class RegistrarAsistenciaView extends javax.swing.JFrame {
         return null;
     }
     private void BtnGuardarAsistenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarAsistenciaActionPerformed
-        // TODO add your handling code here:
-        LocalDate fechaRegistro = getFechaRegistro().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        if(fechaRegistro!=null){            
-            try {
-                asistenciaRepositoryImpl.crear(new Asistencia(sesionSingleton.getIdenficacionSes(), fechaRegistro));
-                JOptionPane.showMessageDialog(null, "Asistencia registrada con Exito!");
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Error al registrar asistencia", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }else{
-            System.out.println("No ha seleccionado fecha");
-        }
-        
-        /*String fech2="01-05-2025";
-        Date fechaAlmacenada = FechaHelper.parsearFecha(fech2);
-        dateChooserAsistencia.setDate(fechaAlmacenada);*/
-        
+        // 1. Verificar si la fecha es null o no se ha seleccionado
+                if (getFechaRegistro() == null) {
+                    JOptionPane.showMessageDialog(null, "No ha seleccionado fecha", "Error", JOptionPane.ERROR_MESSAGE);
+                    return; // Sale del método sin intentar registrar
+                }
+
+       // 2. Si hay fecha, proceder con la conversión y registro (try-catch original)
+                LocalDate fechaRegistro = getFechaRegistro()
+                    .toInstant()
+                    .atZone(ZoneId.systemDefault())
+                    .toLocalDate();
+
+                try {
+                    asistenciaRepositoryImpl.crear(new Asistencia(sesionSingleton.getIdenficacionSes(), fechaRegistro));
+                    JOptionPane.showMessageDialog(null,"Asistencia registrada con Éxito!", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                    
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Error al registrar asistencia", "Error", JOptionPane.ERROR_MESSAGE);
+                  }
     }//GEN-LAST:event_BtnGuardarAsistenciaActionPerformed
 
     private void BtnVerMiProgresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerMiProgresoActionPerformed
